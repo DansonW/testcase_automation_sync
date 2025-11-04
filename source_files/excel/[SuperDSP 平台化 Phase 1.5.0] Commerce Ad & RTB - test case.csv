@@ -1,0 +1,127 @@
+系統,權限,功能 / 頁面,測試功能,測試情境,操作步驟,期望結果,驗證結果
+OSS,onead_admin,合約內容,新增合約,admin 新增合約及費用設定,"1. 進入合約價格設定頁面
+2. 新增代理商 / 直客 / 媒體合約,填妥各欄位
+3. 進入費用設定,新增格式 commerce 合約內容
+4. 確認合約列表及價格內容",合約列表及格式列表正確顯示新增的合約及價格內容,
+,,,編輯合約,admin 修改媒體合約及費用設定,"1. 進入合約價格設定頁面
+2. 修改代理商 / 直客 / 媒體合約內容
+3. 選擇客戶進入費用設定,修改 commerce 合約內容
+4. 確認合約列表及價格內容",合約列表及格式列表正確顯示所修改的合約及價格內容,
+SuperDSP,"Client_User
+Agency_User ",權限管理,驗證權限,驗證 Client_User 及 Agency_User 權限使用範圍 ,"1. 用 Client_User 及 Agency_User 帳號登入 SuperDSP 平台
+2. 點進廣告管理頁面
+3. 按「建立新 I/O 單」
+4. 廣告目的選 Push Conversion
+5. 確認能不能選到 Commerce Ad 品類","Client_User 及 Agency_User 帳號可以選擇到 Push Conversion ,並新增 Commerce Ad 品類",
+SuperDSP,,,,,"1. 用 Client_User 及 Agency_User 帳號登入 SuperDSP 平台
+2. 點進素材管理頁面
+3. 按「新增素材包」
+4.  廣告目的選 Push Conversion
+5. 確認能不能選到 Push Conversion 品類及 Commerce ads 格式","Client_User 及 Agency_User 帳號可以選擇到 Push Conversion ,並新增 Commerce Ad 格式",
+SuperDSP,Media_User,,,驗證 Media_User 權限使用範圍,"1. 用 Media_User 帳號登入 SuperDSP 平台
+2. 點進廣告管理頁面
+3. 按「建立新 I/O 單」
+4. 確認廣告目的有沒有 Push Conversion",Media_User 完全看不到 Push Conversion ,
+SuperDSP,,,,,"1. 用 Media_User 帳號登入 SuperDSP 平台
+2. 點進素材管理頁面
+3. 按「新增素材包」
+4. 確認能不能選到  Push Conversion 及 Commerce ads 廣告格式",Media_User 完全看不到 Push Conversion ,
+SuperDSP,"Client_User
+Agency_User ",素材管理 > 新增素材,驗證素材包建立,確認建立 Commerce Ad  素材包,"1. 登入系統後進入素材管理
+2. 按「新增素材包」
+3. 選 Push Conversion 
+4. 選擇 Commerce ads 格式,並填妥欄位
+5. 點擊儲存","Commerce Ad 的素材包成功建立, 且預覽正確
+(必填欄位未填妥不得成功新增）",
+Studio,,,,,"1. 登入系統後進入素材管理
+2. 按「前往 studio 建立素材」,並點擊「是」
+3. 選 Push Conversion 
+4. 選擇 Commerce ads 格式,並填妥欄位
+5. 點擊儲存","Commerce Ad 的素材包成功建立, 且預覽正確
+(必填欄位未填妥不得成功新增）",
+SuperDSP,"Client_User
+Agency_User ",I/O 單管理 > 廣告活動,驗證建立功能,確認建立 Commerce Ad  廣告活動,"1. 登入系統後進入 I/O 單管理頁面
+2. 按「建立新 I/O 單」
+3. 選 Push Conversion ,並填妥欄位
+4. 點擊新增廣告活動
+5. 選擇 Commerce Ad ,並填妥欄位
+6. 點擊儲存","Commerce Ad 的廣告活動成功建立
+(必填欄位未填妥不得成功新增）",
+SuperDSP,,I/O 單管理 > 廣告活動 > 廣告組合,驗證建立功能 > 數據鎖定模式切換,確認建立 Commerce Ad  廣告組合,"1. 進入未上刊的 Commerce ad 格式廣告
+2. 將受眾數據鎖定模式切換為內容數據鎖定模式
+3. 點擊儲存",成功切換數據鎖定模式,
+SuperDSP,,,,,"1. 進入未上刊的 Commerce ad 格式廣告
+2. 將內容數據鎖定模式切換為受眾數據鎖定模式
+3. 點擊儲存",成功切換數據鎖定模式,
+SuperDSP,,,,,"1. 進入已上刊的 Commerce ad 格式廣告
+2. 將受眾數據鎖定模式切換為內容數據鎖定模式","已上刊的 Commerce ad 廣告, 無法切換數據鎖定模式",
+SuperDSP,,,,,"1. 進入已上刊的 Commerce ad 格式廣告
+2. 將內容數據鎖定模式切換為受眾數據鎖定模式","已上刊的 Commerce ad 廣告, 無法切換數據鎖定模式",
+SuperDSP,,,驗證建立功能 > 數據鎖定 (受眾）,,"1. 數據鎖定選擇受眾
+2. 選擇年齡性別及其他受眾選項
+2. 確認包含名單內有 全域預測潛力模型 及 活動預測潛力模型,並加選
+3. 填妥及選擇所有必填欄位後,點擊儲存"," ""全域預測潛力模型"" / ""活動預測潛力模型""選項被成功加選,且 Commerce ad 廣告組合成功建立
+(必填選欄位未填妥不得成功建立廣告組合）",
+SuperDSP,,,,,"1. 進入已建立的 Commerce ad 格式廣告
+2. 修改受眾數據鎖定內容
+3. 點擊儲存",成功編輯及儲存受眾數據鎖定的設定,
+SuperDSP,,,驗證建立功能 > 數據鎖定 (內容）,,"1. 數據鎖定選擇內文
+2. 確認可以選擇到 Product Key, 並加選 Product Key 中的任一項目 (僅包含）
+3. 填妥及選擇所有必填欄位後,點擊儲存","可以選擇到 Product Key 中任一選項, 且 Commerce ad 廣告組合成功建立
+(必填選欄位未填妥不得成功建立廣告組合）",
+SuperDSP,,,,,"1. 進入已建立的 Commerce ad 格式廣告
+2. 修改 Product Key 設定內容(僅包含）
+3. 點擊儲存",成功編輯及儲存 Product Key 內容,
+SuperDSP,,,,,"1. 進入已建立的 Commerce ad 格式廣告
+2. 原設定 Product Key 內容, 切換為內文比對
+3. 設定選擇任一內文比對的內容
+4. 點擊儲存",成功切換及儲存 內文比對 內容,
+SuperDSP,,,,,"1. 進入已建立的 Commerce ad 格式廣告
+2. 模式內部來回切換 (內文比對 <->  Product Key )
+3. 確認內容",來回切換依然能保留各別模式選項設定值,
+SuperDSP,,,驗證建立功能 > RTB 出價設定,,"1. 填妥出價CPC、Margin 設定
+2. 驗證計算出的實際競標價","RTB欄位須遵守下方填入及計算規則
+
+CPC 出價設定範圍$0.1 ~ $100
+Margin 設定範圍：0% ~ 99% (必為整數)
+實際競標價 = CPC出價 - (CPC出價 × Margin%)",
+SuperDSP,,,,,"1. 進入已建立的 Commerce ad 格式廣告
+2. 修改 cpc 及 margin 欄位數值
+3. 驗證實際競標價欄位變動","實際競標價隨著 cpc 及 margin 數值做變化, 並同樣遵照
+“實際競標價 = CPC出價 - (CPC出價 × Margin%)”公式計算",
+SuperDSP,,,,,"1. 進入已上刊的 Commerce ad 格式廣告
+2. 確認 margin 欄位狀態","已上刊的 Commerce ad 廣告, margin 欄位無法再次修改",
+SuperDSP,"Client_User
+Agency_User ",廣告活動 > 數據分析,驗證廣告成效,確認看板內的廣告數據成效內容,"1. 進入 Commerce ad 測試頁面
+2. 觸發數據發送動作 (進站 pageview、註冊完成、加入購物車...)
+3. 驗證數據成效內容","根據觸發條件正確收發數據, 並正確紀錄於看板內",
+SuperDSP,,,,確認受眾洞察報告數據成效內容,"1. 看板內顯示正確數據
+2. 將廣告加入受眾洞察報告並產出報表
+3. 確認報表內容",報表內顯示正確的欄位名稱及數據內容,
+SuperDSP,onead,Sequence.json,驗證 Sequence.json > 非 Commerce ads 廣告,確認 RTB 相關欄位數值,"1. 將廣告上刊
+2. 確認 “enable"" / ""bid_price"" / ""sell_price"" 數值.","非 Commerce ad 廣告不會啟用 RTB 模式, Sequence呈現
+
+""rtb"": {
+  ""enable"": false,
+  ""bid_price"": ,
+  ""sell_price"": 
+}",
+SuperDSP,,,驗證 Sequence.json > Commerce ads 廣告,,"1. 將廣告上刊
+2. 確認 “enable"" / ""bid_price"" / ""sell_price"" 數值.","Commerce ads 廣告會啟用 RTB 模式, 且 Sequence 依據以下條件顯示
+
+enable
+表示啟用 rtb 投放判斷，同時 valuation_by_array 必須包含 Click 相關 event (如: bannerClick)
+
+bid_price
+實際競標價，比對媒體價格，決定是否投放 
+string，小數點最多 2 位，內部用 decimal 型態，保留精度
+cpc 如果是 2 元，則此欄位為 2
+暫時不考慮 cpm 等其他計費方式
+
+sell_price
+售價，含 margin 的單位價格
+string，小數點最多 2 位，內部用 decimal 型態，保留精度
+如果含 margin 是 3 元，則此欄位為 3",
+,,,,,"1. 進入編輯 Commerce ad 廣告
+2. 修改 CPC 欄位數值, 並點擊儲存
+3. 驗證 Sequence.json 的 RTB 相關欄位數值變化",Sequence.json 中的 RTB 欄位內容正確更新內容,

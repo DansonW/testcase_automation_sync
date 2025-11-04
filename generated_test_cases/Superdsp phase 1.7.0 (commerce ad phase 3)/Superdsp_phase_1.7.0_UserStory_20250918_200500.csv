@@ -1,0 +1,5 @@
+"User Story ID","使用者角色","情境描述 (When)","我想要 (I want to)","所以能夠 (So I can)","來源文件"
+"情境一","Onead User (PAD)","完成與媒體的 RTB 合作商談 (合作格式、分潤比例已確定)","在 ERP 建立 RTB 合約並設定初始底價","讓媒體正式加入 RTB 競價體系","ITO-[Commerce AD Phase 3] Commerce AD 媒體端 RTB 底價設定-150925-045047.pdf"
+"情境二","Onead User (PAD)","媒體主動授權 PAD 協助調整底價","在 OYM 系統中幫媒體更新底價設定","提供客戶服務並確保價格調整有完整記錄","ITO-[Commerce AD Phase 3] Commerce AD 媒體端 RTB 底價設定-150925-045047.pdf"
+"情境三","Media User","媒體根據競價表現想要調整底價","在 OYM 平台自主設定各尺寸底價","即時反應市場變化，優化廣告收益","ITO-[Commerce AD Phase 3] Commerce AD 媒體端 RTB 底價設定-150925-045047.pdf"
+"情境四","Media User","媒體想要了解 RTB 模式下的實際收益","在 OYM 查看包含動態價格的收益報表","評估底價策略的效果並做出調整決策","ITO-[Commerce AD Phase 3] Commerce AD 媒體端 RTB 底價設定-150925-045047.pdf"

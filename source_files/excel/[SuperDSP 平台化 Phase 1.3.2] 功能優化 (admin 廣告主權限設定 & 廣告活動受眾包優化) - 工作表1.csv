@@ -1,0 +1,49 @@
+系統,權限,功能 / 頁面,測試功能,測試情境,操作步驟,期望結果,驗證結果
+SuperDSP,"Agency_Admin
+Client_Admin
+Media_Admin",廣告主管理 - 新增廣告主,新增廣告主,"admin 帳號新增廣告主, 其他 admin 帳號的同步確認","admin 權限 (Agency / Client / Media Admin) 新增廣告主
+
+切換至相同所屬機構的 admin 帳號
+
+確認所建立之 “廣告主” 相關所有查看存取權限",相同機構下的 Admin 帳號同步廣告主的所有查看及存取權限,ˊv
+,"Agency
+Client
+Media",,,"admin 帳號新增廣告主後, 非 admin 帳號的同步確認","admin 權限 (Agency / Client / Media Admin) 新增廣告主
+
+切換至相同所屬機構的非 admin 帳號 (未被賦予權限）
+
+確認所建立之 “廣告主” 相關所有查看存取權限",相同所屬機構下的非 admin 帳號無法同步廣告主的所有查看及存取權限,v
+,"Agency
+Client
+Media",,,"admin 帳號新增廣告主後,非 admin 帳號被賦予新的廣告主權限","在 admin 權限 (Agency / Client / Media Admin) 新增廣告主後
+
+切換至相同所屬機構的非 admin 帳號 (已被賦予權限）
+
+確認所建立之 “廣告主” 相關所有查看存取權限",相同所屬機構下被賦予權限的非 admin 帳號同步該廣告主的查看及存取權限,v
+,"Agency_Admin
+Client_Admin
+Media_Admin",廣告主管理 - 刪除廣告主,刪除廣告主,admin 權限帳號刪除廣告主,"admin 權限 (Agency / Client / Media Admin) 刪除廣告主
+
+切換至相同所屬機構的 admin 帳號
+
+確認所建立之 “廣告主” 相關所有查看存取權限",相同機構下的所有帳號皆無法同步該廣告主的所有查看及存取權限,v
+,"Agency / admin
+Client / admin
+Media / admin",,," admin 刪除廣告主後, 非 admin 帳號的同步確認","admin 權限 (Agency / Client / Media Admin) 刪除廣告主後
+
+切換至相同所屬機構的非 admin 帳號 (已被賦予權限）
+
+確認所建立之 “廣告主” 相關所有查看存取權限",相同機構下的所有帳號皆無法同步該廣告主的所有查看及存取權限,v
+,Users,受眾管理 - 新增受眾管理,新增受眾包,user 新增受眾包,"擁有編輯受眾包功能的 user
+
+在受眾包頁面填選完成所有欄位並儲存","事件選擇新增 ”看過廣告 (impression)“ 選項並可以複選多個選項, 填選所有欄位後成功新增受眾包 (任一必填項目未填妥不得成功新增)",v
+,,,,新增投放及選擇受眾包,"建立投放,找剛剛新增的受眾包
+
+完成廣告投放設定",成功選取到剛剛新增的受眾包並成功儲存投放設定,v
+,,,停用受眾包,user 停用受眾包,擁有編輯受眾包功能的 user 停用任一受眾包,該受眾包狀態變更為 “停用” ,v
+,,,,新增投放及選擇受眾包,"建立投放
+
+找剛剛停用的受眾包",受眾包選單中沒有已停用的受眾包 ,v
+,,廣告活動 - 廣告活動報表,報表 sheet 命名,產出廣告活動報表,"產出廣告活動報表
+
+驗證 sheet 命名",sheet 命名規則為 ad_group_id_ad_group_name,v
