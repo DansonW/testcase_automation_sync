@@ -1,0 +1,57 @@
+系統,權限,功能/頁面,測試功能,測試情境,操作步驟,期望結果,備註
+SuperDSP,Media Admin,自訂受眾管理,"[權限][正向]","驗證高階權限者的全功能存取能力","1. 以 Media Admin 角色登入系統
+2. 進入「自訂受眾」頁面
+3. 檢查「Create」、「Edit」、「Delete」按鈕是否可用","1. 所有管理按鈕均清楚顯示且為啟用狀態
+2. 可點擊進入任一管理流程操作至完成","主文件：ITO-SuperDSP Custom Audience-121125-094128.pdf
+ - 章節：權限管理"
+SuperDSP,Onead User (Ad-Ops),自訂受眾管理,"[權限][反向]","驗證低階或唯讀權限者的操作限制機制","1. 以 Ad-Ops 角色登入系統
+2. 進入「自訂受眾」頁面
+3. 嘗試點擊建立按鈕或單筆資料的操作按鈕","1. 頁面上不應出現「Create」按鈕
+2. 列表的操作欄位應隱藏編輯與刪除圖示，僅保留檢視功能","主文件：ITO-SuperDSP Custom Audience-121125-094128.pdf
+ - 章節：權限管理"
+SuperDSP,Media Admin,自訂受眾管理,"[功能新增][正向]","驗證受眾建立的基礎功能完整性","1. 點擊「Create Audience」
+2. 輸入 Audience Name
+3. 選擇 Source (Website)
+4. 設定 Lookback window (30)
+5. 設定一條 Rule (URL contains '/')
+6. 點擊 Save","1. 系統提示「儲存成功」
+2. 資料進入列表，Last Update 顯示當前時間
+3. 系統開始非同步計算受眾量體","主文件：ITO-SuperDSP Custom Audience-121125-094128.pdf
+ - 章節：Create Custom Audience"
+SuperDSP,Media Admin,自訂受眾管理,"[功能新增][反向]","驗證欄位檢核機制，確保資料輸入的正確性與完整性","1. 進入建立頁面
+2. 刻意保持 Audience Name 空白
+3. 在 Lookback window 輸入非整數字元
+4. 點擊 Save","1. Audience Name 欄位應出現標紅錯誤提醒「名稱為必填」
+2. Lookback 欄位應顯示「請輸入有效格式」
+3. 系統應阻擋儲存請求，維持在原頁面","細節文件：ITO-Custom Audience 前端開發文件-121125-094303.pdf
+ - 章節：Validation Rules"
+SuperDSP,Media Admin,自訂受眾管理,"[情境][正向]","使用者應用複合邏輯 (AND/OR) 來定義細分受眾包","1. 進入建立受眾頁面
+2. 設定 Match condition 為「All」(AND)
+3. 新增 Rule A (URL contains 'sale')
+4. 新增 Rule B (URL contains 'new-arrival')
+5. 點擊儲存","1. 規則區塊應正確顯示連結邏輯為 AND
+2. 儲存後受眾計算邏輯應為：同時造訪過 sale 與 new-arrival URL 的使用者才能入包","細節文件：ITO-Custom Audience 前端開發文件-121125-094303.pdf
+ - 章節：Rule Logic Implementation"
+SuperDSP,Media Admin,自訂受眾管理,"[情境][反向]","驗證系統處理互相矛盾的篩選條件時的防錯或提醒","1. 建立受眾
+2. 設定 Rule 1: URL contains 'A'
+3. 設定 Rule 2: URL not contains 'A'
+4. 選擇 AND 邏輯並嘗試儲存","1. 系統應能正常儲存（若無邏輯檢核）但受眾量體預期應始終為 0
+2. 進階：若前端具備邏輯檢核，應提示「條件互相矛盾」","專業推演：基於邏輯運算安全性
+ - 參照：ITO-SuperDSP Custom Audience-121125-094128.pdf"
+SuperDSP,Media Admin,廣告活動設定,"[整合][正向]","驗證自訂受眾在廣告投放端的正向整合流程","1. 進入廣告活動建立流程
+2. 在「受眾設定」區塊點擊「包含受眾」下拉選單
+3. 選擇一個已 Ready 的自訂受眾
+4. 儲存廣告活動","1. 廣告活動成功建立
+2. 投放系統應能識別並提取該自訂受眾 ID 進行對標投放
+3. 受眾預估量體數據應成功反饋至 Campaign UI","來源文件：20251104_Custom_Audience.pptx.pdf
+ - 情境：Scenario 3"
+SuperDSP,Media Admin,廣告活動設定,"[整合][反向]","驗證「計算中」或「失效」受眾在整合端的操作限制","1. 進入廣告活動設定
+2. 嘗試選擇一個狀態為「Expired」或「Building」的受眾包
+3. 觀察系統行為","1. 系統應於選單內以灰階或標籤標記該受眾不可用於投放
+2. 若選取，應提示「此受眾包尚未就緒，暫時無法套用」並禁止儲存","專業推演：基於數據流向完整性
+ - 參照：ITO-SuperDSP Custom Audience-121125-094128.pdf"
+SuperDSP,Media Admin,自訂受眾管理,"[整合][反向]","驗證受眾包刪除時對現有整合業務的影響防護","1. 找到一個正在被廣告活動使用的受眾包
+2. 在管理頁面點擊「Delete」
+3. 觀察系統警告","1. 系統應提示「此受眾正在使用中，無法刪除」或「刪除將導致關聯廣告活動停權」
+2. 二次確認視窗中應列出受影響的廣告活動列表","專業推演：跨模組依賴性檢查
+ - 參照：ITO-SuperDSP Custom Audience-121125-094128.pdf"

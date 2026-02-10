@@ -1,0 +1,92 @@
+"系統","權限","功能 / 頁面","測試功能","測試情境","操作步驟","期望結果","備注"
+"SuperDSP","Media Admin","Cross Channel 頁面","[權限]全域 Media 管理者存取範圍驗證","驗證 Media Admin 在跨品牌架構下的中央管理權限","1. 使用 Media Admin 帳號登入
+2. 進入「Cross Channel」首頁
+3. 切換「Brand」篩選器至「All Brands」並檢查列表
+4. 點擊不同品牌所屬的 Pixel 進行編輯","1. 應能檢視該 Media 下屬所有廣告主與品牌的所有 Pixel
+2. 列表應顯示各 Pixel 所屬的 Brand 名稱
+3. 應能無差別編輯、刪除或新增任務至任一品牌","來源文件：20250919_CCT.pdf
+ - 章節：Cross Channel權限控管(User) (p.41-42)"
+"SuperDSP","Ad Operator","Cross Channel 頁面","[權限]操作員帳號跨品牌作業流程","驗證一般操作員在多品牌授權下的作業隔離與流暢度","1. 使用 Ad Operator 帳號登入
+2. 進入列表頁面，檢查可見的 Brand 選項
+3. 嘗試在品牌 A 頁面建立 Pixel，完成後切換至品牌 B 檢查隔離性","1. 應僅能看見被授權分配的品牌，非授權品牌不應出現在下拉選單中
+2. 品牌 A 的資料不得在品牌 B 篩選器下顯示
+3. 應具備授權品牌下的完整新增與維護權限","來源文件：20250919_CCT.pdf
+ - 章節：Cross Channel權限控管(User) (p.41-42)"
+"SuperDSP","Brand Admin","Cross Channel 頁面","[權限]品牌管理員 (Brand Admin) 權限邊界驗證","驗證品牌端的最高權限者是否能正確管理品牌資產，且無法窺探其他品牌","1. 使用品牌 X 的 Brand Admin 登入
+2. 進入「Cross Channel」列表
+3. 嘗試新建一個 Pixel，並在 Brand 下拉選單中尋找是否有品牌 Y
+4. 嘗試直接在瀏覽器 URL 輸入已知品牌 Y 的 Pixel ID 進行存取","1. 列表應僅顯示品牌 X 的資料
+2. Brand 下拉選單應僅有一個選項（品牌 X）或被固定
+3. 存取非授權品牌 ID 時，應返回「權限不足」或正確引導至列表頁
+4. 具備品牌 X 下完整的 Create/Edit/View/Delete 權限","來源文件：20250919_CCT.pdf
+ - 章節：Cross Channel權限控管(User) (p.41-42)"
+"SuperDSP","Brand User","Cross Channel 頁面","[權限]品牌一般使用者 (Brand User) 角色行為規範","驗證品牌端一般使用者的操作限制，避免非預期的資產異動","1. 使用品牌 X 的 Brand User 登入
+2. 檢查頁面上的「+ Create」按鈕與列表中的「Delete」按鈕
+3. 嘗試進入現有 Pixel 的詳細頁面進行欄位修改並點擊儲存","1. 「+ Create」按鈕應隱藏或提示無權限建立
+2. 列表中的「Delete」按鈕不應顯示或隱藏在更多操作中且不可選取
+3. 編輯頁面中關鍵欄位（如 Pixel ID, Channel）應呈現唯讀狀態，或儲存按鈕被鎖定","來源文件：20250919_CCT.pdf
+ - 章節：Cross Channel權限控管(User) (p.41-42)"
+"SuperDSP","Agency Admin / User","Cross Channel 頁面","[權限]代理商權限跨品牌維護矩陣","驗證代理商職務在管理所代理的多個品牌時的權限一致性","1. 使用代理商帳號登入（其代理品牌 A, B, C）
+2. 檢查品牌篩選器內容
+3. 在品牌 A 下建立 Pixel，並驗證品牌 D（非代理）的隔離狀況","1. 應能自由切換並管理品牌 A, B, C 的所有 Pixel 資產
+2. 篩選器內不應出現品牌 D 的任何資訊
+3. 代理商應具備跨其代理品牌複製或快速對照各品牌 CCT 設定的能力","來源文件：20250919_CCT.pdf
+ - 章節：Cross Channel權限控管(User) (p.41)"
+"SuperDSP","Client Admin","Cross Channel 頁面","[權限]直客管理者 (Client Admin) 權限完整性","驗證直客身分使用者的管理範圍是否符合其廣告主層級定義","1. 使用直客帳號登入
+2. 進入頁面並嘗試新建 Pixel
+3. 檢查「Brand」下拉選單的可見範圍","1. 應僅具備該直客所屬廣告主下之品牌的操作權限
+2. 不得存取該廣告主以外的任何 Pixel 資料","來源文件：20250919_CCT.pdf
+ - 章節：Cross Channel權限控管(User) (p.41)"
+"SuperDSP","OneAD User (OP/PM)","Cross Channel 頁面","[權限]內部人員 (OneAD User) 全域排障與維權","驗證內部營運人員具備全系統 CCT 設定的最高維護與故障排除權限","1. 使用內部 OP 帳號登入
+2. 搜尋特定品牌之 Pixel 或查看全系統資料
+3. 執行必要的資料修正以輔助客戶排障","1. 應具備跨所有廣告主與品牌的全域管理與存取權限
+2. 應利於快速定位並修復客戶回報的追蹤碼問題","來源文件：20250919_CCT.pdf
+ - 章節：Cross Channel權限控管(User) (p.42)"
+"SuperDSP","Readonly User","Cross Channel 頁面","[權限]唯讀使用者 (Readonly) 交互隔離深度測試","驗證唯讀權限在所有互動點均無法觸發任何資料變更","1. 使用 Readonly 權限進入 Pixel 列表與編輯頁
+2. 嘗試使用快捷鍵或 Inspector 修改 disabled 欄位並觸發提交
+3. 點擊頁面上任何可能觸發 API call 的控制項","1. 所有 UI 改動功能應完全鎖定或隱藏
+2. 禁止任何形式的資料更新請求
+3. 前端各項 Save/Create 按鈕不應出現在 DOM 中，或嚴格保證不具備 onClick 行為","來源文件：20250919_CCT.pdf
+ - 章節：Cross Channel權限控管(User) (p.42)"
+"SuperDSP","Ad Operator","廣告組合 (Ad Group)","[功能新增]廣告組合 CCT 主開關及列表深度連動","驗證廣告組合介面開啟 CCT 功能後的 UI 動態響應與資料正確性","1. 開啟 InStream 廣告組合中的 Cross Channel Targeting 開關
+2. 觀察下方 Pixel 選擇區塊的顯隱與資料載入狀態
+3. 在未勾選任何 Pixel 時點擊廣告組合 Save","1. 開關 ON 時，正確載入並顯示可選 Pixel 列表（限定該品牌）
+2. 若開關 ON 但未選取任何 Pixel，儲存時應提示「Please select at least one pixel」
+3. 開關 OFF 時應自動清理下方已選 Pixel 或標示不可見","來源文件：20250926_CCT.pdf
+ - 章節：Ad Group (InStream) (p.35-37)"
+"SuperDSP","Ad Operator","Cross Channel 頁面","[正向]建立 Pixel - 多渠道 ID 格式與事件動態匹配","驗證切換不同 Channel 時，ID 提示語及觸發事件清單的邏輯一致性","1. 渠道選擇「LINE」，檢查觸發事件清單
+2. 渠道選擇「Meta」，檢查對應事件
+3. 檢查 Pixel ID 欄位旁的 Placeholder 說明文字","1. LINE 渠道下應顯示其專屬的觸發事件（如 Impression, Action）
+2. Meta 渠道下應連動其專屬事件（如 Track PageView 等）
+3. 說明文字應隨渠道不同，提供精準的 ID 格式引導（如 Meta ID 長度建議）","來源文件：20250919_CCT.pdf
+ - 章節：切換Channel行為 (p.23), 切換Advertising Category & Format行為 (p.24)"
+"SuperDSP","Ad Operator","Cross Channel 頁面","[正向]資料列表與分頁效能深度檢驗","驗證當 Pixel 大量積累時，列表的分頁與排序穩定性","1. 建立超過 100 筆 Pixel 資料
+2. 執行翻頁、排序及品牌過濾器查詢","1. 分頁組件應正確反應總筆數
+2. 排序操作（Brand A-Z）應精確無誤
+3. 列表加載延遲應在可接受範圍內，且有 Loading 動態補間動畫","來源文件：20250919_CCT.pdf
+ - 章節：Cross Channel Page (p.7)"
+"SuperDSP","Ad Operator","Cross Channel 頁面","[反向]建立 Pixel - 名稱重複衝突深度防礙","驗證品牌內的命名唯一性，防止營運混淆","1. 在同一品牌下建立兩個同名的 Pixel
+2. 點擊 Save","1. 第二次儲存應被系統阻斷
+2. UI 應於名稱欄位旁即時標紅並顯示錯誤原因「Name is already in use for this brand」","來源文件：20250919_CCT.pdf
+ - 章節：Create Cross Channel Pixel (p.9)"
+"SuperDSP","Ad Operator","Cross Channel 頁面","[反向]刪除使用中的關鍵 Pixel 的聯鎖保護機制","驗證當 Pixel 被廣告組合選取時，系統的關聯刪除防護能力","1. 挑選一個正被 Active 廣告組合套用的 Pixel
+2. 在列表頁執行刪除動作","1. 系統應提示「This Pixel is currently being used in Active Ad Groups, deletion is prohibited.」
+2. 禁止刪除動作，或是強制使用者先停用關聯之廣告組合","來源文件：20250926_CCT.pdf
+ - 章節：Ad Group (InStream) CCT UI handling"
+"SuperDSP","Ad Operator","Cross Channel 頁面","[ＵＩ]全域非同步反饋與加載骨架屏測試","驗證在高頻操作或低速網路下，系統介面的回饋專業度","1. 切換各項下拉選單或執行 Save 動作
+2. 觀察 UI 的遮罩與 Loading 圖示","1. 資料讀取時應出現骨架屏 (Skeleton Screens) 以防頁面跳動
+2. 按鈕在點擊後應變為 Loading 狀態且不可重複點擊（防止 Double Submit）
+3. 操作成功後應出現自動消失的 Toast 通知元件","來源文件：專業職責規範, UI 互動細節"
+"SuperDSP","All Roles","全系統","[UI/UX]中英對照質感與 Placeholder 教導性測試","驗證全系統在 CCT 模組的用語一致性與專業語感","1. 切換至繁體中文與英文用語觀察介面
+2. 檢查 Professional Terms (如 Pixel, Targeting) 的翻譯與詞彙精準度","1. 術語翻譯應符合廣告產業通用規範
+2. Placeholder 文字不應在小解析度下發生截斷
+3. 全系統文字排版應具備足夠的呼吸感且層次分明","來源文件：20250919_CCT.pdf
+ - 章節：UI中文 (p.45), 專家職責"
+"SuperDSP","All Roles","Cross Channel 頁面","[UI/UX]多設備佈局一致性 (Responsive Logic) 深度檢視","驗證管理功能在筆電、平版與寬屏螢幕下的排版相容性","1. 在 1280px 至 1920px 寬度間調整瀏覽器
+2. 模擬平板電腦瀏覽 Pixel 編輯頁面","1. 導航欄與內容區應具備彈性寬度調整
+2. 動作按鈕在窄屏下不得重疊或溢出螢幕外
+3. 列表長欄位應正確開啟橫向捲軸，並支持水平滾動操作","來源文件：資深 UI/UX 工程師職責"
+"SuperDSP","Ad Operator","廣告組合 (Ad Group)","[情境]Pixel 離線/失效下的廣告組合預警體驗","驗證當 Pixel 維護狀態異常時，系統對於廣告主套用該 Pixel 的引導提醒","1. 模擬 Pixel 為離線/無效狀態
+2. 進入廣告組合編輯頁，選取該 Pixel 並儲存","1. 勾選 Pixel 時，旁邊應出現黃色警告符號 (!)
+2. 懸停顯示細則「Warning: This pixel is currently inactive on the source platform.」
+3. 雖然允許儲存（或警告），但應在清單中顯著提示品牌管理員注意","來源文件：專家職責回推, 列表元件一致性"

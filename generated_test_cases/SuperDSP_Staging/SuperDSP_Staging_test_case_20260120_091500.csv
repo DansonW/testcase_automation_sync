@@ -1,0 +1,21 @@
+系統,權限,功能 / 頁面,測試功能,測試情境,操作步驟,期望結果,備註
+SuperDSP,Agency Admin,登入頁面,【權限】代理商管理員登入,驗證代理商管理員成功登入後具備完整管理權限指標,"1. 使用 Agency Admin 帳號登入系統
+2. 檢查側邊選單功能項目","1. 成功進入首頁
+2. 側邊選單完整顯示「Accounting Center」、「Setting」等進階模組",主文件：SuperDSP 權限分析
+SuperDSP,Agency Admin,導覽列,【權限】代理商切換,驗證管理員可檢視所屬代理商下的特定廣告主數據,"1. 檢查頂部導覽列顯示的單位名稱","1. 應顯示「媒體庫傳播股份有限公司」或其他對應代理商名稱",主文件：SuperDSP 權限分析
+SuperDSP,Agency Admin,Insertion Orders,【正向】訂單管理權限,驗證代理商管理員具備建立與編輯訂單的權限,"1. 進入 Insertion Orders 頁面
+2. 檢查頁面操作按鈕","1. 應顯示「+ New Insertion Order」按鈕
+2. 列表中的訂單列應顯示「Edit」連結",主文件：SuperDSP 權限分析
+SuperDSP,Agency Admin,Audience Planner,【功能新增】受眾包建立流程,驗證代理商管理員可啟動受眾包建立,"1. 進入 Audience Planner 頁面
+2. 點擊「+ New Audience Pack」","1. 彈出受眾類型選擇選單
+2. 點擊後應進入建立表單",主文件：SuperDSP 權限分析
+SuperDSP,Agency Admin,Creative Center,【ＵＩ】素材維度切換,驗證管理員可流暢切換影音與橫幅素材管理界面,"1. 進入 Creative Center
+2. 依序切換「Creative Pack」、「Video」、「Banner」分頁","1. 各分頁內容能正確切換且載入對應清單",主文件：SuperDSP 權限分析
+SuperDSP,Agency Admin,Accounting Center,【權限】檢視月份使用報告,驗證代理商管理員可存取帳務中心的數據報告,"1. 點擊側邊選單「Accounting Center」
+2. 檢查數據顯示與下載按鈕","1. 應載入當月份使用費率數據
+2. 頁面右上角應顯示「下載報告」按鈕",主文件：SuperDSP 權限分析
+SuperDSP,Agency Admin,Setting,【權限】廣告主清單管理,驗證代理商管理員可管理所屬廣告主資料,"1. 進入 Setting 頁面
+2. 點擊「Advertiser」分頁","1. 列表顯示該代理商管理的廣告主清單 (如 Hanfour 地產等)
+2. 每筆資料應具備「Edit」功能",主文件：SuperDSP 權限分析
+SuperDSP,Agency Admin,Setting,【權限】使用者清單檢視,驗證管理員可查看代理商下的使用者分佈,"1. 在 Setting 頁面點擊「User」分頁","1. 列表顯示該代理商的所有帳號 (如 dansonwang 等)",主文件：SuperDSP 權限分析
+SuperDSP,通用,登入頁面,【反向】空值登入驗證,驗證系統對於未輸入資訊的阻斷邏輯,"1. 在登入頁面直接點擊「Login」","1. 帳號與密碼欄位下方出現紅字警告提示",主文件：SuperDSP 權限分析

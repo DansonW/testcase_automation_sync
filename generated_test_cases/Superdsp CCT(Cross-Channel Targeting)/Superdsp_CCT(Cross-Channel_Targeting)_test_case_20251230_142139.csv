@@ -1,0 +1,51 @@
+"系統","權限","功能 / 頁面","測試功能","測試情境","操作步驟","期望結果","備注"
+"SuperDSP","Agency Admin / User","Cross Channel 頁面","[權限]代理商跨品牌存取驗證","驗證代理商權限下，是否能正確看到其代理的所有品牌 Pixel，且無法存取非其代理之品牌資料","1. 使用代理商 A 帳號登入（該代理商代理品牌 X, Y）
+2. 進入「Cross Channel」列表
+3. 檢查顯示的品牌篩選器與 Pixel 列表內容
+4. 嘗試手動更改 URL 為品牌 Z（非代理品牌）的編輯頁","1. 列表應正確顯示品牌 X 與 Y 的 Pixel 資料
+2. 品牌篩選器不應出現品牌 Z
+3. 手動存取品牌 Z 資料時應顯示「403 Forbidden」或提示無權限存取","來源文件：20250919_CCT.pdf
+ - 章節：Cross Channel權限控管(User) (p.41)"
+"SuperDSP","Client Admin","Cross Channel 頁面","[權限]直客權限完整性驗證","驗證直客身分的管理範圍，應僅限於該直客自身的廣告主與品牌資料","1. 使用直客帳號登入
+2. 進入「Cross Channel」頁面執行新增操作
+3. 在新增頁面的「Brand」下拉選單中檢查可選項目","1. 應具備該帳號所屬廣告主下所有品牌的 Pixel 管理權限
+2. 下拉選單中僅能看見該直客授權的品牌，不得出現其他廣告主之品牌資料","來源文件：20250919_CCT.pdf
+ - 章節：Cross Channel權限控管(User) (p.41)"
+"SuperDSP","Readonly User","Cross Channel 頁面","[權限]唯讀權限 UI 交互深度規範","驗證唯讀權限使用者在 UI 上的所有變更操作皆被禁止，包含隱藏的快捷操作","1. 使用 Readonly 權限帳號進入 Pixel 列表頁
+2. 檢查「+ Create」按鈕是否存在
+3. 進入 Pixel 詳細頁面，嘗試在瀏覽器控制台手動移除 input 的 disabled 屬性並提交","1. 「+ Create」按鈕應完全隱藏或顯示為不可點擊狀態
+2. 所有列表中的「Edit」按鈕應更換為「View」或符號
+3. 後端 API 應有第二次驗證，即使 UI 被篡改提交，後端仍應回傳權限錯誤代碼","來源文件：20250919_CCT.pdf
+ - 章節：Cross Channel權限控管(User) (p.42)"
+"SuperDSP","Ad Operator","Cross Channel 頁面","[功能新增]新增 Pixel - 渠道格式動態連動 (Dependency List)","驗證不同 Channel 切換後，Pixel ID 的輸入遮罩 (Mask) 與格式說明是否正確同步","1. 選擇 Channel 為 Meta，觀察 Pixel ID 欄位
+2. 選擇 Channel 為 LINE，觀察同一欄位
+3. 檢查「Advertising Category & Format」下拉選單內容","1. 當切換至 LINE 時，欄位標題與提示應更新為 LINE 專屬格式
+2. 「Trigger Event」應隨 Format（影片/多體）的不同而改變選項清單（如影片格式應出現 Video View, 多媒體應出現 Impression）","來源文件：20250919_CCT.pdf
+ - 章節：切換Channel行為 (p.23), 切換Advertising Category & Format行為 (p.24)"
+"SuperDSP","Ad Operator","Cross Channel 頁面","[正向]大量資料分頁與排序體驗","驗證當 Pixel 資料量龐大時，UI 的加載性能與分頁組件的可用性","1. 在系統中建立或模擬超過 50 筆以上的 Pixel 資料
+2. 進入列表頁面，執行翻頁操作
+3. 點擊「Brand」或「Created Time」欄位進行排序","1. 翻頁過程應流暢，翻頁時應有局部 Loading 標示
+2. 排序結果應準確，且排序狀態（升冪/降冪）應在欄位標題有明確的視覺提示（如箭頭符號）","來源文件：20250919_CCT.pdf
+ - 章節：Cross Channel Page (p.7)"
+"SuperDSP","Ad Operator","Cross Channel 頁面","[反向]API 異常狀態下的 UI 防擾機制 (Error Boundary)","驗證當保存 Pixel 資料遇到網路中斷或後端 500 錯誤時，UI 的容錯能力","1. 在新增 Pixel 點擊「Save」的瞬間切斷通訊軟體網路或模擬斷線
+2. 觀察 UI 的反應","1. 不得出現白色死機、無限 Loading 或代碼報錯資訊
+2. 應彈出友善的 Error Toast，提示「Network Error, please try again later」
+3. 已輸入的資料內容應保留，不應因失敗而自動排空，減少使用者重複輸入負擔","來源文件：SOP 專業職責規範, UI互動"
+"SuperDSP","Ad Operator","廣告組合 (Ad Group)","[整合]草稿與正式上刊的 CCT 設定同步","驗證 Ad Group 在草稿階段修改的 CCT 設定，在正式上刊後是否能被系統正確繼承且無法隨意異動","1. 在 InStream 廣告組合草稿中選取 3 個 Pixels 並儲存
+2. 將廣告組合成交、上刊
+3. 進入該已上刊的廣告組合編輯頁，嘗試修改 CCT Pixels 選項","1. 資料應正確由草稿轉換為執行中狀態
+2. 對於已上刊的廣告組合，CCT 切換開關應變為唯讀（Disabled）或顯示提示無法修改（視規格而定），以避免影響投放數據一致性","來源文件：20250926_CCT.pdf
+ - 章節：Ad Group (InStream) (p.35)"
+"SuperDSP","Ad Operator","廣告組合 (Ad Group)","[整合]多像素 (Multiple Pixels) 上限與衝突測試","驗證單一廣告組合能套用的 CCT Pixel 最大數量限制及報錯","1. 準備 10 個以上的 CCT Pixels
+2. 進入廣告組合編輯頁，嘗試將所有 Pixels 全部選入標籤中
+3. 點擊儲存","1. 若規格有上限（如僅限 5 個），應在選擇時即跳出錯誤提醒
+2. 若無上限，儲存後各像素的觸發權重應公平分配（後端驗證）
+3. UI 標籤欄應能正確顯示多個標籤，並在長度超過時提供自動折行或「+N」的視覺簡化","來源文件：20250926_CCT.pdf
+ - 章節：InStream+CCT (p.37), UI互動"
+"SuperDSP","Ad Operator","Cross Channel 頁面","[情境]Pixel 離線/失效狀態之視覺警示","驗證當遠端像素偵測到異常（如 LINE Pixel ID 失效）時，系統是否能在列表中給予適當提示","1. 模擬一筆已失效或格式錯誤的 Pixel
+2. 在列表頁檢視該筆資料的「Status」欄位","1. 狀態欄位應從正常的「Active」變更為明顯的警示顏色（如紅色或黃色）
+2. 鼠標懸停 (Hover) 在警示圖示上時應顯示具體的錯誤原因提示","來源文件：資深 UI/UX 工程師視角回推, 列表元件一致性"
+"SuperDSP","All Roles","全系統","[UI/UX]響應式佈局 (Responsive) 兼容性測試","驗證 CCT 管理頁面在不同螢幕解析度下的佈局一致性","1. 使用筆記型電腦 (1366x768) 與寬螢幕 (1920x1080) 分別開啟列表與編輯頁
+2. 縮小瀏覽器寬度模擬平板操作","1. 列表欄位不應發生擠壓變形或文字重疊
+2. 過長的內容應自動啟用橫向滾動條
+3. 彈窗 (Dialog) 應能正確置中，按鈕不得被超出螢幕邊界","來源文件：資深 UI/UX 工程師職責"

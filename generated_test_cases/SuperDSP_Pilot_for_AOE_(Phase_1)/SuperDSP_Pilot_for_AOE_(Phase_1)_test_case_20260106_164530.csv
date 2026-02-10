@@ -1,0 +1,49 @@
+系統,權限,功能 / 頁面,測試功能,測試情境,操作步驟,期望結果,備註
+"SuperDSP","Onead User (AOE)","導覽選單","[權限]","驗證 AOE 角色與 Agency Admin 角色的選單互斥性","1. 使用 Onead User (AOE) 帳號登入
+2. 檢查是否顯示 Agency Admin 專屬的「代理商帳務」選單
+3. 登出並切換 Agency Admin 帳號，檢查是否顯示「AOE 策略中心」","1. Onead User (AOE) 不應看見代理商帳務選單
+2. Agency Admin 不應看見 AOE 策略中心
+3. 兩者權限應完全隔離，無重疊模糊地帶","主文件：ITO-SuperDSP Pilot for AOE (Phase 1)-060126-035708.pdf
+ - 章節：1.2 跨角色權限隔離"
+"SuperDSP","Onead User (AOE)","廣告活動列表","[權限]","驗證多廣告主環境下的數據隔離 (Data Segregation)","1. 登入 AOE 帳號 (僅授權 Advertiser A)
+2. 透過 URL 修改參數，嘗試存取 Advertiser B 的活動詳情頁","1. 系統應攔截請求並導向 403 Forbidden 頁面
+2. 列表 API 回傳資料僅包含 Advertiser A，不應洩露 Advertiser B 的任何 Metadata","主文件：ITO-SuperDSP Pilot for AOE (Phase 1)-060126-035708.pdf
+ - 章節：1.3 數據安全性規範"
+"SuperDSP","Media Admin","廣告活動設定","[功能新增]","驗證 AOE 優化開關在快速切換下的狀態穩定性 (Race Condition)","1. 進入設定頁面
+2. 在 1 秒內連續點擊「AOE 智慧優化」開關 5 次
+3. 觀察最終開關狀態與下方欄位顯示","1. 介面不應卡死或崩潰
+2. 最終 UI 狀態應與最後一次點擊的邏輯一致 (開或關)
+3. 不應發生「開關為 OFF 但設定欄位卻顯示」的狀態不一致 bug","主文件：ITO-SuperDSP Pilot for AOE (Phase 1)-060126-035708.pdf
+ - 章節：2.1 前端互動邏輯"
+"SuperDSP","Onead User (AOE)","受眾鎖定","[功能新增]","驗證 AOE 標籤 API 在高延遲 (Latency) 環境下的 UI 處理","1. 透過 Network Throttling 模擬 3G 網速 (延遲 > 3000ms)
+2. 點擊「獲取 AOE 建議」按鈕
+3. 觀察 Loading 狀態與取消操作","1. Loading Spinner 應持續顯示直到 Timeout
+2. 在回應前若使用者切換分頁，API 請求應被 Cancel (AbortController) 以節省資源","主文件：ITO-SuperDSP Pilot for AOE (Phase 1)-060126-035708.pdf
+ - 章節：3.2 效能與資源管理"
+"SuperDSP","Onead User (AOE)","策略中心","[ＵＩ]","驗證策略儀表板在極端解析度下的響應式佈局 (RWD)","1. 將瀏覽器視窗縮小至 1024px 寬度 (iPad Landscape)
+2. 將瀏覽器視窗放大至 2560px 寬度 (4K Monitor)
+3. 檢查數據圖表與 KPI 卡片排列","1. 1024px 下，圖表應自動堆疊 (Stacking)，不出現水平捲軸
+2. 2560px 下，版面應限制最大寬度 (Max-width) 居中，避免內容過度拉伸難以閱讀","細節文件：superdsp.html
+ - 章節：UI 響應式規範"
+"SuperDSP","Onead User (AOE)","數據報表","[整合]","驗證 AOE 報表在跨日 (Cross-Day) 查詢時的時區處理","1. 選擇跨越 UTC+0 與 UTC+8 的時間區間 (如 12/31 23:00 - 01/01 01:00)
+2. 匯出 AOE 績效報表
+3. 檢查時間戳記欄位","1. 報表內的時間應統一標示時區 (如 ISO 8601 格式)
+2. 數據歸屬應依據系統設定的「廣告帳號時區」進行切割，而非使用者本地時間","主文件：ITO-SuperDSP Pilot for AOE (Phase 1)-060126-035708.pdf
+ - 章節：5.2 全球化時區規範"
+"SuperDSP","Onead User (AOE)","受眾鎖定","[權限][功能新增][反向]","驗證編輯過程中權限被移除的阻擋機制","1. 使用者 A 進入受眾鎖定頁面並開啟 AOE 建議列表
+2. 管理員 B 在後台移除使用者 A 的 AOE 權限
+3. 使用者 A 嘗試點擊「應用標籤」","1. 系統應在送出請求時回傳 401/403 錯誤
+2. 前端應彈出 Modal 提示「您的權限已變更，請重新登入」並強制登出
+3. 該次修改不應寫入資料庫","主文件：ITO-SuperDSP Pilot for AOE (Phase 1)-060126-035708.pdf
+ - 章節：1.4 權限即時性驗證"
+"SuperDSP","Media Admin","廣告活動設定","[整合][情境][數據]","驗證廣告活動暫停後重啟，AOE 學習數據的連續性","1. 建立並執行一個 AOE 優化活動 (Day 1-3)
+2. 暫停活動 2 天 (Day 4-5)
+3. 重啟活動 (Day 6) 並觀察 AOE 建議值","1. 重啟後的 AOE 建議不應歸零重算 (Cold Start)
+2. 應基於 Day 1-3 的歷史數據進行熱啟動 (Warm Start)
+3. 報表中的 AOE Attribution 應呈現 Day 4-5 為空值，Day 6 繼續累積","主文件：ITO-SuperDSP Pilot for AOE (Phase 1)-060126-035708.pdf
+ - 章節：4.2 生命週期數據管理"
+"SuperDSP","Onead User (AOE)","策略中心","[整合][UI/UX][情境]","驗證預算分配變更後，前端 Toast 與後端日誌的同步性","1. 在策略中心大幅修改某媒體渠道預算 (e.g., +50%)
+2. 觀察 UI 回饋並檢查操作日誌 (Audit Log)","1. UI 應顯示 Toast「預算分配已更新，AOE 將於 1 小時內生效」
+2. 操作日誌應記錄：修改者 ID、修改時間、變更前數值、變更後數值
+3. 變更記錄應即時顯示於活動的「歷史操作」分頁中","主文件：ITO-SuperDSP Pilot for AOE (Phase 1)-060126-035708.pdf
+ - 章節：3.1 系統稽核規範"

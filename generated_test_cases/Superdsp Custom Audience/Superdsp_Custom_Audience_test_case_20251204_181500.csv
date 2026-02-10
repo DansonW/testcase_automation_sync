@@ -1,0 +1,69 @@
+"系統","權限","功能/頁面","測試功能","測試情境","操作步驟","期望結果","備註"
+"SuperDSP","Onead User (Ad-Ops)","自訂受眾管理","[權限][正向]","根據規格，Ad-Ops 角色對自訂受眾應只有唯讀權限，無法進行任何修改操作","1. 使用 Ad-Ops 權限的帳號登入 SuperDSP 系統
+2. 點擊左側選單，嘗試進入「自訂受眾管理」(Custom Audience) 頁面","1. 應可成功進入「自訂受眾管理」頁面
+2. 頁面上應看不到「Create Audience」、「編輯」、「刪除」等按鈕
+3. 列表中的項目應無法點擊進入編輯頁面","- 來源文件: ITO-SuperDSP Custom Audience-121125-094128.pdf
+- 章節: 權限管理"
+"SuperDSP","Media Admin","自訂受眾管理","[權限][正向]","根據規格，Media Admin 角色應具備自訂受眾的完整操作權限","1. 使用 Media Admin 權限的帳號登入 SuperDSP 系統
+2. 進入「自訂受眾管理」頁面","1. 頁面上應清楚顯示「Create Audience」按鈕
+2. 列表中的每一個項目旁都應有「編輯」和「刪除」的操作選項
+3. 所有按鈕和選項都應為可點擊狀態","- 來源文件: ITO-SuperDSP Custom Audience-121125-094128.pdf
+- 章節: 權限管理"
+"SuperDSP","Media Admin","自訂受眾管理","[功能新增][正向]","情境四：使用者需要根據網站訪客行為，建立一個條件為「AND」的受眾包","1. 點擊「Create Audience」按鈕
+2. 選擇「Website」作為 Source
+3. 輸入 Audience Name，例如「官網高潛力訪客」
+4. 設定 Match condition 為「All」(AND)
+5. 設定第一條 Rule: URL contains 'product/a'
+6. 點擊「+ AND」按鈕
+7. 設定第二條 Rule: URL contains 'promo=true'
+8. 設定 Lookback window 為 30 天
+9. 點擊「Save」按鈕","1. 系統提示成功建立，並返回列表頁
+2. 列表上應出現新建立的 Audience「官網高潛力訪客」
+3. 該 Audience 的 Status 應為 'Building' 或 'Ready'
+4. Type 應為 'Website'","- 來源文件: 20251104_Custom_Audience.pptx.pdf (情境四)
+- 細節文件: ITO-SuperDSP Custom Audience-121125-094128.pdf (Create Custom Audience - Website)"
+"SuperDSP","Media Admin","自訂受眾管理","[功能新增][反向]","當使用者建立受眾時，輸入了與現有受眾重複的名稱","1. 點擊「Create Audience」按鈕
+2. 輸入一個已經存在的 Audience Name
+3. 填寫其他所有必要欄位
+4. 點擊「Save」按鈕","1. 頁面應顯示錯誤訊息，提示「名稱已重複」(Audience name already exists)
+2. 無法成功建立 Audience，頁面應停留在建立頁","- 來源文件: ITO-Custom Audience 前端開發文件-121125-094303.pdf
+- 章節: Error Handling, Validation"
+"SuperDSP","Media Admin","自訂受眾管理","[正向]","情境五：使用者想要編輯一個已存在的受眾包，將其 Lookback window 從 30 天修改為 90 天","1. 在列表上找到欲編輯的 Audience
+2. 點擊該 Audience 的「編輯」按鈕
+3. 進入編輯頁面後，找到 Lookback window 欄位
+4. 將數值從 30 修改為 90
+5. 點擊「Save」按鈕","1. 系統提示成功儲存變更
+2. 返回列表頁後，該 Audience 的「Last Update」時間應更新
+3. 重新進入編輯頁，Lookback window 應為 90","- 來源文件: 20251104_Custom_Audience.pptx.pdf (情境五)
+- 細節文件: ITO-SuperDSP Custom Audience-121125-094128.pdf (Edit Custom Audience)"
+"SuperDSP","Media Admin","自訂受眾管理","[UI/UX][正向]","情境六：使用者想要在列表中，透過搜尋功能快速找到名稱包含「潛力」的受眾","1. 進入「自訂受眾管理」頁面
+2. 在列表上方的搜尋框中輸入「潛力」
+3. 按下 Enter 鍵或點擊搜尋按鈕","1. 列表應被過濾，只顯示 Audience Name 中包含「潛力」的項目
+2. 若無符合條件的項目，列表應顯示為空，並提示「查無資料」","- 來源文件: 20251104_Custom_Audience.pptx.pdf (情境六)
+- 細節文件: ITO-SuperDSP Custom Audience-121125-094128.pdf (Custom Audience Management)"
+"SuperDSP","Media Admin","廣告活動設定","[整合][正向]","情境三：使用者在建立一個新的廣告活動時，需要在受眾設定步驟中，選用一個已建立的 Custom Audience","1. 點擊「新增廣告活動」
+2. 走至「受眾設定」步驟
+3. 在受眾來源中選擇「Custom Audience」
+4. 在下拉選單或列表中，應能看到所有狀態為 'Ready' 的 Custom Audience
+5. 選擇其中一個 Audience
+6. 完成後續設定並儲存廣告活動","1. 能夠成功選擇並儲存 Custom Audience
+2. 廣告活動的受眾預估量體會根據所選的 Audience 進行更新
+3. 廣告活動成功建立","- 來源文件: 20251104_Custom_Audience.pptx.pdf (情境三)
+- 細節文件: ITO-SuperDSP Custom Audience-121125-094128.pdf (Integration with Campaign)"
+"SuperDSP","Media Admin","廣告活動設定","[整合][正向]","情境一 & 二：使用者想在一個現有廣告活動中，同時加入一個包含受眾，並排除另一個受眾","1. 進入一個現有的廣告活動編輯頁面
+2. 走至「受眾設定」步驟
+3. 在「包含受眾」(Include) 區塊，選擇一個 Custom Audience (例如「高潛力訪客」)
+4. 在「排除受眾」(Exclude) 區塊，選擇另一個 Custom Audience (例如「已購客」)
+5. 點擊儲存","1. 廣告活動設定成功儲存
+2. 系統應正確記錄包含與排除的受眾設定
+3. 廣告活動的投放邏輯應變為：對「高潛力訪客」投放，但排除其中的「已購客」","- 來源文件: 20251104_Custom_Audience.pptx.pdf (情境一, 情境二)"
+"SuperDSP","Media Admin","活動預測潛力模型","[功能新增][正向]","潛力模型文件情境：使用者想要建立一個潛力模型，用來預測對「特定商品」有興趣的受眾","1. 登入 SuperDSP 系統
+2. 進入「模型管理」頁面
+3. 點擊「新增潛力模型」
+4. 輸入模型名稱，例如「商品A潛力買家」
+5. 選擇模型類型為「潛在興趣」
+6. 設定目標條件為「商品頁面ID 等於 商品A」
+7. 點擊「開始訓練」或「儲存」","1. 系統應成功建立一個新的潛力模型
+2. 模型列表中應出現「商品A潛力買家」
+3. 該模型的狀態應顯示為「訓練中」","- 來源文件: ITO-SuperDSP 新增 活動預測潛力模型 ( Campaign Potential Models )-041225-090304.pdf
+- 章節: 模型建立流程"

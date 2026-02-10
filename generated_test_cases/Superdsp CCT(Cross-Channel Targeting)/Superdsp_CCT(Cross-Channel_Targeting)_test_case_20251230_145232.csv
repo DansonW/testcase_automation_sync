@@ -1,0 +1,67 @@
+"權限名稱","系統","測試項目","測試功能","測試情境","操作步驟","期望結果","備注"
+"Admin","SuperDSP","權限設定","[正向]Admin 使用者可以為使用者開啟 CCT report 權限","Admin 登入 SuperDSP，並為特定使用者開啟 CCT report 權限","1. Admin 登入 SuperDSP
+2. 進入權限管理頁面
+3. 選擇一個使用者
+4. 找到 CCT report 相關權限選項
+5. 勾選並儲存","1. 系統顯示儲存成功
+2. 該使用者的權限列表中，CCT report 權限狀態為開啟
+3. 使用者重新登入後，可以看到 CCT report","20250919_CCT.pdf - User Story 1"
+"Admin","SuperDSP","權限設定","[反向]Admin 使用者關閉使用者的 CCT report 權限","Admin 登入 SuperDSP，並為特定使用者關閉 CCT report 權限","1. Admin 登入 SuperDSP
+2. 進入權限管理頁面
+3. 選擇一個已開啟 CCT report 權限的使用者
+4. 取消勾選 CCT report 相關權限選項
+5. 儲存","1. 系統顯示儲存成功
+2. 該使用者的權限列表中，CCT report 權限狀態為關閉
+3. 使用者重新登入後，無法看到 CCT report","20250919_CCT.pdf - User Story 1"
+"General User","SuperDSP","權限設定","[正向]被授權的使用者可以看到 CCT report","使用者被 Admin 開啟 CCT report 權限後，登入 SuperDSP","1. 使用者登入 SuperDSP
+2. 導航至報表功能區","1. 使用者可以看到 CCT report 的入口或頁籤
+2. 可以成功點擊並進入 CCT report 頁面","20250919_CCT.pdf - User Story 1"
+"General User","SuperDSP","權限設定","[反向]未被授權的使用者無法看到 CCT report","使用者未被 Admin 開啟 CCT report 權限，登入 SuperDSP","1. 使用者登入 SuperDSP
+2. 導航至報表功能區","1. 使用者無法看到 CCT report 的入口或頁籤","20250919_CCT.pdf - User Story 1"
+"General User","SuperDSP","CCT 報表產出","[正向]使用者可以成功產出 CCT 報表","使用者選擇一個 IO，並設定正確的 CCT 參數來產出報表","1. 登入 SuperDSP
+2. 進入 CCT report 頁面
+3. 選擇一個執行中的 IO
+4. 選擇 CCT 參數 (例如: 轉換點、回溯期)
+5. 點擊產出報表按鈕","1. 系統開始處理報表產出任務
+2. 任務完成後，使用者可以下載或在線上查看 CCT 報表
+3. 報表內容應包含所選 IO 的數據","20250919_CCT.pdf - User Story 2"
+"General User","SuperDSP","CCT 報表產出","[正向]使用者可以選擇不同的轉換點(Conversion Point)產出報表","使用者在產出 CCT 報表時，選擇不同的轉換點 (e.g., Impression, Click, Action)","1. 進入 CCT report 頁面
+2. 選擇一個 IO
+3. 在 CCT 參數設定中，找到轉換點選項
+4. 依序選擇不同的轉換點 (Impression, Click, Action)
+5. 產出報表","1. 針對每種轉換點，都能成功產出報表
+2. 不同轉換點產出的報表數據應有差異，符合預期邏輯","20250919_CCT.pdf - User Story 2"
+"General User","SuperDSP","CCT 報表產出","[正向]使用者可以設定不同的回溯期間(Lookback Window)產出報表","使用者在產出 CCT 報表時，設定不同的回溯期間 (e.g., 7天, 14天, 30天)","1. 進入 CCT report 頁面
+2. 選擇一個 IO
+3. 在 CCT 參數設定中，找到回溯期間選項
+4. 依序設定不同的回溯期間
+5. 產出報表","1. 針對每種回溯期間，都能成功產出報表
+2. 不同回溯期間產出的報表數據應有差異，符合預期邏輯","20250919_CCT.pdf - User Story 2"
+"General User","SuperDSP","CCT 報表產出","[反向]使用者選擇沒有數據的 IO 產出報表","使用者選擇一個沒有任何投放數據的 IO，並試圖產出 CCT 報表","1. 進入 CCT report 頁面
+2. 選擇一個確定沒有數據的 IO
+3. 設定 CCT 參數
+4. 點擊產出報表按鈕","1. 系統應提示「此 IO 在所選區間內沒有數據，無法產出報表」或類似訊息
+2. 不應產出空的或錯誤的報表","20250919_CCT.pdf - User Story 2"
+"General User","SuperDSP","CCT 報表 UI/UX","[正向]CCT 報表頁面 UI 元素應正常顯示","使用者進入 CCT report 頁面","1. 登入並進入 CCT report 頁面","1. IO 選擇器、CCT 參數選項 (轉換點、回溯期)、產出報表按鈕等元件應正常顯示且可互動
+2. 頁面排版應無錯亂","20250919_CCT.pdf & 20250926_CCT.pdf"
+"General User","SuperDSP","CCT 報表下載","[正向]使用者可以下載產出的 CCT 報表","CCT 報表成功產出後，使用者點擊下載按鈕","1. 產出 CCT 報表
+2. 待報表狀態變為「已完成」
+3. 點擊下載按鈕","1. 瀏覽器應觸發下載動作
+2. 下載的檔案應為指定的格式 (e.g., CSV, Excel)
+3. 檔案可以正常開啟，且內容與線上預覽一致","20250926_CCT.pdf - User Story 3"
+"General User","SuperDSP","CCT 報表下載","[正向]下載的 CCT 報表檔名應符合格式","使用者下載 CCT 報表","1. 產出 CCT 報表
+2. 點擊下載按鈕","1. 下載的檔案名稱應包含 IO 名稱、日期、CCT 等關鍵資訊，格式應為 `[IO_Name]_CCT_Report_[YYYYMMDD].csv`","20250926_CCT.pdf - User Story 3"
+"General User","SuperDSP","CCT 報表數據驗證","[正向]報表中的 Channel 歸因數據應正確","使用者產出 CCT 報表，並驗證 Channel 歸因數據","1. 產出 CCT 報表
+2. 找到 Channel attribution 相關的欄位 (e.g., first touch, last touch, linear)
+3. 比對後台原始數據","1. 報表中各 Channel 的轉換數據應與根據歸因模型計算的結果相符
+2. 總轉換數應等於各 Channel 轉換數的總和 (在某些模型下)","20250926_CCT.pdf - User Story 4"
+"General User","SuperDSP","CCT 報表數據驗證","[正向]報表中的 Path to Conversion 數據應正確","使用者產出 CCT 報表，並驗證 Path to Conversion 數據","1. 產出 CCT 報表
+2. 找到 Path to Conversion 相關的欄位
+3. 比對後台原始數據","1. 報表中應列出導致轉換的渠道路徑
+2. 每個路徑的轉換次數應正確
+3. 路徑的顯示順序應符合時間邏輯","20250926_CCT.pdf - User Story 4"
+"General User","SuperDSP","CCT 報表數據驗證","[反向]當 IO 數據更新後，重新產出報表應反映最新數據","一個正在執行中的 IO，在產出第一次報表後，又有新的投放數據產生，此時重新產出報表","1. 選擇一個執行中的 IO，產出第一次 CCT 報表
+2. 等待一段時間，讓 IO 有新的數據 (e.g., impression, click)
+3. 使用相同的參數，重新產出第二次 CCT 報表
+4. 比較兩次報表的數據","1. 第二次產出的報表數據應包含新的投放數據
+2. 報表中的指標 (e.g., 總轉換數) 應有所更新","20250926_CCT.pdf - User Story 4"
