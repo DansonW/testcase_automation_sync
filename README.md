@@ -17,14 +17,15 @@
 ├── README.md                # 專案說明文件與快速上手指南
 ├── GEMINI_SOP.md            # 核心 SOP，定義產出規則、欄位與角色邏輯
 ├── generated_test_cases/     # 自動產出的專業測試案例 (CSV 格式)
-│   └── [來源專案名稱]/       # 依專案來源自動分類存放
-├── source_files/             # 原始規格文件參考 (PDF, PNG, CSV 等)
+│   └── [專案名稱]/           # 依專案來源自動分類存放
+├── source_files/             # 原始規格文件參考
+│   └── [專案名稱]/           # 存放該專案相關的 PDF, PNG, CSV 等規格文件
 └── .gemini/                  # Gemini CLI 配置與指令集
 ```
 
 ## 🚀 快速上手 (Quick Start)
 
-只需簡單四個步驟，即可開始自動化產出專業的測試案例：
+只需簡單五個步驟，即可開始自動化產出專業的測試案例：
 
 ### 1. 安裝環境 (Environment Setup)
 在終端機視窗中執行以下指令，從 NPM 註冊表下載並安裝 Gemini CLI：
@@ -38,15 +39,18 @@ npm install -g @google/gemini-cli
 gemini
 ```
 
-### 3. 自動化產生 (Automation Step)
+### 3. 準備規格文件 (Preparation)
+在 `source_files/` 資料夾下建立當前專案名稱的子資料夾，並將規格文件內容（如 PDF 或圖片）放入其中。
+
+### 4. 自動化產生 (Automation Step)
 在互動介面中，引用 SOP 規範並指定您的需求：
 > **範例指令：**
 > 「@GEMINI_SOP.md 產出 Superdsp phase XXX 的 test case」
 
-### 4. 驗收成果 (Review Results)
+### 5. 驗收成果 (Review Results)
 產出的 CSV 檔案將會自動儲存在以下路徑：
 ```
-generated_test_cases/[來源資料夾名稱]/[來源]_test_case_[時間戳記].csv
+generated_test_cases/[專案名稱]/[來源]_test_case_[時間戳記].csv
 ```
 
 ## ⚙️ 產出規範 (Production Standards)
