@@ -1,6 +1,6 @@
-# Testcase Automation Logic & SOP
+# Testcase Automation
 
-這是一個專門用於存放廣告系統（如 SuperDSP, OYM, ERP/OSS）測試案例自動化邏輯與 SOP 的倉庫。透過此倉庫，您可以將測試專家的思維與生成規則快速同步到 Gemini CLI 中。
+這是一個專門用於存放廣告系統（如 SuperDSP, OYM, ERP/OSS）測試案例自動化邏輯與 SOP 的 Github。透過此 Github，您可以將測試專家的思維與生成規則快速同步到 Gemini CLI 中。
 
 ## 📁 目錄結構說明
 
@@ -19,9 +19,9 @@
 2.  **初始化記憶**：
     您可以參考 SOP 文件末尾的「初始化指令」區塊，將關鍵規則存入 Gemini 的長期記憶中。
 
-## 🛠 產出風格：預設專業風格
+## 🛠 產出欄位名稱內容
 
-本專案使用最完整的專業風格產出測試案例，包含以下欄位：
+本專案產出的測試案例包含以下欄位：
 *   **系統**: 所屬子系統 (e.g. SuperDSP)
 *   **權限**: 執行角色 (e.g. Media Admin)
 *   **功能 / 頁面**: 具體操作位置
