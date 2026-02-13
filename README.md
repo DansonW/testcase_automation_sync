@@ -28,6 +28,13 @@
 
 只需簡單五個步驟，即可開始自動化產出專業的測試案例：
 
+### 0. 複製專案 (Clone Project)
+首先，將此專案複製到您的本地電腦：
+```bash
+git clone https://github.com/wangdanson/testcase_automation.git
+cd testcase_automation
+```
+
 ### 1. 安裝環境 (Environment Setup)
 在終端機視窗中執行以下指令，從 NPM 註冊表下載並安裝 Gemini CLI：
 ```bash
