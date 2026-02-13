@@ -1,0 +1,102 @@
+系統,權限,功能 / 頁面,測試功能,測試情境,操作步驟,期望結果,備注
+SuperDSP / ODM,Onead User (AOE) / Admin,帳號特殊權限,【整合】果實夥伴素材免審核,驗證「果實夥伴 (Partners)」帳號上傳素材至 ODM 的免審機制,"1. 使用「果實夥伴」帳號登入 SuperDSP
+2. 上傳一組新的素材包並提交
+3. 登入 ODM 系統查看該素材狀態","1. 該素材在 ODM 中應自動標記為「審核通過」或「免審核」
+2. 狀態應直接跳過待審核流程，可直接進行投放設定
+3. 非「果實夥伴」帳號上傳則需正常走審核流程",主文件：Superdsp pilot for aoe (phase 2）＿1.png - 修正邏輯
+SuperDSP,Onead User (AOE),廣告活動,【正向】【ＵＩ】產業類別內容顯示 - 果實夥伴,驗證產業類型的顯示,"1. 使用 ”果實夥伴股份有限公司“ 關聯帳號登入
+2. 點擊新增 ＩＯ單",1. 應顯示產業類型的選擇功能,主文件：Superdsp pilot for aoe (phase 2）＿1.png - 修正邏輯
+SuperDSP,Onead User (AOE),廣告活動,【反向】【ＵＩ】產業類別內容顯示 - 非果實夥伴,驗證產業類型的顯示,"1. 使用 ”非果實夥伴股份有限公司“ 關聯帳號登入
+2. 點擊新增 ＩＯ單",1. 不應顯示產業類型的選擇功能,主文件：Superdsp pilot for aoe (phase 2）＿1.png - 修正邏輯
+SuperDSP,Onead User (AOE),廣告活動,【情境】【正向】產業類別內容變更,"驗證 ad group 未上刊時, 產業類別變更功能","1. 將建立好的 ad group 不做狀態更改
+2. 編輯廣告活動, 查看產業類型變更功能","1. 在廣告未上刊前, 廣告類型應可正常變更",主文件：Superdsp pilot for aoe (phase 2）＿1.png - 修正邏輯
+SuperDSP,Onead User (AOE),廣告活動,【情境】【反向】產業類別內容變更,"驗證 ad group 已上刊時, 產業類別變更功能","1. 將建立好的 ad group 狀態更改為上刊
+2. 編輯廣告活動, 查看產業類型變更功能","1. 在廣告上刊後, 廣告類型應不可變更",主文件：Superdsp pilot for aoe (phase 2）＿1.png - 修正邏輯
+SuperDSP,Onead User (AOE),OneAD 編輯介面 - 版位,【ＵＩ】區塊預設顯示,驗證編輯頁面中版位區塊的初始顯示狀態,"1. 進入廣告活動編輯頁面
+2. 檢查「版位」區塊","1. 標題顯示「版位」
+2. 預設顯示「包含版位」選項 (勾選狀態)
+3. 顯示「已選擇 0 個格式」文字
+4. 顯示「設定」按鈕",主文件：Superdsp pilot for aoe (phase 2）＿1.png
+SuperDSP,Onead User (AOE),OneAD 編輯介面 - 版位,【ＵＩ】選擇彈窗預設畫面,驗證開啟版位設定彈窗時的初始狀態,1. 在版位區塊點擊「設定」按鈕,"1. 彈出「選擇版位格式」視窗
+2. 篩選條件（裝置、環境、格式）應為預設全選狀態
+3. 格式列表依據預設條件顯示所有可用項目
+4. 右側「已選擇格式」清單為空",主文件：Superdsp pilot for aoe (phase 2）＿2.png
+SuperDSP,Onead User (AOE),OneAD 編輯介面 - 版位,【正向】篩選條件連動列表,驗證變更篩選條件後格式列表的即時過濾功能,"1.  在「格式類型」選擇 Mobile In-Read (MIR)
+2.  在「素材類型」選擇 影片","1. 格式列表應立即更新
+2. 僅顯示符合 Mobile In-Read (MIR) 及 影片類型的格式",主文件：Superdsp pilot for aoe (phase 2）＿2.png
+SuperDSP,Onead User (AOE),OneAD 編輯介面 - 版位,【正向】關鍵字搜尋格式,驗證透過搜尋框尋找特定格式,1. 在搜尋框輸入特定格式名稱關鍵字 (如：Ticker),1. 格式列表即時過濾顯示名稱包含關鍵字的項目,主文件：Superdsp pilot for aoe (phase 2）＿2.png
+SuperDSP,Onead User (AOE),OneAD 編輯介面 - 版位,【反向】關鍵字搜尋格式,驗證透過搜尋框尋找不存在的格式,1. 在搜尋框輸入 !@#$%,1. 格式列表應顯示 找不到符合條件的格式 及 清除條件按鈕,主文件：Superdsp pilot for aoe (phase 2）＿2.png
+SuperDSP,Onead User (AOE),OneAD 編輯介面 - 版位,【正向】選擇格式操作,驗證將格式加入已選擇清單,1. 在左側格式列表中點擊任一格式旁的「選擇」按鈕,1. 該格式出現在上方「已選擇格式」,主文件：Superdsp pilot for aoe (phase 2）＿2.png
+SuperDSP,Onead User (AOE),OneAD 編輯介面 - 版位,【反向】選擇格式操作 (單選替換),驗證選擇後點選清單內的其他格式,"1. 已點選格式的情況下,再去點選另一個格式","1. 原本已選擇的格式被替換成當前選擇的新格式
+2. 該格式出現在上方「已選擇格式」",主文件：Superdsp pilot for aoe (phase 2）＿2.png - 修正邏輯
+SuperDSP,Onead User (AOE),OneAD 編輯介面 - 版位,【正向】取消/移除格式選擇,驗證從已選清單中移除格式,1. 在右側「已選擇格式」清單中，點擊特定格式名稱旁的「X」移除按鈕,"1. 該格式從右側清單消失
+2. 左側列表中對應的格式恢復為可選狀態",主文件：Superdsp pilot for aoe (phase 2）＿2.png
+SuperDSP,Onead User (AOE),OneAD 編輯介面 - 版位,【正向】全部清除選擇,驗證一鍵清空所有已選格式,1. 點擊右側清單上方的「全部清除」按鈕,"1. 右側「已選擇格式」清單被清空
+2. 左側列表所有項目恢復為未勾選狀態",主文件：Superdsp pilot for aoe (phase 2）＿2.png
+SuperDSP,Onead User (AOE),OneAD 編輯介面 - 版位,【情境】選擇後變更條件保留,驗證篩選條件變更不會自動清空已選擇的內容,"1. 先選擇一個影片型的格式
+2. 將「素材類型」篩選條件設定為 「橫幅」
+3. 觀察上方「已選擇格式」清單","1. 仍保留先前選擇的格式
+2. 格式列表根據篩選條件列出格式",主文件：Superdsp pilot for aoe (phase 2）＿2.png
+SuperDSP,Onead User (AOE),OneAD 編輯介面 - 版位,【正向】確認儲存設定,驗證完成選擇後將資料帶回編輯頁面,1. 選擇格式後點擊「確認」按鈕,"1. 彈窗關閉
+2. 已選格式清單正確顯示在區塊中",主文件：Superdsp pilot for aoe (phase 2）＿1.png
+SuperDSP,Onead User (AOE),OneAD 編輯介面 - 指定素材包,【正向】選擇素材包,驗證素材包選擇,"1. 格式選擇完成後, 於指定素材包中選取素材包",1. 素材包編號及名稱正確顯示,主文件：Superdsp pilot for aoe (phase 2）＿1.png
+SuperDSP,Onead User (AOE),OneAD 編輯介面 - 指定素材包,【反向】選擇素材包,"驗證未選擇格式時, 素材包欄位行為",1. 不選擇任一格式,"1. 未完成素材包選擇前, 指定素材包不得選擇任一選項",主文件：Superdsp pilot for aoe (phase 2）＿1.png
+SuperDSP,Onead User (AOE),OneAD 編輯介面 - 指定素材包,【情境】素材包清空 (連動),驗證格式變更時素材包欄位的連動行為,"1. 將格式變更為另一格式
+2. 當變更完成格式後, 觀察指定素材包欄位","1. 指定素材包內的選項應自動被清空 (因為格式條件已變)",主文件：Superdsp pilot for aoe (phase 2）＿1.png - 修正邏輯
+SuperDSP,Onead User (AOE),OneAD 編輯介面 - 版位,【反向】上刊後設定按鈕移除,驗證廣告投遞中不可修改版位設定,"1. 進入狀態為「投遞中」的廣告活動編輯頁面
+2. 檢查「版位」區塊","1. 區塊內的「設定」按鈕已被移除或隱藏
+2. 使用者無法再開啟版位選擇彈窗進行任何修改",主文件：Superdsp pilot for aoe (phase 2）＿1.png
+SuperDSP,Onead User (AOE),受眾鎖定設定,【權限】存取受眾鎖定頁面,驗證 Onead User (AOE) 能夠正常進入受眾鎖定設定頁面,"1. 使用 Onead User (AOE) 帳號登入 SuperDSP
+2. 進入廣告活動設定流程
+3. 點選「受眾鎖定」頁籤","1. 系統成功導向受眾鎖定設定頁面
+2. 頁面顯示「自訂受眾」、「排除受眾」等區塊",主文件：Superdsp pilot for aoe (phase 2）＿1.png
+SuperDSP,Onead User (AOE),受眾鎖定設定,【UI】受眾鎖定頁面配置,驗證受眾鎖定頁面的 UI 元件與配置是否符合設計,"1. 進入「受眾鎖定」設定頁面
+2. 檢視頁面配置與文字說明","1. 頁面左側顯示受眾選擇面板，包含「包含受眾」與「排除受眾」區塊
+2. 頁面右側顯示「預估受眾規模」資訊卡",主文件：Superdsp pilot for aoe (phase 2）＿1.png
+SuperDSP,Onead User (AOE),受眾鎖定設定,【正向】新增包含受眾,驗證使用者能成功加入「包含受眾」條件,"1. 在「包含受眾」區塊點選「新增受眾」按鈕
+2. 在彈出的受眾選擇清單中，勾選受眾
+3. 點選「確認」","1. 選擇的受眾名稱顯示於「包含受眾」列表中
+2. 右側「預估受眾規模」數值進行更新",主文件：Superdsp pilot for aoe (phase 2）＿1.png
+SuperDSP,Onead User (AOE),受眾鎖定設定,【正向】新增排除受眾,驗證使用者能成功加入「排除受眾」條件,"1. 在「排除受眾」區塊點選「新增受眾」按鈕
+2. 在彈出的受眾選擇清單中，勾選欲排除的受眾包
+3. 點選「確認」","1. 選擇的受眾名稱顯示於「排除受眾」列表中
+2. 右側「預估受眾規模」數值依據排除邏輯減少",主文件：Superdsp pilot for aoe (phase 2）＿1.png
+SuperDSP,Onead User (AOE),受眾鎖定設定,【邏輯】受眾交集運算 (AND),驗證多個受眾條件之間的交集 (AND) 運算邏輯,"1. 在「包含受眾」中先加入受眾 A
+2. 點選「新增條件 (AND)」加入受眾 B
+3. 觀察預估受眾規模變化","1. 更新後的「預估受眾規模」應小於或等於單獨受眾 A 或 B 的數量 (取交集)",主文件：Superdsp pilot for aoe (phase 2）＿1.png
+SuperDSP,Onead User (AOE),受眾鎖定設定,【邏輯】受眾聯集運算 (OR),驗證同一類別內多個受眾的聯集 (OR) 運算邏輯,"1. 在「包含受眾」的同一群組內，同時勾選受眾 A 與受眾 B
+2. 點選確認並觀察預估規模","1. 更新後的「預估受眾規模」應大於或等於單獨受眾 A 或 B 的數量 (取聯集)",主文件：Superdsp pilot for aoe (phase 2）＿1.png
+SuperDSP,Onead User (AOE),受眾鎖定設定,【正向】搜尋受眾,驗證受眾選擇清單中的搜尋功能,"1. 開啟受眾選擇清單
+2. 在搜尋框輸入已知的受眾名稱關鍵字","1. 清單僅顯示名稱包含關鍵字的受眾選項",主文件：Superdsp pilot for aoe (phase 2）＿2.png
+SuperDSP,Onead User (AOE),受眾鎖定設定,【UI/UX】受眾規模載入狀態,驗證計算受眾規模時的 Loading 狀態,"1. 修改任一受眾條件 (新增或移除)
+2. 觀察右側「預估受眾規模」區塊的變化","1. 在數據回傳前，顯示 Loading 圖示或「計算中...」字樣",主文件：Superdsp pilot for aoe (phase 2）＿2.png
+SuperDSP,Onead User (AOE),受眾鎖定設定,【反向】選擇互斥受眾,驗證同時包含與排除同一受眾的系統行為,"1. 在「包含受眾」中選擇受眾 A
+2. 在「排除受眾」中也選擇受眾 A","1. 系統允許此操作，但「預估受眾規模」應顯示為 0 (完全排除)",主文件：Superdsp pilot for aoe (phase 2）＿2.png
+SuperDSP,Onead User (AOE),受眾鎖定設定,【整合】儲存設定並套用,驗證受眾設定能正確儲存並套用於廣告活動,"1. 完成包含與排除受眾的設定
+2. 點選頁面底部的「儲存」
+3. 再次進入該設定頁面確認回顯資料","1. 再次進入時，先前設定的受眾條件皆正確顯示
+2. 預估規模數值與儲存前一致",主文件：Superdsp pilot for aoe (phase 2）＿2.png
+SuperDSP,Onead User (AOE),受眾鎖定設定,【反向】搜尋無效關鍵字,驗證搜尋不存在或無效關鍵字時的系統回應,"1. 開啟受眾選擇清單
+2. 在搜尋框輸入不存在的字串 (如：!@#$%)","1. 受眾清單顯示為空，並顯示「查無資料」",主文件：Superdsp pilot for aoe (phase 2）＿2.png
+SuperDSP,Onead User (AOE),OneAD 編輯介面 - 黑白名單,【正向】輸入 URL/Domain,驗證手動輸入單筆或多筆 URL 的解析功能,"1. 在輸入框輸入「www.onead.com.tw」
+2. 點選「加入」","1. 系統正確識別 Domain 格式
+2. 成功加入下方的網站清單中",主文件：Superdsp pilot for aoe (phase 2）＿2.png
+SuperDSP,Onead User (AOE),OneAD 編輯介面 - 黑白名單,【反向】輸入無效 URL,驗證輸入錯誤格式網址時的防呆機制,"1. 在網站輸入框輸入非網址字串
+2. 點選「加入」","1. 系統應跳出提示「格式不正確」
+2. 無效內容不應被加入清單中",主文件：Superdsp pilot for aoe (phase 2）＿2.png
+SuperDSP,Onead User (AOE),OneAD 編輯介面 - 黑白名單,【情境】白名單優先,驗證白名單的運作邏輯,"1. 設定白名單為「Site A」
+2. 不設定黑名單
+3. 觀察預估或投遞邏輯","1. 廣告僅會投遞至 Site A
+2. 其他所有 App/Site 皆視為被排除",主文件：Superdsp pilot for aoe (phase 2）＿2.png
+SuperDSP,Onead User (AOE),OneAD 編輯介面 - 黑白名單,【情境】黑名單排除,驗證黑名單的排除邏輯,"1. 設定黑名單為「Site C」
+2. 未設定白名單 (即全網投遞)","1. 廣告會投遞至全網，唯獨排除 Site C",主文件：Superdsp pilot for aoe (phase 2）＿2.png
+SuperDSP,Onead User (AOE),OneAD 編輯介面 - 時段,【情境】時段勾選邏輯,驗證時段設定中「星期」與「小時」的交集投遞邏輯,"1. 勾選小時段「09:00 - 18:00」
+2. 儲存設定","1. 系統邏輯應確保廣告僅在選定日期的指定小時內投遞",主文件：Superdsp pilot for aoe (phase 2）＿1.png
+SuperDSP,Onead User (AOE),OneAD 編輯介面 - 地區,【情境】地區包含設定,驗證地區「包含」設定的聯集 (OR) 邏輯,"1. 選擇「台北市」與「新北市」","1. 系統邏輯為「台北市 OR 新北市」
+2. 廣告會同時在兩地投遞",主文件：Superdsp pilot for aoe (phase 2）＿1.png
+SuperDSP,Onead User (AOE),OneAD 編輯介面 - 地區,【情境】地區排除設定,驗證地區「排除」設定的優先級,"1. 在包含中選擇「全台灣」
+2. 在排除中選擇「台中市」","1. 廣告投遞範圍為「全台灣 減去 台中市」
+2. 排除邏輯優先權高於包含邏輯",主文件：Superdsp pilot for aoe (phase 2）＿1.png
+SuperDSP,Onead User (AOE),Ad Group 報表下載,【正向】報表下載,驗證報表內容及數值顯示,"1. 在 ad group 列表中點擊下載報表
+2. 確認數值顯示及內容","1. 數值內容與列表內容呈現一致
+2. 無資料預設值為 0",主文件：Superdsp pilot for aoe (phase 2）＿1.png
