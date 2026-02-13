@@ -16,7 +16,7 @@
 /
 ├── README.md                # 專案說明文件與快速上手指南
 ├── GEMINI_SOP.md            # 核心 SOP，定義產出規則、欄位與角色邏輯
-├── GEMINI_ERROR_LOG.md      # 全域邏輯錯誤紀錄，紀錄邏輯偏差與業務細節以避免重複犯錯
+├── GEMINI_ERROR_LOG.md      # 紀錄邏輯錯誤及 test case 產出錯誤紀錄,以避免重複出錯
 ├── generated_test_cases/     # 自動產出的專業測試案例 (CSV 格式)
 │   └── [專案名稱]/           # 依專案來源自動分類存放
 ├── source_files/             # 原始規格文件參考
