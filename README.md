@@ -16,6 +16,7 @@
 /
 ├── README.md                # 專案說明文件與快速上手指南
 ├── GEMINI_SOP.md            # 核心 SOP，定義產出規則、欄位與角色邏輯
+├── GEMINI_ERROR_LOG.md      # 全域避坑指南，紀錄邏輯錯誤與業務細節以避免重複犯錯
 ├── generated_test_cases/     # 自動產出的專業測試案例 (CSV 格式)
 │   └── [專案名稱]/           # 依專案來源自動分類存放
 ├── source_files/             # 原始規格文件參考
@@ -73,6 +74,7 @@ generated_test_cases/[專案名稱]/[來源]_test_case_[時間戳記].csv
 ## 🛠 維護與更新 (Maintenance)
 
 *   **更新 SOP**: 若需修改產出邏輯，請直接調整 `GEMINI_SOP.md` 並告知 Gemini CLI。
+*   **錯誤學習與避坑**: 當發現測試案例邏輯有誤時，應分析原因並更新 `GEMINI_ERROR_LOG.md`。Gemini CLI 承諾在產出前會優先檢閱此文件。
 *   **同步 Github**: 每次產出重要更新後，請務必 Commit 並 Push 到此 Github 以利共用。
 
 ---
