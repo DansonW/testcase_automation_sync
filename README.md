@@ -71,7 +71,7 @@ cd testcase_automation
 1.  **複製服務帳戶 Email**: 格式如 `account-name@project-id.iam.gserviceaccount.com`。
 2.  **授予編輯權限**: 開啟目標 Google 試算表，點擊「**共用**」，將該 Email 加入並設為「**編輯者**」。
 
-#### B. 配置環境變數
+* 配置環境變數
 1.  **配置環境變數**: 將 `.env.example` 複製為 `.env`，並填入您的 `SPREADSHEET_ID`（網址中 `/d/` 後方的一串字元）。
 2.  **確認資安**: `.env` 與 `service_account/` 已被加入 `.gitignore`，機密資訊不會被上傳。
 
@@ -85,7 +85,7 @@ gemini
 在 `source_files/` 下建立專案資料夾，並放入 PDF、圖片或需求 CSV。
 
 ### 5. 自動化產生與上傳 (Automation Step)
-在互動介面中，引用 SOP 規範並指定需求。產出後會自動執行 `upload_to_sheets.py` 上傳。
+在互動介面中，引用 SOP 規範並指定需求。產出後會自動執行 `upload_to_sheets.py` 並將產出的 test case 上傳至指定的 google sheet 中。
 > **範例指令：**
 > 「@GEMINI_SOP.md 產出 SuperDSP Pilot for AOE (Phase 1) 的 test case」
 
