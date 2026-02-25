@@ -20,14 +20,14 @@
 ├── .env                     # [資安] 環境變數設定檔 (已列入 .gitignore)
 ├── .env.example             # 環境變數設定範例
 ├── upload_to_sheets.py      # 自動化腳本：將產出的 CSV 上傳至 Google Sheets
-├── generated_test_cases/     # 存放自動產出的專業測試案例 (CSV 格式)
-│   └── [專案名稱]/           # 依專案來源自動分類存放
 ├── service_account/         # [資安] 存放服務帳號及憑證資訊 (已列入 .gitignore)
 │   └── google_credentials.json # google 服務帳號憑證
 ├── source_files/             # 原始規格文件參考
 │   ├── [專案名稱]/           # 存放該專案相關的 PDF, PNG, CSV 等規格文件
 │   └── HTML/                 # 存放測試系統的 HTML 檔案 (供分析頁面結構使用)
-└── .gemini/                  # Gemini CLI 配置與指令集
+└── .gemini/                 # Gemini CLI 配置資料夾
+    ├── commands/            # 自定義指令集 (speckit.*.toml)
+    └── tmp/                 # 暫存區：產出的 CSV 會先存放在此，上傳後自動清理
 ```
 
 ## 🚀 快速上手 (Quick Start)
@@ -86,6 +86,7 @@ gemini
 
 ### 5. 自動化產生與上傳 (Automation Step)
 在互動介面中，引用 SOP 規範並指定需求。產出後會自動執行 `upload_to_sheets.py` 並將產出的 test case 上傳至指定的 google sheet 中。
+*   **工作表命名**: 上傳後的 Sheet 名稱將自動對應 **CSV 檔案名稱** (例如：`SuperDSP_test_case_20260224_110000`)。
 > **範例指令：**
 > 「@GEMINI_SOP.md 產出 SuperDSP Pilot for AOE (Phase 1) 的 test case」
 

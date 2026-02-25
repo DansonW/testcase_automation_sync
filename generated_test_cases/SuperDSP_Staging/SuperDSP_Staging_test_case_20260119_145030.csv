@@ -1,6 +1,0 @@
-系統,權限,功能/頁面,測試功能,測試情境,操作步驟,期望結果,備注
-SuperDSP,通用,登入頁面,[功能] 欄位必填驗證,驗證未輸入任何資料時點擊登入的系統反應,"1. 開啟登入頁面\n2. 不輸入帳號及密碼\n3. 點擊「Login」按鈕","1. 帳號欄位下方顯示「Please enter a valid email address」紅字提示\n2. 密碼欄位下方顯示「Please enter password」紅字提示",來源：https://staging-superdsp.onead.tw/login
-SuperDSP,通用,登入頁面,[功能] 帳號格式驗證,驗證輸入不符合格式的帳號時的系統反應,"1. 在 Account 欄位輸入「test」\n2. 點擊「Login」按鈕","1. 帳號欄位下方顯示「Please enter a valid email address」紅字提示",來源：https://staging-superdsp.onead.tw/login
-SuperDSP,通用,登入頁面,[功能] 登入失敗情境,驗證輸入錯誤的帳號或密碼時的系統反應,"1. 在 Account 欄位輸入「test@example.com」\n2. 在 Password 欄位輸入「wrongpassword」\n3. 點擊「Login」按鈕","1. 頁面上方顯示「Authentication failed. Account not found or Password error.」錯誤提示",來源：https://staging-superdsp.onead.tw/login
-SuperDSP,通用,登入頁面,[功能] 忘記密碼連結,驗證忘記密碼連結的點擊反應,"1. 點擊密碼欄位右側的「Forgot Password」連結","1. 系統應導向忘記密碼頁面或開啟相關重設流程",來源：https://staging-superdsp.onead.tw/login
-SuperDSP,通用,登入頁面,[UI] 頁面視覺呈現,驗證登入頁面的基礎 UI 元素是否正確顯示,"1. 開啟登入頁面並查看頁面配置","1. 左側顯示 OneAD Logo 與登入表單\n2. 右側顯示 SuperDSP 產品名稱與品牌背景圖示\n3. 頁尾顯示 OneAD © 2026 版權宣告",來源：https://staging-superdsp.onead.tw/login
