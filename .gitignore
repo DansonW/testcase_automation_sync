@@ -4,3 +4,7 @@ Thumbs.db
 tmp/
 temp/
 .gemini/tmp/
+google_credentials.json
+google_service_account/
+service_account/
+.env
