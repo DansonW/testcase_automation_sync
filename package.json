@@ -1,0 +1,10 @@
+{
+  "name": "testcase-automation",
+  "version": "1.0.0",
+  "description": "Automated test case generation using Gemini CLI",
+  "scripts": {
+    "gen": "gemini -p "@GEMINI_SOP.md 產出 $npm_config_folder 的 test case""
+  },
+  "author": "wangdanson",
+  "license": "ISC"
+}

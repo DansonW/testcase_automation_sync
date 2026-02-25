@@ -90,6 +90,13 @@ gemini
 > **範例指令：**
 > 「@GEMINI_SOP.md 產出 SuperDSP Pilot for AOE (Phase 1) 的 test case」
 
+### 6. 進階用法：一鍵產出 (Advanced Quick Command)
+如果您不想進入互動模式，可以使用自定義的 npm 指令：
+```bash
+npm run gen --folder="source_files/您的專案資料夾"
+```
+這會自動執行：讀取 SOP -> 分析規格 -> 產出 CSV -> 上傳至 Google Sheets。
+
 ---
 
 ## ⚙️ 產出規範 (Production Standards)
