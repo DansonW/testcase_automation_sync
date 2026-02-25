@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Automated test case generation using Gemini CLI",
   "scripts": {
-    "gen": "gemini -p "@GEMINI_SOP.md 產出 $npm_config_folder 的 test case""
+    "setup": "npm install -g @google/gemini-cli && pip install -r requirements.txt"
   },
   "author": "wangdanson",
   "license": "ISC"

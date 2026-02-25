@@ -40,14 +40,19 @@ cd testcase_automation
 ```
 
 ### 1. 安裝環境 (Environment Setup)
-1.  **安裝 Gemini CLI**:
-    ```bash
-    npm install -g @google/gemini-cli
-    ```
-2.  **安裝 Python 依賴**:
-    ```bash
-    pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client
-    ```
+
+在開始使用前，請確保您的開發環境已安裝基礎組件 (Node.js 與 Python)，然後執行一鍵安裝指令。
+
+#### A. 系統基礎環境 (System Prerequisites)
+*   **Node.js**: 建議版本 v18.0.0 以上 ([下載連結](https://nodejs.org/))。
+*   **Python**: 建議版本 v3.9 以上 ([下載連結](https://www.python.org/))。
+
+#### B. 一鍵安裝所有套件 (Quick Setup)
+在專案根目錄執行以下指令，系統將自動安裝 **Gemini CLI** (Node.js 套件) 與 **Python 相依套件**：
+```bash
+npm run setup
+```
+*(此指令會執行：`npm install -g @google/gemini-cli` 以及 `pip install -r requirements.txt`)*
 
 ### 2. 安全性設置 (Security Setup)
 本專案採用機密資訊分離原則，請依照以下步驟配置：
@@ -89,13 +94,6 @@ gemini
 *   **工作表命名**: 上傳後的 Sheet 名稱將自動對應 **CSV 檔案名稱** (例如：`SuperDSP_test_case_20260224_110000`)。
 > **範例指令：**
 > 「@GEMINI_SOP.md 產出 SuperDSP Pilot for AOE (Phase 1) 的 test case」
-
-### 6. 進階用法：一鍵產出 (Advanced Quick Command)
-如果您不想進入互動模式，可以使用自定義的 npm 指令：
-```bash
-npm run gen --folder="source_files/您的專案資料夾"
-```
-這會自動執行：讀取 SOP -> 分析規格 -> 產出 CSV -> 上傳至 Google Sheets。
 
 ---
 
