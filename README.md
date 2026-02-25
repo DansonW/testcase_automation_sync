@@ -15,6 +15,8 @@
 ```text
 /
 ├── README.md                # 專案說明文件與快速上手指南
+├── requirements.txt         # [新增] Python 環境相依套件清單
+├── package.json             # 專案配置文件，包含一鍵安裝指令 (npm run setup)
 ├── GEMINI_SOP.md            # 核心 SOP，定義產出規則、欄位與角色邏輯
 ├── GEMINI_ERROR_LOG.md      # 紀錄邏輯錯誤及 test case 產出錯誤紀錄，以避免重複出錯
 ├── .env                     # [資安] 環境變數設定檔 (已列入 .gitignore)
@@ -25,8 +27,8 @@
 ├── source_files/             # 原始規格文件參考
 │   ├── [專案名稱]/           # 存放該專案相關的 PDF, PNG, CSV 等規格文件
 │   └── HTML/                 # 存放測試系統的 HTML 檔案 (供分析頁面結構使用)
+├── generated_test_cases/    # [新增] 存放產出的測試案例 CSV 檔案 (依專案分類)
 └── .gemini/                 # Gemini CLI 配置資料夾
-    ├── commands/            # 自定義指令集 (speckit.*.toml)
     └── tmp/                 # 暫存區：產出的 CSV 會先存放在此，上傳後自動清理
 ```
 
