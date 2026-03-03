@@ -35,28 +35,55 @@
 
 ## 🚀 快速上手 (Quick Start)
 
+### 0. 複製專案 (Clone Project)
+首先，將此專案複製到您的本地電腦：
+```bash
+git clone https://github.com/wangdanson/testcase_automation.git
+cd testcase_automation
+```
+
 ### 1. 安裝環境 (Environment Setup)
 
+在開始使用前，請確保您的開發環境已安裝基礎組件 (Node.js 與 Python)，然後執行一鍵安裝指令。
+
+#### A. 系統基礎環境 (System Prerequisites)
+*   **Node.js**: 建議版本 v18.0.0 以上 ([下載連結](https://nodejs.org/))。
+*   **Python**: 建議版本 v3.9 以上 ([下載連結](https://www.python.org/))。
+
+#### B. 一鍵安裝所有套件 (Quick Setup)
 在專案根目錄執行以下指令，系統將自動安裝 **Gemini CLI** (Node.js 套件) 與 **Python 相依套件**：
 ```bash
 npm run setup
 ```
 *(此指令會執行：`npm install -g @google/gemini-cli` 以及 `pip install -r requirements.txt`)*
 
-### 2. 安全性與雲端配置 (Security & Cloud Setup)
+### 2. 安全性設置 (Security Setup)
+本專案採用機密資訊分離原則，請依照以下步驟配置：
 
-#### A. 配置 Google 服務帳號
-1.  在 [Google Cloud Console](https://console.cloud.google.com/) 建立服務帳號並下載 **JSON 金鑰**。
-2.  將金鑰重新命名為 `google_credentials.json` 並放入 `service_account/` 資料夾。
-3.  啟用 **Google Drive API** 與 **Google Sheets API**。
+#### A. 獲取 Google 服務帳號金鑰 (JSON)
+根據 Google Drive API 標準設定流程，請執行以下步驟：
 
-#### B. 共享試算表權限
-1.  開啟目標 Google 試算表，點擊「**共用**」。
-2.  將服務帳號的 Email 加入並設為「**編輯者**」。
+1.  **建立新專案**: 登入 [Google Cloud Console](https://console.cloud.google.com/)，點選「選取專案」並選擇「新增專案」，為專案命名後點擊「建立」。
+2.  **啟用 Google Drive API**: 在左側選單點擊「API 和服務」>「啟用 API 和服務」。搜尋「**Google Drive API**」並將其啟用。
+3.  **前往憑證頁面**: 在左側選單選擇「API 和服務」>「憑證」。
+4.  **建立服務帳號**: 點擊「建立憑證」> 選擇「**服務帳戶**」。
+5.  **設定服務帳號詳細資訊**: 輸入服務帳號名稱、ID 與描述，點擊「建立並繼續」。
+6.  **授予服務帳號權限**: 選擇角色（建議選取「基本」>「**編輯者**」），完成後點擊「繼續」與「完成」。
+7.  **產生並下載 JSON 金鑰**: 
+    *   在服務帳戶列表中點擊該帳戶的 Email。
+    *   切換至「**金鑰 (Keys)**」頁籤。
+    *   點擊「新增金鑰」>「建立新的金鑰」> 選擇「**JSON**」並建立。
+    *   系統會自動下載 JSON 檔案，請將其重新命名為 `google_credentials.json` 並放入 `service_account/` 資料夾。
+
+#### B. 共享試算表權限 (關鍵步驟)
+1.  **複製服務帳戶 Email**: 格式如 `account-name@project-id.iam.gserviceaccount.com`。
+2.  **授予編輯權限**: 開啟目標 Google 試算表，點擊「**共用**」，將該 Email 加入並設為「**編輯者**」。
 
 #### C. 設定環境變數
 1.  將 `.env.example` 複製為 `.env`。
 2.  填入您的 `SPREADSHEET_ID`（網址中 `/d/` 後方的一串字元）。
+3.  **確認資安**: `.env` 與 `service_account/` 已被加入 `.gitignore`，機密資訊不會被上傳。
+
 
 ### 3. 自動化產生測試案例 (Automation Workflow)
 
