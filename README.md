@@ -97,9 +97,23 @@ gemini
 
 **Gemini 將自動執行以下流程：**
 1.  **分析**：讀取 `source_files/[來源資料夾名稱]` 下的規格文件與 `GEMINI_ERROR_LOG.md`。
-2.  **建立**：在 `generated_test_cases/` 下建立與來源同名的子目錄。
-3.  **產出**：生成帶有時間戳記的 CSV 檔案並儲存至該目錄。
-4.  **上傳**：呼叫 `upload_to_sheets.py` 將 CSV 同步上傳至 Google Sheets 並建立新工作表。
+2.  **建立目錄**：在 `generated_test_cases/` 下建立一個與來源同名的子目錄。
+3.  **產出與備份**：生成帶有時間戳記的 CSV 檔案，並將其儲存至該子目錄中。
+4.  **同步上傳**：自動呼叫 `upload_to_sheets.py` 將該 CSV 檔案同步上傳至 Google Sheets，並在試算表中建立同名的工作表。
+
+### 🔄 4. 反向同步 (Reverse Sync)
+
+若您在 **Google Sheets** 上直接修改了測試案例內容，並希望將這些變更更新回本地端的 CSV 檔案，可以使用反向同步腳本：
+
+**執行指令：**
+```bash
+python3 sync_from_sheets.py "generated_test_cases/[專案路徑]/[檔名].csv"
+```
+
+**功能特色：**
+*   **自動匹配**：腳本會根據 CSV 檔名自動尋找 Google Sheets 中同名的工作表。
+*   **完整覆蓋**：從雲端抓取最新資料並覆蓋本地 CSV。
+*   **格式保證**：維持 `utf-8-sig` 編碼與 CSV 引用規範，確保 Excel 開啟不亂碼。
 
 ---
 
