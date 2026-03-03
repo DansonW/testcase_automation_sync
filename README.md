@@ -70,9 +70,9 @@ gemini
 
 **Gemini 將自動執行以下流程：**
 1.  **分析**：讀取 `source_files/[來源資料夾名稱]` 下的規格文件與 `GEMINI_ERROR_LOG.md`。
-2.  **建立目錄**：在 `generated_test_cases/` 下建立一個與來源同名的子目錄（例如：`generated_test_cases/SuperDSP_Pilot/`）。
-3.  **產出與備份**：生成帶有時間戳記的 CSV 檔案，並將其儲存至上述建立的子目錄中，作為**本地端永久備份**。
-4.  **同步上傳**：自動呼叫 `upload_to_sheets.py` 將該 CSV 檔案同步上傳至 Google Sheets，並在試算表中建立同名的工作表。
+2.  **建立**：在 `generated_test_cases/` 下建立與來源同名的子目錄。
+3.  **產出**：生成帶有時間戳記的 CSV 檔案並儲存至該目錄。
+4.  **上傳**：呼叫 `upload_to_sheets.py` 將 CSV 同步上傳至 Google Sheets 並建立新工作表。
 
 ---
 
