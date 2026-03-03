@@ -1,0 +1,110 @@
+系統,權限,功能 / 頁面,測試功能,測試情境,操作步驟,期望結果,備註
+SuperDSP,Onead User,廣告活動 Dashboard,【權限】Onead User 權限驗證,驗證 Onead User 是否能正常進入並查看廣告活動 Dashboard 頁面,1. 使用 Onead User 角色登入系統
+2. 進入「廣告活動」Dashboard 頁面,"1. 頁面加載正常且無報錯標記
+2. 正確顯示走期、總預算/已花費、廣告目的及品類內容",主文件：SuperDsp pilot for AOE - 工作表1.csv
+SuperDSP,Agency User,廣告活動 Dashboard,【權限】Agency User 權限驗證,驗證 Agency User 是否能正常查看其權限範圍內的廣告活動數據,1. 使用 Agency User 角色登入系統
+2. 進入「廣告活動」Dashboard 頁面,"1. 系統僅顯示該 Agency 權限下的資料
+2. 數據顯示格式（如幣值、數值類型）正確無誤",主文件：SuperDsp pilot for AOE - 工作表1.csv
+SuperDSP,Onead User (AOE),廣告活動 Dashboard,【權限】Onead User (AOE) 權限驗證,驗證 AOE 團隊角色對廣告活動 Dashboard 的存取權限,1. 使用 Onead User (AOE) 角色登入系統
+2. 進入廣告活動頁面並檢查 Dashboard,1. 系統應正確顯示 AOE 相關之廣告活動數據內容,主文件：SuperDsp pilot for AOE - 工作表1.csv
+SuperDSP,"Onead User
+Agency User",廣告活動 - Campaign Level,【正向】【UI/UX】Dashboard 顯示,當廣告活動中的 Ad group 未上刊或未產生任何數據時，Dashboard 應顯示初始零值且不應有異常數值,1. 建立一廣告活動但不建立任何 Ad group (或 Ad group 全為未上刊狀態)
+2. 檢視 Dashboard 的數值內容,"1. Dashboard 應正常顯示預期走期、廣告目的與廣告品類
+2. 總預算與已花費應正確顯示為零數值
+3. 數值類型應一致，無科學記號或異常天文數字顯示",主文件：SuperDsp pilot for AOE - 工作表1.csv
+SuperDSP,"Onead User
+Agency User",廣告活動 - Campaign Level,【正向】【UI/UX】Dashboard 顯示,當 Ad group 已上刊且正常產生數據時，Dashboard 應即時且正確地累積並顯示數值,1. 將廣告活動中的 Ad group 調整為上刊狀態
+2. 確認該廣告已產生刷廣告的花費數據
+3. 檢視 Dashboard 數據,"1. Dashboard 正確顯示當前已累積的走期與實際花費
+2. 總預算與花費數值之幣別與小數點格式符合系統設定",主文件：SuperDsp pilot for AOE - 工作表1.csv
+SuperDSP,"Onead User
+Agency User",廣告活動 - Campaign Level,【反向】【UI/UX】Dashboard 顯示,當實付花費異常大於總預算時，Dashboard 應確保數值真實性且 UI 顯示正常,1. 將 Ad group 調整為上刊
+2. 模擬已花費金額大於設定預算之極端情境
+3. 檢視 Dashboard 統計內容,"1. Dashboard 應真實呈現已超預算的花費數值
+2. UI 不應因數值過大導致排版擠壓或顯示科學符號
+3. 資料呈現與列表資訊保持一致",主文件：SuperDsp pilot for AOE - 工作表1.csv
+SuperDSP,"Onead User
+Agency User",Campaign Level - 廣告列表,【正向】【UI/UX】廣告列表資訊欄顯示,廣告列表於 Ad group 未上刊時的欄位數值應正確顯示為初始狀態,1. 建立 Ad group 但不切換至上刊狀態
+2. 於廣告列表頁面檢查該 Campaign 的資訊欄,"1. 列表中走期、預算內容正確顯示
+2. 已花費欄位正確顯示為 0 且數值型態正常",主文件：SuperDsp pilot for AOE - 工作表1.csv
+SuperDSP,"Onead User
+Agency User",Campaign Level - 廣告列表,【正向】【UI/UX】廣告列表資訊欄顯示,廣告列表於 Ad group 已上刊且有數據時的實時數值顯示,1. 啟動 Ad group 等待數據產生
+2. 重新加載廣告列表頁面並檢查欄位資訊,"1. 列表中的已花費數值應與 Dashboard 保持同步更新
+2. 數值顯示格式正確，無異常符號",主文件：SuperDsp pilot for AOE - 工作表1.csv
+SuperDSP,"Onead User
+Agency User",Campaign Level - 廣告列表,【反向】【UI/UX】廣告列表資訊欄顯示,當已花費大於預算時，列表中的進度與數值顯示真實性,1. 建立花費大於預算的模擬情境
+2. 於廣告列表查看該活動之資訊欄,"1. 已花費欄位應真實呈現大於預算的實際金額
+2. 總預算與已花費之關聯邏輯在 UI 上不應報錯",主文件：SuperDsp pilot for AOE - 工作表1.csv
+SuperDSP,"Onead User
+Agency User",Campaign Level - 走期 Filter,【正向】【UI/UX】走期 Filter 邊界值驗證,列表中僅有一筆廣告活動時，走期 Filter 的日期選取範圍限制,1. 建立一筆廣告活動 (走期：2026/02/01 ~ 2026/02/05)
+2. 開啟走期 Filter 並嘗試選取日期,"1. Filter 日期選擇器應以 2026/02/01 為最小建議值，2026/02/05 為最大建議值
+2. 超出此範圍的日期選取結果應符合系統預設過濾邏輯",主文件：SuperDsp pilot for AOE - 工作表1.csv
+SuperDSP,"Onead User
+Agency User",Campaign Level - 走期 Filter,【正向】【UI/UX】走期 Filter 雙向過量驗證,列表中有多筆廣告活動時，Filter 應涵蓋所有活動的最早與最晚日期,1. 建立 A 廣告 (02/01~02/05) 與 B 廣告 (02/07~02/08)
+2. 檢視走期 Filter 的範圍限制,1. Filter 日期選取範圍應自動擴張為 02/01 ~ 02/08 以包含所有活動,主文件：SuperDsp pilot for AOE - 工作表1.csv
+SuperDSP,"Onead User
+Agency User",Campaign Level - 走期 Filter,【反向】【UI/UX】走期 Filter 超限界測試,當 Filter 設定日期完全超出所有 Campaign 的活動區間時的表現,1. 於已有活動的情境下，強制選取一個完全無活動的日期區間 (例如早於最早活動)
+2. 檢視列表與 Filter 提示,"1. Filter 選擇器應儘可能提示有效區間
+2. 列表中應正確顯示無符合條件之結果，而非報錯",主文件：SuperDsp pilot for AOE - 工作表1.csv
+SuperDSP,"Onead User
+Agency User",Campaign Level - 走期 Filter,【反向】【UI/UX】空列表 Filter 狀態,系統無任何廣告活動資料時，走期 Filter 的互動性,1. 確保當前帳號無任何廣告活動
+2. 嘗試點擊走期 Filter 進行互動,1. 走期 Filter 功能應呈現 Disable 狀態或不可點擊，防止無效操作,主文件：SuperDsp pilot for AOE - 工作表1.csv
+SuperDSP,"Onead User
+Agency User",Campaign Level - 走期 Filter,【情境】【UI/UX】多重 Filter 交叉檢索,驗證走期 Filter 與名稱關鍵字搜尋的交叉過濾邏輯,1. 建立活動 A (02/01~02/05) 與 活動 B (02/07~02/08)
+2. 設定 Filter 走期為 02/07 ~ 02/08
+3. 同時於搜尋框輸入 "第一筆" (活動 A 的部分名稱),"1. 列表中僅顯示活動 B
+2. 搜尋框輸入後，若無交集應顯示查無資料",主文件：SuperDsp pilot for AOE - 工作表1.csv
+SuperDSP,"Onead User
+Agency User",廣告活動 - Ad group Level,【正向】【UI/UX】Dashboard 顯示,Ad group 層級 Dashboard 於初期狀態的數據完整性,1. 建立一 Campaign 與 Ad group，維持未投放狀態
+2. 進入 Ad group 層級的 Dashboard 檢視資訊,"1. 正確顯示廣告走期、預算為 0
+2. 各項成效指標（完整觀看率、頻次、觸及UU）應初始化正確且載入流暢
+3. 數值無溢位或格式錯誤",主文件：SuperDsp pilot for AOE - 工作表1.csv
+SuperDSP,"Onead User
+Agency User",廣告活動 - Ad group Level,【正向】【UI/UX】Dashboard 顯示,Ad group 已上刊後之核心成效數據顯示功能,1. 啟動廣告投放並確保產生花費與成效
+2. 進入 Ad group Dashboard 檢查數據,"1. 數據如實呈現總預算、已執行次數、完整觀看率等內容
+2. UU 觸及人數與平均頻次等計算指標顯示正確",主文件：SuperDsp pilot for AOE - 工作表1.csv
+SuperDSP,"Onead User
+Agency User",廣告活動 - Ad group Level,【反向】【UI/UX】Dashboard 顯示,Ad group 成效溢出預算時的數值真實呈現與 UI 容錯力,1. 建立一個花費超過預算的 Ad group
+2. 檢視其 Dashboard 數值,"1. 已花費金額應如實呈現超額部分
+2. 成效指標（如預計執行次數 vs 已執行次數）應顯示真實累積量",主文件：SuperDsp pilot for AOE - 工作表1.csv
+SuperDSP,"Onead User
+Agency User",Ad group Level - 走期 Filter,【正向】【UI/UX】邊界值驗證,Ad group 列表走期 Filter 的範圍約束驗證,1. 建立一筆 Ad group (02/01~02/08)
+2. 於 Ad group 列表測試走期 Filter 限制,1. Filter 可選範圍應受到 Campaign 層級或目前活動日期之合理約束,主文件：SuperDsp pilot for AOE - 工作表1.csv
+SuperDSP,Agency User,受眾鎖定 - 興趣,【正向】【UI/UX】多選標籤設定與儲存邏輯,受眾鎖定頁面中，複合興趣標籤的選取、顯示與存檔流程,1. 進入受眾鎖定「興趣」設定
+2. 勾選 3 個以上標籤（如：旅遊、美食、運動）
+3. 提交儲存並重啟編輯畫面,"1. UI 應於「已選擇」區塊即時列出所選標籤
+2. 再次進入編輯時，先前儲存的標籤應維持勾選狀態且內容正確",主文件：SuperDsp pilot for AOE - 工作表1.csv
+SuperDSP,Agency User,受眾鎖定 - 人口屬性,【正向】【UI/UX】屬性組合驗證,性別與年齡等人口屬性標籤的選取一致性,1. 進入受眾鎖定「人口屬性」
+2. 選取性別（男）並組合選取一個年齡區間（如 25-34）
+3. 確認「已選擇」區域內容,"1. 系統正確識別並彙整兩個不同範疇的屬性標籤
+2. 點擊「儲存」後系統記錄完整受眾條件",主文件：SuperDsp pilot for AOE - 工作表1.csv
+SuperDSP,Agency User,受眾鎖定 - 地理區域,【正向】【UI/UX】階層式選取驗證,地理區域列表的展開與多層次城市選取,1. 進入地理區域設定並展開父節點（台灣）
+2. 跨城市選取多個縣市標籤（如台北、高雄）
+3. 儲存設定,"1. 樹狀結構展開流暢且選取反饋即時
+2. 儲存後的設定應能正確反映於廣告投放範圍",主文件：SuperDsp pilot for AOE - 工作表1.csv
+SuperDSP,Agency User,受眾鎖定 - 排除網站,【正向】【UI/UX】複合排除名單功能,驗證分類網站與特定媒體的排除設定邏輯,1. 於排除網站設定中勾選網站類別（如健康的、母嬰）
+2. 同時手動搜尋特定網站名稱進行排除
+3. 檢視已選排除清單與儲存效果,"1. UI 應明確區分「分類排除」與「單一網站排除」之選取清單
+2. 排除名單於存檔後能正確顯示在列表內",主文件：SuperDsp pilot for AOE - 工作表1.csv
+SuperDSP,"Onead User
+Agency User",受眾鎖定 - 排除網站,【情境】【UI/UX】新合作媒體排除檢查,當品類新增合作媒體時，已存在的排除名單應維持不變，不應自動包含新媒體,1. 作為 Onead User 在系統中新增一筆該格式品類的合作媒體
+2. 使用 Agency User 進入編輯現有的廣告活動排除名單,1. 新增的媒體應處於未排除狀態，除非使用者手動勾選，確保廣告投放覆蓋率與邏輯一致,主文件：SuperDsp pilot for AOE - 工作表1.csv
+SuperDSP,"Onead User
+Agency User",廣告活動成效 - DailyReport,【情境】【功能】DailyReport 數據下載與範圍準確性,下載包含多個 Ad group 的 Daily Report 並驗證其日期區間與數值正確性,1. 準備多個不同走期的 Ad group
+2. 設定 Filter 涵蓋所有走期並點按 Daily Report 下載
+3. 開啟報表检查內容,"1. 報表數據區間應與 Filter 設定完全一致
+2. CSV 數值為純數字格式，不含非必要的文字描述以利分析
+3. 排除異常大（科學記號）的異常數值出現",主文件：SuperDsp pilot for AOE - 工作表1.csv
+SuperDSP,"Onead User
+Agency User",廣告活動成效 - 受眾洞察報告,【UI/UX】受眾洞察報告 UI 優化驗證,驗證報告下載頁面之特定 UI 字樣標籤移除成果,1. 進入受眾洞察報告匯出頁面
+2. 巡檢頁面說明文字,1. 確定頁面中已永久移除「數據截取至昨天」等舊有不正確字串提示,主文件：SuperDsp pilot for AOE - 工作表1.csv
+SuperDSP,"Onead User
+Agency User",廣告活動成效 - 受眾洞察報告,【功能】受眾洞察報告下載交叉驗證,不同 Filter 設定下的受眾洞察報告內容與格式校驗,1. 準備跨走期的受眾洞察資料
+2. 測試單一走期與跨走期 Filter 下的匯出報表
+3. 比對報表數值與 Dashboard 的一致性,"1. 匯出報表中的數值型態（百分比、浮點數）應正確顯示
+2. 報表內容完全匹配所設定的 Filter 篩選區間
+3. 下載動作穩定，不應出現請求逾時",主文件：SuperDsp pilot for AOE - 工作表1.csv
+SuperDSP,Onead User,Sequence.json,【正向】【數值驗證】數據同步性校驗,前端 UI 設定與後端產出 sequence.json 檔案的資料一致性,1. 完成一筆廣告活動的多項細部設定（預算、受眾屬性、地區）
+2. 廣告活動上刊後，取得系統產出的 sequence.json 檔案
+3. 逐一比對 UI 值與 JSON 內對應欄位值,"1. JSON 內的預算、受眾 ID、地區碼等關鍵欄位與 UI 設定完全一致
+2. 檔案格式正確，無解析異常",主文件：SuperDsp pilot for AOE - 工作表1.csv

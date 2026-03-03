@@ -1,0 +1,5 @@
+測試功能,結果,錯誤詳情
+【權限】建立 RTB 合約,失敗,"Page.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator(""button.btn.btn-primary.btn-block"")
+"

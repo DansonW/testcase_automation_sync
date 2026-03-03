@@ -1,0 +1,29 @@
+系統,權權,功能 / 頁面,測試功能,測試情境,操作步驟,期望結果,備註
+SuperDSP,Onead User (AOE),權限管理,【權限】【正向】,驗證 Onead User (AOE) 具備進入 AOE 策略中心與檢視 AOE 廣告活動的權限,1. 以 Onead User (AOE) 帳號登入 SuperDSP 系統
+2. 檢查側邊導覽列是否顯示「AOE 策略中心」選單
+3. 點擊進入「廣告活動管理」列表,1. 導覽列正確顯示「AOE 策略中心」選單
+2. 進入廣告活動列表後，可正常看到帶有 [AOE] 標籤的廣告活動且可點擊進入查看詳情,主文件：ITO-SuperDSP Pilot for AOE (Phase 1)-060126-035708.pdf
+ - 章節：AOE 專用權限說明
+SuperDSP,Media Admin,廣告活動設定,【功能新增】【正向】,媒體管理者在建立廣告活動時可正確開啟「AOE 智慧優化」開關,1. 以 Media Admin 帳號登入
+2. 進入「新增廣告活動」頁面
+3. 在基本設定區塊找到「AOE 智慧優化」切換開關並開啟
+4. 儲存設定,1. 「AOE 智慧優化」開關預設為關閉
+2. 開啟後，下方應出現「AOE 策略選擇」下拉選單
+3. 儲存後系統提示「設定成功」,主文件：ITO-SuperDSP Pilot for AOE (Phase 1)-060126-035708.pdf
+ - 章節：UserStory 2 - 廣告活動 AOE 優化設定
+SuperDSP,Onead User (AOE),受眾鎖定,【情境】【正向】【UI/UX】,驗證 AOE 智慧受眾推薦標籤的顯示樣式與選取功能,1. 進入廣告活動的「受眾鎖定」設定頁面
+2. 點擊「AOE 推薦受眾」按鈕
+3. 從彈出的建議清單中勾選標籤,1. 系統應顯示「AOE 正在計算最佳標籤...」的 Loading 動畫
+2. 標籤應帶有藍色閃電圖示（AOE 標識）以區分一般標籤
+3. 選取後，標籤應正確加入已選取清單,主文件：ITO-SuperDSP Pilot for AOE (Phase 1)-060126-035708.pdf
+ - 章節：UserStory 3 - AOE 智慧受眾推薦
+SuperDSP,Media User,數據報表,【整合】【反向】,驗證非 AOE 優化之廣告活動不應顯示 AOE 貢獻度數據,1. 進入「數據報表」頁面
+2. 選擇一個未開啟 AOE 優化的廣告活動
+3. 下載「自定義報表」並檢查欄位,1. 在報表匯出選項中，AOE 相關欄位（如 AOE Attribution）應為反白不可選狀態
+2. 產出的 CSV/Excel 報表中，AOE 相關數據應顯示為 0 或 N/A,主文件：ITO-SuperDSP Pilot for AOE (Phase 1)-060126-035708.pdf
+ - 章節：數據報表欄位規範
+SuperDSP,Onead User (AOE),AOE 策略中心,【ＵＩ】【UI/UX】,驗證 AOE 策略中心首頁的儀表板排版與中英對照一致性,1. 進入「AOE 策略中心」首頁
+2. 切換系統語系為「English」後再切換回「繁體中文」
+3. 檢查各圖表標題與數值單位,1. 頁面排版在不同語系下皆維持整齊，無破版現象
+2. 所有 AOE 專屬名詞（如 Predicted CTR）的中英對照符合規格文件定義,細節文件：superdsp.html
+ - 章節：UI 元件定義範例

@@ -1,0 +1,51 @@
+系統,權限,功能 / 頁面,測試功能,測試情境,操作步驟,期望結果,備註
+"SuperDSP","Onead User (AOE)","導覽選單","[權限]","驗證 AOE 團隊成員登入後的專屬選單可見性","1. 使用 Onead User (AOE) 帳號登入系統
+2. 檢查左側導覽列
+3. 確認是否顯示「AOE 策略中心」與「AOE 報表」","1. 左側選單應顯示「AOE 策略中心」
+2. 左側選單應顯示「AOE 報表」
+3. 點擊後應能正常進入頁面，無 403 錯誤","主文件：ITO-SuperDSP Pilot for AOE (Phase 1)-060126-035708.pdf
+ - 章節：1.1 權限與角色定義"
+"SuperDSP","Media Admin","導覽選單","[權限]","驗證非 AOE 團隊成員無法看見內部策略選單","1. 使用 Media Admin (一般媒體管理員) 帳號登入
+2. 檢查左側導覽列","1. 不應顯示「AOE 策略中心」
+2. 不應顯示「AOE 報表」
+3. 嘗試透過 URL 直接存取應被導向首頁或顯示權限不足","主文件：ITO-SuperDSP Pilot for AOE (Phase 1)-060126-035708.pdf
+ - 章節：1.1 權限與角色定義"
+"SuperDSP","Media Admin","廣告活動設定","[功能新增]","驗證建立廣告活動時 AOE 優化開關的預設狀態與行為","1. 進入「新增廣告活動」頁面
+2. 捲動至優化設定區塊
+3. 檢查「AOE 智慧優化」開關","1. 開關預設狀態應為「關閉 (OFF)」
+2. 關聯的下拉選單（如策略選擇）應預設隱藏","主文件：ITO-SuperDSP Pilot for AOE (Phase 1)-060126-035708.pdf
+ - 章節：2.1 廣告活動設定"
+"SuperDSP","Media Admin","廣告活動設定","[功能新增]","驗證開啟 AOE 優化開關後的連動行為","1. 將「AOE 智慧優化」開關切換為「開啟 (ON)」
+2. 觀察介面變化","1. 下方應動態展開「AOE 策略」下拉選單
+2. 下方應展開「預算分配權重」輸入框
+3. 展開過程應無破版或延遲","主文件：ITO-SuperDSP Pilot for AOE (Phase 1)-060126-035708.pdf
+ - 章節：2.1 廣告活動設定"
+"SuperDSP","Onead User (AOE)","受眾鎖定","[功能新增]","驗證 AOE 智慧受眾標籤的獲取功能","1. 進入受眾鎖定頁面
+2. 點擊「獲取 AOE 建議」按鈕
+3. 觀察系統回應","1. 系統應發送 API 請求至 AOE Engine
+2. 成功後應回傳建議標籤列表並自動填入候選區","主文件：ITO-SuperDSP Pilot for AOE (Phase 1)-060126-035708.pdf
+ - 章節：3.2 受眾標籤 API"
+"SuperDSP","Onead User (AOE)","受眾鎖定","[反向]","驗證 AOE 服務異常時的錯誤處理","1. 模擬 AOE API 回傳 500 Internal Server Error
+2. 點擊「獲取 AOE 建議」按鈕","1. 介面不應卡死在 Loading 狀態
+2. 應彈出紅色 Toast 提示「系統忙碌中，無法取得建議」
+3. 按鈕應暫時進入 Disabled 狀態避免重複點擊","主文件：ITO-SuperDSP Pilot for AOE (Phase 1)-060126-035708.pdf
+ - 章節：3.2 異常流程規範"
+"SuperDSP","Onead User (AOE)","策略中心","[整合]","驗證 AOE 預算分配邏輯的總和檢核","1. 在策略中心手動調整各媒體渠道的預算比例
+2. 輸入總和不等於 100% 的數值
+3. 嘗試儲存","1. 系統應即時偵測並顯示錯誤訊息「預算比例總和必須為 100%」
+2. 儲存按鈕應被鎖定無法送出","主文件：ITO-SuperDSP Pilot for AOE (Phase 1)-060126-035708.pdf
+ - 章節：3.1 預算分配邏輯"
+"SuperDSP","Onead User (AOE)","數據報表","[整合]","驗證 AOE 績效報表匯出的欄位完整性","1. 進入報表下載中心
+2. 選擇「AOE 績效報表」並匯出 CSV
+3. 檢查檔案內容","1. CSV 檔名應包含正確的時間戳記
+2. 內容應包含規格書定義的「AOE Attribution」與「Lift %」欄位
+3. 數值格式應正確保留小數點位數","主文件：ITO-SuperDSP Pilot for AOE (Phase 1)-060126-035708.pdf
+ - 章節：5.3 報表輸出規範"
+"SuperDSP","Onead User (AOE)","策略看板","[ＵＩ]","驗證數據圖表的空狀態 (Empty State) 顯示","1. 選擇一個尚未開始投放的新廣告活動
+2. 進入 AOE 策略看板","1. 圖表區域不應顯示空白或錯誤代碼
+2. 應顯示統一的 Empty State 插圖與文字「尚無數據可供分析」","細節文件：superdsp.html
+ - 章節：UI 通用規範"
+"SuperDSP","Onead User (AOE)","全站","[UI/UX]","驗證 AOE 專有名詞的中英對照一致性","1. 將系統語系切換為英文
+2. 檢查 AOE 相關設定頁面與報表欄位","1. 「AOE 智慧優化」應顯示為 correct English term (e.g., AOE Smart Optimization)
+2. 所有 Tooltip 提示文字皆應正確翻譯，無中英夾雜","細節文件：superdsp.html
+ - 章節：多國語系規範"

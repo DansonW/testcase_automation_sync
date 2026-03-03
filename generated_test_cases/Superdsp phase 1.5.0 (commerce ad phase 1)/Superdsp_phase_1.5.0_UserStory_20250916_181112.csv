@@ -1,0 +1,7 @@
+"使用者故事","角色","情境 (When)","目的 (I want to)","價值 (So that)","來源文件"
+"設定 Commerce Ad 廣告","Agency User","需要推廣電商網站的產品時","在 SuperDSP 中建立一個完整的 Commerce Ad 廣告活動，包含設定數據鎖定、廣告格式與 RTB 競價","透過 RTB 競價模式，對瀏覽過我網站的用戶進行再行銷廣告投放","[Commerce AD Phase 1] Commerce AD & RTB-120925-014609.pdf"
+"追蹤與分析廣告成效","Agency User","廣告投放一段時間後","查看即時的廣告成效數據，並能下載包含轉換數據的完整報表","監控 ROAS 與轉換成效，並依此優化我的出價策略","[功能詳情]廣告成效即時追蹤-120925-014705.pdf"
+"升級網站追蹤碼","Agency User","需要追蹤用戶在電商網站上的完整行為（例如：查看商品、加入購物車、完成購買）","在 SuperDSP 平台上升級並取得 OnePixel v2 的追蹤碼","收集到更深度的使用者站內行為數據，以利後續的廣告優化與再行銷","[功能詳情] 追蹤碼埋設 v2 升級-120925-014710.pdf"
+"區分 RTB 與固定價格的財務報表","Onead User (PM)","每月需要進行財務結算與對帳時","在 SuperDSP 的財務報表中，能清楚區分 RTB 競價模式與傳統固定價格模式的費用","完成正確的財務對帳，並評估不同廣告模式的營收貢獻","[功能詳情] Commerce AD 導入財務報表 (含RTB底層計算)-120925-015318.pdf"
+"Partners 平台使用者接收新功能通知","Partner User","新功能上線時","在登入 Partners 平台後，能看到 Commerce Ad 功能上線的通知彈窗","即時了解平台的新功能，並評估是否採用新的廣告格式來增加收益","[Partners][SuperDSP 平台化 Phase 1.5.0] Commerce Ad-150925-045312.pdf"
+"Partners 平台預覽新廣告格式","Partner User","考慮是否要使用 Commerce Ad 廣告格式時","在 NativeDrive 原生廣告的設定頁面中，看到 Commerce Ad 的手機版與電腦版預覽畫面","在正式啟用前，能預先了解廣告呈現的樣式，以確保符合我的網站風格","[Partners][SuperDSP 平台化 Phase 1.5.0] Commerce Ad-150925-045312.pdf"

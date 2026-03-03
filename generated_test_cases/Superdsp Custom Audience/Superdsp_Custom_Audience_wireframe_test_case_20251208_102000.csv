@@ -1,0 +1,58 @@
+系統,權限,功能/頁面,測試功能,測試情境,操作步驟,期望結果,備注
+SuperDSP,N/A,Custom Audience > Segment Targeting,"[正向][UI/UX]","驗證 Segment Targeting Tool 的條件邏輯 (AND/OR) 切換功能是否正常運作","1. 進入 Segment Targeting Tool 介面
+2. 新增至少三個條件
+3. 在條件之間切換使用 AND 以及 OR 邏輯
+4. 觀察預估受眾數量的變化","1. 每當邏輯 (AND/OR) 切換時，介面應有即時反應
+2. 使用 AND 邏輯時，預估受眾數量應趨於減少或不變
+3. 使用 OR 邏輯時，預估受眾數量應趨於增加或不變
+4. 介面顯示的邏輯關係應清晰易懂",來源: ITO-SuperDSP Custom Audience-121125-094128.pdf (章節: 情境一：Segment Targeting Tool)
+SuperDSP,N/A,Custom Audience > Segment Targeting,"[正向][功能]","驗證使用者可以編輯一個已儲存的 Segment","1. 進入 Segment Targeting Tool 介面
+2. 從已建立清單中，選擇一個先前儲存的 Segment
+3. 點擊「編輯」
+4. 修改其中的條件 (例如，刪除一個條件，或更改一個條件的數值)
+5. 重新儲存 Segment","1. 系統提示儲存成功
+2. 該 Segment 的定義應被更新
+3. 下次使用此 Segment 時，會採用新的條件",來源: ITO-SuperDSP Custom Audience-121125-094128.pdf (章節: 情境一：Segment Targeting Tool)
+SuperDSP,Admin,Custom Audience > Pack Management,"[正向][UI/UX]","驗證 Admin 在管理介面可以透過篩選功能快速找到特定狀態的 Audience Pack","1. 使用 Admin 權限帳號登入 SuperDSP
+2. 導航至 Custom Audience Pack 管理介面
+3. 在狀態篩選器中，選擇「已核准」(Approved)
+4. 觀察列表變化
+5. 再次篩選，選擇「待審核」(Pending)","1. 當篩選「已核准」時，列表應只顯示狀態為已核准的 Audience Pack
+2. 當篩選「待審核」時，列表應只顯示狀態為待審核的 Audience Pack
+3. 篩選功能反應迅速，列表結果正確",來源: ITO-Custom Audience 前端開發文件-121125-094303.pdf
+SuperDSP,Admin,Custom Audience > Pack Management,"[正向][功能]","驗證 Admin 可以駁回一個待審核的 Custom Audience Pack","1. 使用 Admin 權限帳號登入 SuperDSP
+2. 導航至 Custom Audience Pack 管理介面
+3. 找到一個狀態為「待審核」的 Pack
+4. 點擊「駁回」(Reject) 按鈕
+5. (如果系統支持) 輸入駁回原因","1. 系統提示操作成功
+2. 該 Audience Pack 的狀態更新為「已駁回」(Rejected)
+3. Media 人員在 Ad Group 設定中將無法搜尋到此 Pack",來源: ITO-SuperDSP Custom Audience-121125-094128.pdf (章節: 情境二：導入 SuperDSP)
+SuperDSP,Media,Ad Group > 受眾設定,"[正向][UI/UX]","驗證在 Ad Group 中綁定受眾包的搜尋功能支援模糊比對或關鍵字搜尋","1. 使用 Media 權限帳號登入 SuperDSP
+2. 進入任一 Ad Group 的受眾設定頁面
+3. 假設存在一個名為「2025-Q4-冬季美妝大賞」的 Audience Pack
+4. 在搜尋框中輸入「美妝」
+5. 觀察搜尋結果","1. 搜尋結果列表應成功顯示「2025-Q4-冬季美妝大賞」這個選項
+2. 搜尋功能應不區分大小寫 (Case-insensitive)",來源: ITO-Custom Audience 前端開發文件-121125-094303.pdf
+SuperDSP,Media,Ad Group > 受眾設定,"[正向][功能]","驗證 Media 人員可以成功解除 Ad Group 與 Custom Audience Pack 的綁定","1. 前提：一個 Ad Group 已綁定一個 Custom Audience Pack
+2. 使用 Media 權限帳號登入並進入該 Ad Group 的設定頁面
+3. 找到已綁定的 Pack 旁邊的「移除」或「x」按鈕並點擊
+4. 儲存 Ad Group 設定","1. 系統提示儲存成功
+2. 該 Ad Group 的受眾設定中不再顯示這個 Custom Audience Pack
+3. 廣告投放將不再受此 Pack 的條件影響",來源: ITO-SuperDSP Custom Audience-121125-094128.pdf (章節: 情境三：Ad_group 綁定 Custom Audience Pack)
+SuperDSP,Media,Ad Group > 受眾設定,"[反向][情境]","驗證當一個廣告活動 (Campaign) 結束後，其下的 Ad Group 無法再編輯或綁定新的 Custom Audience Pack","1. 找到一個已結束 (End Date 已過) 的廣告活動
+2. 使用 Media 權限帳號登入
+3. 嘗試進入該廣告活動下任一 Ad Group 的設定頁面
+4. 嘗試新增或變更 Custom Audience Pack 的綁定","1. 系統應禁止編輯操作
+2. 介面上的儲存按鈕應為反灰不可用狀態，或在點擊時提示「此活動已結束，無法編輯」",來源: ITO-SuperDSP Custom Audience-121125-094128.pdf
+SuperDSP,"Sales, Media",Campaign Potential Models,"[權限][UI]","驗證使用者在潛力模型頁面，只能看到自己有權限的廣告主列表","1. 使用一個只被指派到特定廣告主 (例如 Advertiser A) 的 Media 帳號登入
+2. 導航至「活動潛力模型」頁面
+3. 點擊「選擇廣告主」的下拉選單","1. 下拉選單中應只出現 Advertiser A
+2. 不應顯示該使用者無權限的其他廣告主 (例如 Advertiser B, C)",來源: ITO-SuperDSP 新增 活動預測潛力模型 ( Campaign Potential Models )-041225-090304.pdf
+SuperDSP,"Sales, Media",Campaign Potential Models,"[正向][UI/UX]","驗證在潛力模型頁面選擇一個沒有任何數據的廣告活動時，系統能提供清晰的提示","1. 使用 Sales/Media 帳號登入
+2. 導航至「活動潛力模型」頁面
+3. 選擇一個最近建立、尚未有任何投放數據的廣告活動","1. 頁面不應發生錯誤或顯示空白
+2. 在原圖表區域，應顯示清晰的文字提示，例如「此活動暫無數據可供分析」",來源: ITO-SuperDSP 新增 活動預測潛力模型 ( Campaign Potential Models )-041225-090304.pdf
+SuperDSP,"Sales, Media",Campaign Potential Models,"[反向][UI]","驗證當使用者在潛力模型頁面快速切換不同廣告活動時，頁面不會崩潰且能正確更新","1. 使用 Sales/Media 帳號登入
+2. 導航至「活動潛力模型」頁面
+3. 在「選擇廣告活動」的下拉選單中，快速、連續地選擇 3-5 個不同的廣告活動","1. 頁面保持穩定，不會出現卡頓或崩潰
+2. 最終頁面顯示的圖表與數據，應與最後選擇的那個廣告活動一致",來源: ITO-SuperDSP 新增 活動預測潛力模型 ( Campaign Potential Models )-041225-090304.pdf

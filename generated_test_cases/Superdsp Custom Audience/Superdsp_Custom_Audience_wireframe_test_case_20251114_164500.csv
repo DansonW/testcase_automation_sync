@@ -1,0 +1,51 @@
+"系統","權限","功能/頁面","測試功能","測試情境","操作步驟","期望結果","備注"
+"SuperDSP","","Custom Audience","[UI/UX] 總覽頁面 - 結構驗證","根據 Wireframe 驗證 Custom Audience 列表頁面佈局","1. 登入 SuperDSP
+2. 點擊左側導覽列的「Custom Audience」","1. 頁面頂部應顯示標題「Custom Audience」
+2. 標題右側應有「Create Audience」按鈕
+3. 按鈕下方應為搜尋框與篩選器區域
+4. 主要內容區域為 Custom Audience 列表
+5. 列表應有分頁功能","ITO-Custom Audience 前端開發文件-121125-094303.pdf (Wireframe - List Page)"
+"SuperDSP","","Custom Audience","[UI/UX] 總覽頁面 - 列表欄位驗證","根據 Wireframe 驗證列表顯示的欄位是否正確","1. 進入 Custom Audience 頁面","1. 列表應由左至右依序顯示以下欄位：
+   - Checkbox
+   - Audience Name
+   - Audience ID
+   - Status
+   - Type
+   - Source
+   - Size
+   - Create Date
+   - Last Update","ITO-Custom Audience 前端開發文件-121125-094303.pdf (Wireframe - List Page)"
+"SuperDSP","","Custom Audience","[UI/UX] 總覽頁面 - 狀態顯示驗證","根據 Wireframe 驗證不同狀態的視覺呈現","1. 進入 Custom Audience 頁面
+2. 觀察「Status」欄位","1. 狀態為「Ready」時，應顯示綠色圖標或文字
+2. 狀態為「Building」時，應顯示黃色或處理中圖標
+3. 狀態為「Error」時，應顯示紅色圖標或文字
+4. 狀態為「No data」時，應顯示灰色圖標或文字","ITO-Custom Audience 前端開發文件-121125-094303.pdf (Wireframe - Status Indicator)"
+"SuperDSP","","Custom Audience","[UI/UX] 總覽頁面 - 滑鼠懸停提示","根據 Wireframe 驗證滑鼠懸停在特定欄位時的提示","1. 進入 Custom Audience 列表頁面
+2. 將滑鼠移至「Status」為「Error」的圖標上","1. 應出現 Tooltip，顯示錯誤的詳細原因 (例如：CRM file format error)","ITO-Custom Audience 前端開發文件-121125-094303.pdf (Wireframe - Tooltip)"
+"SuperDSP","","Custom Audience","[UI/UX] 建立頁面 - 結構驗證 (Website)","根據 Wireframe 驗證建立 Website Audience 頁面的佈局","1. 點擊「Create Audience」按鈕
+2. 選擇 Source 為「Website」","1. 頁面頂部應顯示標題「Create Custom Audience」
+2. 應有欄位「Audience Name」
+3. 應有區塊「Define Audience」
+4. 「Define Audience」區塊內應有 Match Condition (Any/All) 的選項
+5. 應有設定 Rules 的區塊
+6. 應有設定 Lookback window 的欄位
+7. 頁面底部應有「Cancel」和「Save」按鈕","ITO-Custom Audience 前端開發文件-121125-094303.pdf (Wireframe - Create Page)"
+"SuperDSP","","Custom Audience","[UI/UX] 建立頁面 - Rule 條件設定 UI 驗證","根據 Wireframe 驗證 Rule 條件設定的互動介面","1. 在建立 Website Audience 頁面
+2. 點擊「Add Rule」","1. 應出現一個新的 Rule 設定列
+2. 每一個 Rule 列應包含三個部分：
+   - 條件來源 (例如：URL, Domain)
+   - 匹配運算子 (例如：contains, equals, starts with)
+   - 條件值 (文字輸入框)
+3. Rule 列右側應有刪除按鈕","ITO-Custom Audience 前端開發文件-121125-094303.pdf (Wireframe - Rule Builder)"
+"SuperDSP","","Custom Audience","[UI/UX] 建立頁面 - 顯示預估量體","根據 Wireframe 驗證預估量體是否顯示","1. 在建立 Website Audience 頁面
+2. 設定完至少一個 Rule","1. 頁面右側或下方應顯示「Estimated Audience Size」
+2. 該區塊應顯示一個數字，代表符合條件的預估人數","ITO-SuperDSP Custom Audience-121125-094128.pdf (Wireframe - Estimated Size)"
+"SuperDSP","","Custom Audience","[UI/UX] 編輯頁面 - 結構驗證","根據 Wireframe 驗證編輯頁面的佈局與帶入的資料","1. 在列表上點擊任一 Audience 的編輯按鈕","1. 應進入編輯頁面，頁面標題為「Edit Custom Audience」
+2. 頁面應帶入該 Audience 的現有設定，例如 Name, Rules, Lookback window
+3. 頁面底部應有「Cancel」和「Save」按鈕","ITO-Custom Audience 前端開發文件-121125-094303.pdf (Wireframe - Edit Page)"
+"SuperDSP","","Custom Audience","[UI/UX] 編輯頁面 - 驗證不可修改項目","根據 Wireframe 和業務邏輯，驗證編輯時不可修改的欄位","1. 進入任一已建立的 Custom Audience 編輯頁面","1. 「Source」(Website, App, CRM) 應為唯讀，不可修改
+2. 「Audience ID」應為唯讀，不可修改
+3. 「Create Date」應為唯讀，不可修改","ITO-Custom Audience 前端開發文件-121125-094303.pdf (Wireframe - Edit Page)"
+"SuperDSP","","Custom Audience","[UI/UX] 詳情頁面 - 結構驗證","根據 Wireframe 驗證詳情頁面的佈局與顯示資訊","1. 在列表上點擊任一 Audience 的名稱","1. 應進入唯讀的詳情頁面
+2. 頁面應顯示所有相關資訊，包含 Name, ID, Status, Type, Source, Size, Create Date, Last Update, 以及設定的 Rules
+3. 頁面應有返回列表頁的按鈕或連結","ITO-Custom Audience 前端開發文件-121125-094303.pdf (Wireframe - Detail View)"
