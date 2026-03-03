@@ -23,6 +23,7 @@
 ├── .env                     # [資安] 環境變數設定檔 (已列入 .gitignore)
 ├── .env.example             # 環境變數設定範例
 ├── upload_to_sheets.py      # 自動化腳本：將產出的 CSV 上傳至 Google Sheets
+├── sync_from_sheets.py      # [新增] 反向同步腳本：將雲端變更同步回本地 CSV
 ├── service_account/         # [資安] 存放 Google 服務帳號憑證 (已列入 .gitignore)
 │   └── google_credentials.json # Google 服務帳號憑證金鑰
 ├── source_files/            # 原始規格文件參考
@@ -32,6 +33,7 @@
 │   └── [專案名稱]/           # 依來源專案分類存放產出的 CSV 檔案
 └── .gemini/                 # Gemini CLI 配置資料夾
 ```
+
 
 ## 🚀 快速上手 (Quick Start)
 
