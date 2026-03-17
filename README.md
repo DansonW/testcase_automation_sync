@@ -95,7 +95,7 @@ gemini
 ```
 
 **範例指令：**
-> 「@GEMINI_SOP.md 產出 [來源資料夾名稱] 的 test case」
+> 「幫我產生 [來源資料夾名稱] 的 test case」
 
 **Gemini 將自動執行以下流程：**
 1.  **分析**：讀取 `source_files/[來源資料夾名稱]` 下的規格文件與 `GEMINI_ERROR_LOG.md`。
