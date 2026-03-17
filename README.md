@@ -32,6 +32,7 @@
 ├── generated_test_cases/    # 產出的測試案例儲存區
 │   └── [專案名稱]/           # 依來源專案分類存放產出的 CSV 檔案
 └── .gemini/                 # Gemini CLI 配置資料夾
+    └── skills/              # 存放專案專屬的 Gemini Skills (如 test-case-automation-expert)
 ```
 
 
