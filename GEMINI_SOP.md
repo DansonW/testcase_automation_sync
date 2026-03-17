@@ -1,3 +1,8 @@
+> [!IMPORTANT]
+> **本文件已停止更新 (Archived)**
+> 本專案的所有 **標準作業程序 (SOP)** 與規則已轉移至 [`.gemini/skills/test-case-automation-expert/SKILL.md`](.gemini/skills/test-case-automation-expert/SKILL.md)。
+> 未來的新規則、格式調整與作業流程將 **僅在該 Skill 檔案中更新**。本文件僅供歷史參考。
+
 這份文件記錄了與 Gemini CLI 互動時，關於測試案例生成的所有約定與偏好設定。它旨在確保每次產出的測試案例都能符合特定的格式、內容與邏輯。
 
 ## 0. 專業角色定位 (2025/12/30 更新)

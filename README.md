@@ -18,7 +18,7 @@
 ├── README.md                # 專案說明文件與快速上手指南
 ├── requirements.txt         # Python 環境相依套件清單 (pandas, google-api-python-client 等)
 ├── package.json             # 專案配置文件，包含一鍵安裝指令 (npm run setup)
-├── GEMINI_SOP.md            # 核心 SOP，定義產出流程、欄位格式與角色邏輯
+├── GEMINI_SOP.md            # [已存檔] 歷史 SOP，內容已轉移至 Skill 檔案
 ├── GEMINI_ERROR_LOG.md      # 邏輯錯誤與 test case 產出錯誤紀錄，用於避免重複出錯
 ├── .env                     # [資安] 環境變數設定檔 (已列入 .gitignore)
 ├── .env.example             # 環境變數設定範例
@@ -28,11 +28,15 @@
 │   └── google_credentials.json # Google 服務帳號憑證金鑰
 ├── source_files/            # 原始規格文件參考
 │   ├── [專案名稱]/           # 存放該專案相關的 PDF, PNG, CSV 等規格文件
-│   └── HTML/                # 存放系統 HTML 檔案 (供分析 UI 結構使用)
+│   ├── HTML/                # 存放系統 HTML 檔案 (供分析 UI 結構使用)
+│   └── user_manual/         # [核心] 各系統操作手冊、架構與 UI 流程
+│       ├── ODM/             # OneAD Delivery Manager 相關文件
+│       ├── OSS/             # (待新增) ERP/OSS 相關文件
+│       └── SuperDSP/        # (待新增) SuperDSP 相關文件
 ├── generated_test_cases/    # 產出的測試案例儲存區
 │   └── [專案名稱]/           # 依來源專案分類存放產出的 CSV 檔案
 └── .gemini/                 # Gemini CLI 配置資料夾
-    └── skills/              # 存放專案專屬的 Gemini Skills (如 test-case-automation-expert)
+    └── skills/              # 存放核心 SOP 與專家技能 (如 test-case-automation-expert)
 ```
 
 
