@@ -1,0 +1,58 @@
+"系統","權限","功能 / 頁面","測試功能","測試情境","操作步驟","期望結果","備注"
+"SuperDSP","Media Admin","Cross Channel Page","【權限】選單存取","驗證 Media Admin 可看見 Cross Channel 選單","1. 使用 Media Admin 帳號登入 SuperDSP
+2. 查看左側導覽列","1. 左側導覽列顯示「Cross Channel」選單
+2. 點擊後可進入列表頁面","20250926_CCT.pdf"
+"SuperDSP","Media User","Cross Channel Page","【權限】選單存取","驗證 Media User 可看見 Cross Channel 選單","1. 使用 Media User 帳號登入 SuperDSP
+2. 查看左側導覽列","1. 左側導覽列顯示「Cross Channel」選單
+2. 點擊後可進入列表頁面","20250926_CCT.pdf"
+"SuperDSP","Media Admin","Cross Channel Page","【功能新增】列表顯示","驗證列表欄位顯示正確","1. 進入 Cross Channel 頁面
+2. 檢查列表欄位","1. 列表包含以下欄位：ID, Name, Channel, Pixel ID, Created Date, Settings (View, Edit)
+2. ID 欄位為全域唯一值，預設依 ID 大至小排序","20250926_CCT.pdf"
+"SuperDSP","Media Admin","Create Cross Channel Pixel","【UI】欄位預設狀態","驗證新增頁面初始欄位狀態","1. 點擊「+ Create Cross Channel Pixel」按鈕
+2. 檢查欄位啟用狀態","1. 「Name」與「Channel」欄位為啟用狀態
+2. 「Pixel ID」、「Advertising Category & Format」、「Trigger Event Type」欄位預設為禁用 (Disabled)
+3. 必須先選擇 Channel 後才啟用後續欄位","20250926_CCT.pdf"
+"SuperDSP","Media Admin","Create Cross Channel Pixel","【功能新增】Channel 連動","驗證選擇 Channel 後欄位啟用","1. 在 Channel 下拉選單選擇「Meta」
+2. 觀察其他欄位變化","1. 「Pixel ID」、「Advertising Category & Format」欄位變為啟用狀態
+2. Pixel ID 輸入框顯示對應 Channel 的 placeholder (如 123456789123456)","20250926_CCT.pdf"
+"SuperDSP","Media Admin","Create Cross Channel Pixel","【反向】必填欄位檢查","驗證必填欄位未填寫時的錯誤提示","1. 進入新增頁面，保持所有欄位空白
+2. 點擊「Save」按鈕","1. Name 欄位下方顯示「Name is required」
+2. Channel 欄位下方顯示「Channel is required」
+3. Pixel ID 欄位下方顯示「Pixel ID is required」
+4. Advertising Category & Format 欄位下方顯示「Advertising Category & Format is required」
+5. Trigger Event Type 欄位下方顯示「Trigger Event Type is required」","20250926_CCT.pdf"
+"SuperDSP","Media Admin","Create Cross Channel Pixel","【反向】事件名稱驗證","驗證 Event Name 格式限制 (含空格)","1. 選擇 Channel 與 Category
+2. 在 Trigger Event Type 選擇「Click」
+3. 在 Event Name (Click) 輸入框輸入「superdsp click」 (含空格)
+4. 點擊 Save","1. 輸入框下方顯示錯誤訊息「Event names must start with a letter. Use only letters, numbers, and underscores. Don't use spaces.」
+2. 無法儲存","20250926_CCT.pdf"
+"SuperDSP","Media Admin","Create Cross Channel Pixel","【反向】事件名稱驗證","驗證 Event Name 格式限制 (非英文字母開頭)","1. 在 Event Name (Click) 輸入框輸入「123click」
+2. 點擊 Save","1. 輸入框下方顯示錯誤訊息「Event names must start with a letter...」
+2. 無法儲存","20250926_CCT.pdf"
+"SuperDSP","Media Admin","Create Cross Channel Pixel","【功能新增】事件名稱長度限制","驗證不同 Channel 的 Event Name 長度限制","1. 選擇 Channel 為「Google Ads」
+2. 輸入 Event Name 超過 40 字元
+3. 選擇 Channel 為「LINE」
+4. 輸入 Event Name 超過 20 字元","1. Google Ads: 輸入框限制最大長度為 40 字元，超過無法輸入
+2. LINE: 輸入框限制最大長度為 20 字元，超過無法輸入
+3. Meta/Taboola: 限制為 50 字元","20250926_CCT.pdf"
+"SuperDSP","Media Admin","Edit Cross Channel Pixel","【功能新增】編輯限制","驗證編輯模式下關鍵欄位鎖定","1. 在列表點擊一筆現有資料的「Edit」
+2. 檢查欄位狀態","1. 「Channel」欄位為禁用 (Disabled)
+2. 「Advertising Category & Format」欄位為禁用 (Disabled)
+3. 僅能修改 Name, Pixel ID 與 Event Settings","20250926_CCT.pdf"
+"SuperDSP","Media Admin","Ad Group (InStream)","【整合】關聯 CCT 設定 (草稿)","驗證 InStream 廣告群組在草稿狀態可啟用 CCT","1. 建立或編輯一個狀態為 Draft/New 的 InStream Ad Group
+2. 找到「Cross Channel Targeting」區塊
+3. 切換開關為啟用 (On)","1. 開關可正常切換為 On
+2. 顯示提示訊息「InStream 廣告組合啟用 Cross Channel 功能後，將不會投放至應用程式流量。」
+3. 出現「Select CCT Pixel」選擇器","20250926_CCT.pdf"
+"SuperDSP","Media Admin","Ad Group (InStream)","【整合】關聯 CCT 設定 (上刊後)","驗證上刊後的廣告群組不可修改 CCT 設定","1. 編輯一個狀態為 Active (上刊/執行中) 的 InStream Ad Group
+2. 找到「Cross Channel Targeting」區塊","1. 「Cross Channel Targeting」開關為禁用 (Disabled) 狀態
+2. 無法變更設定 (無論原本是開啟或關閉)
+3. 顯示提示 tooltip 说明需在草稿狀態才能修改","20250926_CCT.pdf"
+"SuperDSP","Media Admin","Ad Group (RichMedia)","【整合】關聯 CCT 設定","驗證 RichMedia 廣告群組可啟用 CCT","1. 建立或編輯一個狀態為 Draft/New 的 RichMedia Ad Group
+2. 啟用「Cross Channel Targeting」
+3. 點擊「Select CCT Pixel」","1. 彈出視窗顯示可用的 Pixel 清單
+2. 清單過濾條件：僅顯示 Advertising Category & Format 符合 RichMedia 的 Pixel
+3. 選擇後可儲存設定","20250926_CCT.pdf"
+"SuperDSP","Media Admin","Ad Group List","【UI】列表資訊","驗證 Ad Group 列表顯示 CCT 狀態","1. 進入 Ad Group 列表
+2. 查看已啟用 CCT 的 Ad Group","1. (依據設計慣例，雖 PDF 未詳述列表 UI，建議驗證是否標示 CCT 啟用狀態或於內頁確認)
+2. 確保設定儲存後再次進入編輯頁面，設定值正確保留","20250926_CCT.pdf"

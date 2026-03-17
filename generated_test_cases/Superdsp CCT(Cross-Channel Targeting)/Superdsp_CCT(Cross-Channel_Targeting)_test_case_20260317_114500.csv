@@ -1,0 +1,50 @@
+"系統","權限","功能 / 頁面","測試功能","測試情境","操作步驟","期望結果","備註"
+"SuperDSP","Media Admin","Cross Channel Pixel 權限","【權限】建立與編輯權限驗證","驗證具備 Edit 權限的使用者可正常進入頁面並操作","1. 使用 Media Admin 帳號登入 SuperDSP
+2. 點擊左側選單「Cross Channel」
+3. 檢查「+ Create Cross Channel Pixel」按鈕與列表中的「Edit」連結","1. 成功進入 Cross Channel 列表頁面
+2. 顯示「+ Create Cross Channel Pixel」按鈕
+3. 列表操作欄位顯示「Edit」連結","主文件：20250926_CCT.pdf"
+"SuperDSP","Media User","Cross Channel Pixel 權限","【權限】僅檢視權限驗證","驗證僅具備 Read 權限的使用者無法進行編輯操作","1. 使用僅具備 Read 權限的 Media User 帳號登入
+2. 進入 Cross Channel 列表頁面
+3. 檢查 UI 元件","1. 隱藏「+ Create Cross Channel Pixel」按鈕
+2. 列表操作欄位僅顯示「View」而非「Edit」","主文件：20250926_CCT.pdf"
+"SuperDSP","Media Admin","Cross Channel Pixel 建立","【功能新增】【正向】建立 Meta Pixel","驗證填寫完整資料後可成功建立 Meta 類型的 Pixel","1. 點擊「+ Create Cross Channel Pixel」
+2. 輸入名稱「Test_Meta_CCT」
+3. 頻道選擇「Meta」
+4. 輸入 Pixel ID「123456789012345」
+5. 選擇廣告品類與格式「RichMedia Display Format」
+6. 觸發事件類型選擇「Impression」與「Click」
+7. 檢查事件名稱預設值並點擊「Save」","1. 頻道選擇 Meta 後，Pixel ID 的 placeholder 應顯示為 Meta 範例
+2. 事件名稱區域顯示「superdsp_impression」與「superdsp_click」
+3. 儲存後顯示「儲存成功」Toast 訊息並返回列表","主文件：20250926_CCT.pdf"
+"SuperDSP","Media Admin","Cross Channel Pixel 建立","【反向】欄位連動驗證","驗證未選擇頻道時，下游欄位應維持禁用狀態","1. 點擊「+ Create Cross Channel Pixel」
+2. 在未選擇「Channel」的情況下，嘗試點擊 Pixel ID 或 Advertising Category 欄位","1. Pixel ID 欄位為 Disabled 狀態
+2. Advertising Category & Format 欄位為 Disabled 狀態
+3. Trigger Event Type 欄位為 Disabled 狀態","主文件：20250926_CCT.pdf"
+"SuperDSP","Media Admin","Cross Channel Pixel 建立","【反向】名稱重複與必填驗證","驗證系統對必填欄位與名稱限制的防呆","1. 進入建立頁面，不填寫任何資料直接點擊「Save」
+2. 輸入已存在的 Pixel 名稱並嘗試儲存
+3. 在事件名稱中輸入包含空格的文字","1. 所有必填欄位下方顯示紅字提示「xxx is required」
+2. 名稱重複時應彈出錯誤提示
+3. 事件名稱顯示「Event names must start with a letter...」提示且無法儲存","主文件：20250926_CCT.pdf"
+"SuperDSP","Media Admin","Cross Channel Pixel 編輯","【功能】【情境】編輯模式欄位鎖定","驗證已建立的 Pixel 在編輯模式下不可更動核心類型","1. 在列表頁對現有 Pixel 點擊「Edit」
+2. 嘗試修改「Channel」或「Advertising Category & Format」","1. 「Channel」下拉選單為 Disabled 狀態，不可修改
+2. 「Advertising Category & Format」下拉選單為 Disabled 狀態，不可修改
+3. 僅允許修改名稱、Pixel ID 與事件設定","主文件：20250926_CCT.pdf"
+"SuperDSP","Onead User (AOE)","Ad Group 設定 (InStream)","【整合】【情境】CCT 開關與 VPAID 連動","驗證 InStream 廣告組合啟用 CCT 後的系統行為","1. 建立一個新的 InStream 廣告組合
+2. 開啟「Cross Channel Targeting」切換開關 (Toggle)
+3. 點擊「+」號選擇一個 Pixel
+4. 檢查預算分配與素材要求","1. 啟用 CCT 後，系統提示「將不會投放至應用程式流量」
+2. App budget 自動變更為 0% 且不可修改
+3. 廣告投放技術自動切換為 VPAID 要求","主文件：20250926_CCT.pdf"
+"SuperDSP","Onead User (AOE)","Ad Group 設定","【整合】【反向】上刊後狀態鎖定","驗證廣告組合上刊後不可再切換 CCT 開關","1. 進入一個狀態為「進行中 (Active)」或「審核中 (Pending)」的廣告組合編輯頁
+2. 嘗試切換「Cross Channel Targeting」開關","1. CCT Toggle 開關顯示為 Disabled (灰底)
+2. 提示訊息說明「僅能在草稿狀態時啟用或關閉」","主文件：20250926_CCT.pdf"
+"SuperDSP","Media Admin","Cross Channel Pixel 列表","【ＵＩ】搜尋與排序驗證","驗證列表的基本 UI 功能","1. 在搜尋框輸入 Pixel ID 進行搜尋
+2. 點擊列表表頭的「ID」進行排序
+3. 檢查 ID 排序順序","1. 搜尋結果應包含部分匹配的物件
+2. ID 初始排序應為由大到小
+3. 全域 Unique ID 作為流水號正確顯示","主文件：20250926_CCT.pdf"
+"SuperDSP","Media Admin","Cross Channel Pixel 檢視","【UI/UX】資料呈現正確性","驗證檢視頁面的欄位與格式符合設計規範","1. 在列表點擊「View」進入檢視頁面
+2. 檢查欄位標題與內容呈現","1. 欄位標題（如：名稱、渠道）應為粗體字
+2. 冒號應統一使用全形「：」
+3. 內容與建立時輸入的資訊完全一致","主文件：20250926_CCT.pdf"
