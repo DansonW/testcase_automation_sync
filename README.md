@@ -72,15 +72,20 @@ npm run setup
 
 1.  **建立新專案**: 登入 [Google Cloud Console](https://console.cloud.google.com/)，點選「選取專案」並選擇「新增專案」，為專案命名後點擊「建立」。
 2.  **啟用 Google Drive API**: 在左側選單點擊「API 和服務」>「啟用 API 和服務」。搜尋「**Google Drive API**」並將其啟用。
+    ![啟用 Google Drive API](credentials_stepsImg/credentials_step0.png)
 3.  **前往憑證頁面**: 在左側選單選擇「API 和服務」>「憑證」。
-4.  **建立服務帳號**: 點擊「建立憑證」> 選擇「**服務帳戶**」。
-5.  **設定服務帳號詳細資訊**: 輸入服務帳號名稱、ID 與描述，點擊「建立並繼續」。
-6.  **授予服務帳號權限**: 選擇角色（建議選取「基本」>「**編輯者**」），完成後點擊「繼續」與「完成」。
-7.  **產生並下載 JSON 金鑰**: 
+    ![前往憑證頁面](credentials_stepsImg/credentials_step1.png)
+4.  **授予服務帳號權限**: 到 google sheet 表單中，並將產出的電子郵件帳號加入共用名單，並設定為「編輯者」。
+    ![授予服務帳號權限](credentials_stepsImg/credentials_step2.png)
+5.  **產生並下載 JSON 金鑰**: 
     *   在服務帳戶列表中點擊該帳戶的 Email。
     *   切換至「**金鑰 (Keys)**」頁籤。
+        ![切換至金鑰頁籤](credentials_stepsImg/credentials_step3.png)
     *   點擊「新增金鑰」>「建立新的金鑰」> 選擇「**JSON**」並建立。
+        ![建立新的金鑰](credentials_stepsImg/credentials_step4.png)
     *   系統會自動下載 JSON 檔案，請將其重新命名為 `google_credentials.json` 並放入 `service_account/` 資料夾。
+6.  **啟用 Google Sheets API**: 在左側選單點擊「API 和服務」>「啟用 API 和服務」。搜尋「**Google Sheets API**」並將其啟用。
+    ![啟用 Google Sheets API](credentials_stepsImg/credentials_step5.png)
 
 #### B. 共享試算表權限 (關鍵步驟)
 1.  **複製服務帳戶 Email**: 格式如 `account-name@project-id.iam.gserviceaccount.com`。
