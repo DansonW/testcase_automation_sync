@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>SuperDSP Pilot Phase 2 後端開發文件</title>
+</head>
+
+<body>
+  <h1>功能細項</h1>
+  <table border="1">
+    <tr>
+      <th>系統</th>
+      <th>頁面</th>
+      <th>功能細項</th>
+      <th>開發人員</th>
+      <th>時程</th>
+      <th>細項</th>
+    </tr>
+    <tr>
+      <td>SuperDSP</td>
+      <td>homepage</td>
+      <td>
+        UserInfo API 增加 合約公司 ID / type 回傳<br />
+        <a href="https://guoshi.atlassian.net/browse/ITP-2901">ITP-2901</a>
+      </td>
+      <td>Kirt</td>
+      <td>0.5</td>
+      <td>
+        1. <code>advertiser.owner_type</code><br />
+        2. <code>advertiser.owner_id</code>
+      </td>
+    </tr>
+    <tr>
+      <td>SuperDSP</td>
+      <td>素材包</td>
+      <td>
+        create/update pack API<br />
+        <a href="https://guoshi.atlassian.net/browse/ITP-2902">ITP-2902</a>
+      </td>
+      <td>Kirt</td>
+      <td>0.5</td>
+      <td>
+        1. 條件<br />
+        &nbsp;&nbsp;1. <code>advertiser.owner_id = 571</code><br />
+        &nbsp;&nbsp;2. <code>advertiser.owner_type = Agency</code><br />
+        2. 素材包自動通過，不需要設定 OneAD 廣告類別
+      </td>
+    </tr>
+    <tr>
+      <td>MASA</td>
+      <td></td>
+      <td>
+        create/update pack API<br />
+        <a href="https://guoshi.atlassian.net/browse/ITP-2903">ITP-2903</a>
+      </td>
+      <td>Kirt</td>
+      <td>0.5</td>
+      <td>
+        1. 條件<br />
+        &nbsp;&nbsp;1. <code>advertiser.owner_id = 571</code><br />
+        &nbsp;&nbsp;2. <code>advertiser.owner_type = Agency</code><br />
+        2. 素材包自動通過，不需要設定 OneAD 廣告類別
+      </td>
+    </tr>
+    <tr>
+      <td>SuperDSP</td>
+      <td>廣告活動</td>
+      <td>
+        create / update one_campaign API<br />
+        <a href="https://guoshi.atlassian.net/browse/ITP-2904">ITP-2904</a>
+      </td>
+      <td>Kirt</td>
+      <td>0.5</td>
+      <td>
+        1. 條件<br />
+        &nbsp;&nbsp;1. <code>advertiser.owner_id = 571</code><br />
+        &nbsp;&nbsp;2. <code>advertiser.owner_type = Agency</code><br />
+        2. valid<br />
+        &nbsp;&nbsp;1. <code>one_category_id</code>/<code>one_sub_category_id</code> 為必填需驗證<br />
+        &nbsp;&nbsp;2. 如果底下 pre_campaign 有 draft / trash 以外的狀態，不可變更<br />
+        3. 存入欄位<br />
+        &nbsp;&nbsp;1. <code>one_category_id</code>: one_campaign.one_category_id<br />
+        &nbsp;&nbsp;2. <code>one_sub_category_id</code>: one_campaign_one_sub_categories
+      </td>
+    </tr>
+    <tr>
+      <td>SuperDSP</td>
+      <td>廣告組合</td>
+      <td>
+        ad_format_type migration system name<br />
+        <a href="https://guoshi.atlassian.net/browse/ITP-2905">ITP-2905</a>
+      </td>
+      <td>Kirt</td>
+      <td>0.5</td>
+      <td>
+        1. <code>ad_formats.report_displayname_json &gt; SuperDSP</code><br />
+        <pre>Mobile In-Bottom (MIB)  MIC
+Mobile In-Read (MIR)   MIR, MIRV
+Cover                  MFS
+</pre>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+        superdsp_categories migration sort _ad_format_type_ids<br />
+        <a href="https://guoshi.atlassian.net/browse/ITP-2905">ITP-2905</a>
+      </td>
+      <td>Kirt</td>
+      <td>0.5</td>
+      <td>1. 新增 <code>sort_ad_format_type_ids</code> 欄位</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+        ad_group index API 調整<br />
+        <a href="https://guoshi.atlassian.net/browse/ITP-2906">ITP-2906</a>
+      </td>
+      <td>Kirt</td>
+      <td>0.5</td>
+      <td>
+        1. 條件<br />
+        &nbsp;&nbsp;1. <code>advertiser.owner_id = 571</code><br />
+        &nbsp;&nbsp;2. <code>advertiser.owner_type = Agency</code><br />
+        &nbsp;&nbsp;3. RichMedia<br />
+        2. 不回傳 <code>hourlies</code><br />
+        3. 不回傳 <code>regions</code><br />
+        4. 新增回傳 <code>hours</code>：選擇的所有時間<br />
+        5. 新增回傳 <code>white_list</code><br />
+        &nbsp;&nbsp;1. urls: pre_campaign.white_list_urls<br />
+        &nbsp;&nbsp;2. media_ids: pre_campaign.white_litst_medias<br />
+        &nbsp;&nbsp;3. url_group_ids: pre_campaign.whitelist_groups<br />
+        6. 新增回傳 <code>black_list</code><br />
+        &nbsp;&nbsp;1. urls: pre_campaign.blacklist_urls<br />
+        &nbsp;&nbsp;2. media_ids: pre_campaign.black_litst_medias<br />
+        &nbsp;&nbsp;3. url_group_ids: pre_campaign.blacklist_groups
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+        ad_group create update API<br />
+        <a href="https://guoshi.atlassian.net/browse/ITP-2907">ITP-2907</a>
+      </td>
+      <td></td>
+      <td>1.5</td>
+      <td>
+        1. 條件<br />
+        &nbsp;&nbsp;1. <code>advertiser.owner_id = 571</code><br />
+        &nbsp;&nbsp;2. <code>advertiser.owner_type = Agency</code><br />
+        &nbsp;&nbsp;3. RichMedia<br />
+        2. request params<br />
+        &nbsp;&nbsp;1. <code>regions</code> (移除)<br />
+        &nbsp;&nbsp;2. <code>cities</code>: 使用者選擇的<br />
+        &nbsp;&nbsp;3. <code>hourles</code> (移除)<br />
+        &nbsp;&nbsp;4. <code>hours</code>: 使用者選擇的<br />
+        &nbsp;&nbsp;5. <code>white_list</code><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;1. urls<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;2. media_ids<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;3. url_group_ids<br />
+        &nbsp;&nbsp;6. <code>black_list</code><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;1. urls<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;2. media_ids<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;3. url_group_ids<br />
+        3. 後端<br />
+        &nbsp;&nbsp;1. <code>SuperdspItemRefreshUseCase.translate_hourlies_to_time_frames</code> 新增掛入
+        <code>params[:hour]</code><br />
+        &nbsp;&nbsp;2. 黑白名單新增存入<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;1. urls：直接存入 pre_campaign 表<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;2. url_group_ids：存入關聯表<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;‧ pre_campaign_target_url_group_white<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;‧ pre_campaign_target_url_group_black<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;3. media_ids：存入關聯表<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;‧ pre_campaign_extra_options key = white_media_id<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;‧ pre_campaign_extra_options key = black_media_id<br />
+        &nbsp;&nbsp;3. 在判斷 <code>one_category_id</code> 的時候，要改從 one_campaign 抓取，目前只用在媒體黑名單流量排除
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+        sequence 調整<br />
+        <a href="https://guoshi.atlassian.net/browse/ITP-2908">ITP-2908</a>
+      </td>
+      <td>Kirt</td>
+      <td>0.5</td>
+      <td>
+        1. <code>url_patterns</code> 新增抓取黑白名單媒體<br />
+        &nbsp;&nbsp;1. <code>black_list_media.map(&amp;:mobile_url)</code><br />
+        &nbsp;&nbsp;2. <code>white_litst_media.map(&amp;:mobile_url)</code>
+      </td>
+    </tr>
+    <tr>
+      <td>ODM</td>
+      <td>SuperDSP 素材審核</td>
+      <td>
+        列表清單排除果實夥伴<br />
+        <a href="https://guoshi.atlassian.net/browse/ITP-2909">ITP-2909</a>
+      </td>
+      <td>Kirt</td>
+      <td>0.5</td>
+      <td>
+        1. 條件<br />
+        &nbsp;&nbsp;1. <code>advertiser.owner_id = 571</code><br />
+        &nbsp;&nbsp;2. <code>advertiser.owner_type = Agency</code><br />
+        2. 排除以上條件的素材包
+      </td>
+    </tr>
+    <tr>
+      <td>SuperDSP</td>
+      <td>SuperDSP 新增廣告活動</td>
+      <td>
+        新增 GET one_categories option API<br />
+        <a href="https://guoshi.atlassian.net/browse/ITP-2910">ITP-2910</a>
+      </td>
+      <td>Elain Wu</td>
+      <td>2</td>
+      <td>
+        1. 將原 ODM API<br />
+        &nbsp;&nbsp;<a href="https://oss.onead.com.tw/api/v1/odm/others/one_categories">
+          https://oss.onead.com.tw/api/v1/odm/others/one_categories
+        </a> 移至 superdsp-api (JS)<br />
+        2. 條件<br />
+        &nbsp;&nbsp;1. <code>one_categories.enable = 1</code><br />
+        &nbsp;&nbsp;2. <code>one_sub_categories.enable = 1</code>
+      </td>
+    </tr>
+    <tr>
+      <td>SuperDSP</td>
+      <td>Ad_Group_OneAD 編輯界面</td>
+      <td>
+        新增 GET ad_format_type option API<br />
+        <a href="https://guoshi.atlassian.net/browse/ITP-2911">ITP-2911</a>
+      </td>
+      <td>Edwina</td>
+      <td>5</td>
+      <td>
+        1. Query params<br />
+        &nbsp;&nbsp;1. advertiser_id<br />
+        &nbsp;&nbsp;2. product_category_id<br />
+        &nbsp;&nbsp;3. insertion_order_purpose_id<br />
+        2. 回傳<br />
+        &nbsp;&nbsp;1. name: ad_format_types.qp_title (string)<br />
+        &nbsp;&nbsp;2. sub_name: ad_format_types.title (string)<br />
+        &nbsp;&nbsp;3. format_tag: ad_formats.report_displayname_json.key = <code>superdsp</code> 的 value (string) /
+        ad_formats.name<br />
+        &nbsp;&nbsp;4. material_tag: <code>ad_format_types.video_max &gt; 0 ? "video" : "banner"</code> (string)<br />
+        &nbsp;&nbsp;5. universal_id: ad_format.universal_id<br />
+        3. 後端<br />
+        &nbsp;&nbsp;1. 依照 advertiser 簽約格式過濾 ad_format_types<br />
+        &nbsp;&nbsp;2. 比對品類可使用的 ad_format_types<br />
+        &nbsp;&nbsp;3. 撈取上述回傳關聯資料<br />
+        &nbsp;&nbsp;4. ad_format_types 須按照指定排序排列<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;1. order by 抓取 sort_ad_format_type_ids<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;2. 若 type 不在 sort 清單中，放在最後面
+      </td>
+    </tr>
+    <tr>
+      <td>SuperDSP</td>
+      <td>Ad_Group_OneAD 編輯界面</td>
+      <td>
+        新增 GET hours option API<br />
+        <a href="https://guoshi.atlassian.net/browse/ITP-2912">ITP-2912</a>
+      </td>
+      <td>Edwina</td>
+      <td>1</td>
+      <td>1. 回傳 Object 包含時段名稱 (ex. 凌晨) + 整點時間 (ex. 01:00)</td>
+    </tr>
+    <tr>
+      <td>SuperDSP</td>
+      <td>Ad_Group_OneAD 編輯界面</td>
+      <td>
+        新增 GET cities option API<br />
+        <a href="https://guoshi.atlassian.net/browse/ITP-2913">ITP-2913</a>
+      </td>
+      <td>Elain Wu</td>
+      <td>2</td>
+      <td>
+        1. 回傳 Object 包含區域名稱 (ex. 北部) + 城市 (ex. 臺北)<br />
+        &nbsp;&nbsp;1. id: cities.id (number)<br />
+        &nbsp;&nbsp;2. name: cities.city_tw (string)<br />
+        &nbsp;&nbsp;3. region: region.name (string)
+      </td>
+    </tr>
+    <tr>
+      <td>SuperDSP</td>
+      <td>Ad_Group_黑白名單</td>
+      <td>
+        GET media option API 增加撈取 media url<br />
+        <a href="https://guoshi.atlassian.net/browse/ITP-2914">ITP-2914</a>
+      </td>
+      <td>Elain Wu</td>
+      <td>1</td>
+      <td>
+        1. 舊 api <code>/ad_groups/options/media</code><br />
+        2. 增加回傳 <code>customers.mobile_url</code>
+      </td>
+    </tr>
+    <tr>
+      <td>SuperDSP</td>
+      <td>Ad_Group_黑白名單</td>
+      <td>
+        新增 GET url_groups API<br />
+        <a href="https://guoshi.atlassian.net/browse/ITP-2915">ITP-2915</a>
+      </td>
+      <td>Elain Wu</td>
+      <td>2</td>
+      <td>
+        1. 回傳 Object<br />
+        &nbsp;&nbsp;1. name: target_url_groups.name (string)<br />
+        &nbsp;&nbsp;2. id: target_url_groups.id (number)<br />
+        &nbsp;&nbsp;3. urls: target_url.url (string[])
+      </td>
+    </tr>
+    <tr>
+      <td>SuperDSP</td>
+      <td>Ad_Group 下載報表</td>
+      <td>
+        優化下載報表格式<br />
+        <a href="https://guoshi.atlassian.net/browse/ITP-2922">ITP-2922</a>
+      </td>
+      <td>Elain Wu</td>
+      <td>4</td>
+      <td>
+        ‧ old api<br />
+        <code>api/v1/superdsp/campaigns/{camp_id}/ad_groups_daily_metrics</code>
+      </td>
+    </tr>
+  </table>
+
+  <h1>API 規格</h1>
+
+  <h2>OSS 後端 (舊系統 ROR)</h2>
+
+  <h3>users/info</h3>
+  <table border="1">
+    <tr>
+      <th>methods</th>
+      <td><code>GET</code></td>
+    </tr>
+    <tr>
+      <th>path</th>
+      <td>
+        <pre>/api/v1/superdsp/users/info</pre>
+      </td>
+    </tr>
+    <tr>
+      <th>status</th>
+      <td>old API</td>
+    </tr>
+    <tr>
+      <th>controller</th>
+      <td>app/controllers/api/v1/superdsp/users_controller.rb</td>
+    </tr>
+    <tr>
+      <th>request</th>
+      <td>NONE</td>
+    </tr>
+    <tr>
+      <th>response</th>
+      <td>
+        <pre>{
+  "status": "success",
+  "data": [
+    {
+      ...,
+      licensed_company_id: number,
+      licensed_company_type: string
+    }
+  ]
+}</pre>
+      </td>
+    </tr>
+    <tr>
+      <th>example</th>
+      <td>
+        <pre>{
+  "status": "success",
+  "data": [
+    {
+      ...,
+      licensed_company_id: 523,
+      licensed_company_type: "Agency"
+    }
+  ]
+}</pre>
+      </td>
+    </tr>
+  </table>
+
+  <h3>create one_campaign</h3>
+  <table border="1">
+    <tr>
+      <th>methods</th>
+      <td><code>POST</code></td>
+    </tr>
+    <tr>
+      <th>path</th>
+      <td>
+        <pre>/api/v1/superdsp/insertion_orders/{IO_ID}/campaigns</pre>
+      </td>
+    </tr>
+    <tr>
+      <th>status</th>
+      <td>old API</td>
+    </tr>
+    <tr>
+      <th>controller</th>
+      <td>app/controllers/api/v1/superdsp/campaigns_controller.rb</td>
+    </tr>
+    <tr>
+      <th>request</th>
+      <td>
+        <pre>{
+  "campaign": {
+    ...,
+    one_category_id: number,
+    one_sub_category_id: number
+  }
+}</pre>
+      </td>
+    </tr>
+    <tr>
+      <th>example</th>
+      <td>
+        <pre>{
+  "campaign": {
+    ...,
+    one_category_id: 1,
+    one_sub_category_id: 111
+  }
+}</pre>
+      </td>
+    </tr>
+    <tr>
+      <th>response</th>
+      <td>
+        <pre>{
+  "status": "success",
+  "data": [
+    {
+      ...,
+      one_category_id: number,
+      one_sub_category_id: number
+    }
+  ]
+}</pre>
+      </td>
+    </tr>
+    <tr>
+      <th>example</th>
+      <td>
+        <pre>{
+  "status": "success",
+  "data": {
+    ...,
+    one_category_id: 1,
+    one_sub_category_id: 111
+  }
+}</pre>
+      </td>

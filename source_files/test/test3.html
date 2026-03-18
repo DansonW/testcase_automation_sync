@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>SuperDSP Pilot Phase 2 前端開發文件</title>
+</head>
+
+<body>
+    <h1>編輯廣告活動新增欄位</h1>
+    <table border="1">
+        <tr>
+            <th>開發項目 / 需求</th>
+            <td>編輯廣告活動新增欄位</td>
+        </tr>
+        <tr>
+            <th>系統</th>
+            <td>SuperDSP</td>
+        </tr>
+        <tr>
+            <th>模組</th>
+            <td>Campaign</td>
+        </tr>
+        <tr>
+            <th>頁面 / 元件</th>
+            <td>CampaignIndex.vue</td>
+        </tr>
+        <tr>
+            <th>Ticket Number</th>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <th>開發人員</th>
+            <td>alice</td>
+        </tr>
+        <tr>
+            <th>預估時間</th>
+            <td>10 天</td>
+        </tr>
+        <tr>
+            <th>基本資訊</th>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <th>備註</th>
+            <td>
+                ‧ 僅限於「果實夥伴股份有限公司」出現該欄位。<br />
+                ‧ 預計：後端會給前端一個欄位判斷下拉選單是否被鎖住。
+            </td>
+        </tr>
+        <tr>
+            <th>功能細項</th>
+            <td>新增欄位：新增 OneAd 產業類型的下拉選單（主 &amp; 子）</td>
+        </tr>
+    </table>
+
+    <h1>幫 AOE 獨立一個 AD Group 抽屜</h1>
+    <table border="1">
+        <tr>
+            <th>開發項目 / 需求</th>
+            <td>幫 AOE 獨立一個 AD Group 抽屜</td>
+        </tr>
+        <tr>
+            <th>系統</th>
+            <td>SuperDSP</td>
+        </tr>
+        <tr>
+            <th>模組</th>
+            <td>Campaign</td>
+        </tr>
+        <tr>
+            <th>頁面 / 元件</th>
+            <td>CampaignIndex.vue</td>
+        </tr>
+        <tr>
+            <th>Ticket Number</th>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <th>開發人員</th>
+            <td>stevesun</td>
+        </tr>
+        <tr>
+            <th>預估時間</th>
+            <td>12 天</td>
+        </tr>
+        <tr>
+            <th>基本資訊</th>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <th>備註</th>
+            <td>
+                ‧ 僅限於「果實夥伴股份有限公司」出現該欄位。<br />
+                ‧ 預計：後端會給前端一個欄位判斷下拉選單是否被鎖住。
+            </td>
+        </tr>
+        <tr>
+            <th>功能細項</th>
+            <td>新增欄位：新增 OneAd 產業類型的下拉選單（主 &amp; 子）</td>
+        </tr>
+    </table>
+
+    <h1>[廣告組合報表] 匯出數值格式優化與無效欄位處理規範</h1>
+    <table border="1">
+        <tr>
+            <th>開發項目 / 需求</th>
+            <td>[廣告組合報表] 匯出數值格式優化與無效欄位處理規範</td>
+        </tr>
+        <tr>
+            <th>系統</th>
+            <td>SuperDSP</td>
+        </tr>
+        <tr>
+            <th>Ticket Number</th>
+            <td><a href="https://guoshi.atlassian.net/browse/ITP-2924">ITP-2924</a></td>
+        </tr>
+        <tr>
+            <th>開發人員</th>
+            <td>Ryan Meng</td>
+        </tr>
+        <tr>
+            <th>預估時間</th>
+            <td>1d</td>
+        </tr>
+        <tr>
+            <th>描述</th>
+            <td>
+                本次調整針對「廣告組合報表」下載的 Excel 檔案，統一並明確定義各數值欄位的呈現格式與無效欄位處理規則。<br />
+                ‧ <b>影響範圍</b>：廣告組合報表匯出功能 (.xlsx)。<br />
+                ‧ <b>技術重點</b>：Excel <code>numFmt</code> 格式變體、<code>columnConfig</code> 更新、<code>&lt;spec&gt;</code>
+                文件同步。
+            </td>
+        </tr>
+        <tr>
+            <th>備註</th>
+            <td>-</td>
+        </tr>
+        <tr>
+            <th>功能細項 - 數值格式細分與顯示規則</th>
+            <td>
+                <b>通用顯示規則</b><br />
+                ‧ 所有數值欄位的顯示格式，依據對應的 Excel <code>numFmt</code> 定義處理。<br />
+                ‧ 當數值為 <b>0</b> 時，且該欄位格式為 <code>_DASH</code> 類型，顯示為 <code>-</code>。<br />
+                ‧ 當數值為 <b>null / undefined / 無資料</b> 時，視為無效值，依「無效欄位處理規範」處理。<br /><br />
+                <b>指標格式套用規則</b><br />
+                以下指標依既有定義套用 <code>_DASH</code> 類型格式：<br />
+                ‧ <code>cpm</code><br />
+                ‧ <code>cpv</code><br />
+                ‧ <code>ctr</code><br />
+                ‧ <code>vtr25</code> ~ <code>vtr100</code><br />
+                ‧ <code>cost_per_*</code><br />
+                ‧ <code>roas</code><br />
+                ‧ 上述指標於數值為 0 時，顯示為 <code>-</code>，其餘數值依 <code>numFmt</code> 顯示。
+            </td>
+        </tr>
+        <tr>
+            <th>功能細項 - Excel 格式規則更新</th>
+            <td>
+                ‧ 更新 <code>columnConfig</code> 設定，修正各欄位與對應格式。<br />
+                ‧ 確保貨幣 (Currency) 與百分比 (Percentage) 欄位具備正確的小數點與單位顯示。
+            </td>
+        </tr>
+        <tr>
+            <th>功能細項 - 無效欄位處理規範</th>
+            <td>
+                ‧ <b>無效欄位定義</b>：當欄位因廣告格式或資料條件限制而無法計算（例如 Banner 格式無四階段觀看率），該欄位視為無效欄位。<br />
+                ‧ <b>後端回傳規則</b>：後端針對無效欄位，統一回傳字串 <code>"-"</code>。<br />
+                ‧ <b>前端顯示規則</b>：<br />
+                &nbsp;&nbsp;‧ 前端不需對無效欄位進行任何數值轉換或判斷。<br />
+                &nbsp;&nbsp;‧ 前端需原樣呈現後端回傳值，<b>包含系統畫面與下載報表</b>。
+            </td>
+        </tr>
+        <tr>
+            <th>&lt;spec&gt; 資訊同步</th>
+            <td>
+                ‧ <b>格式規則紀錄</b>：於文檔中標註數值千分位、整數貨幣、兩位/四位小數貨幣與百分比之格式定義與範例。<br />
+                ‧ <b>無效欄位說明</b>：補充「無效欄位處理」說明，列舉 <code>banner</code> 格式與相關觀看事件之處理範例。
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

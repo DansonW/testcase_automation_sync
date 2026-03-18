@@ -1,44 +1,48 @@
 # Testcase Automation
 
-本專案旨在透過 **Gemini CLI** 實現廣告系統（SuperDSP, OYM, ERP/OSS）測試案例的自動化產出。透過預設的 **GEMINI_SOP.md**，能將資深測試與 UI/UX 工程師的思維邏輯轉化為精確、可驗證的測試案例。
+本專案旨在透過 **Gemini CLI** 實現廣告系統（SuperDSP, OYM, ERP/OSS）測試案例的自動化產出。透過專案憲法 **GEMINI.md** 與 **Self-Evolution Workflow**，能將資深測試與 UI/UX 工程師的思維邏輯轉化為精確、可驗證且具備「自我進化」能力的測試案例。
 
 ---
 
 ## 📋 專案概覽 (Project Overview)
 
-*   **核心目標**: 將規格文件（PDF/圖片）自動轉化為結構化的 CSV 測試案例，提升測試覆蓋率與效率。
+*   **核心目標**: 將規格文件（PDF/圖片/HTML）自動轉化為結構化的 CSV 測試案例。
+*   **自我進化**: 具備「指正即學習」機制，能自動記錄錯誤教訓並在下次產出前執行「零觸發」預檢。
 *   **技術基礎**: 利用 Google Gemini CLI 的模型理解能力，結合自定義的系統操作規則。
-*   **專業定位**: 結合「資深軟體測試工程師」與「資深 UI/UX 工程師」雙重專業視視角。
 *   **自動化流程**: 產出測試案例後，自動分類儲存至本地目錄，並同步上傳至 Google Sheets。
 
 ## 📁 目錄結構 (Directory Structure)
 
 ```text
 /
+├── GEMINI.md                # [核心] 專案憲法：定義全域回覆、自動化學習與產出預檢流程
+├── GEMINI_ERROR_LOG.md      # [進化] 歷史錯誤日誌：紀錄邏輯錯誤、格式教訓與具體案例回溯
+├── GEMINI_SOP.md            # [手冊] 標準作業程序：定義具體的執行步驟與流程規範
 ├── README.md                # 專案說明文件與快速上手指南
-├── requirements.txt         # Python 環境相依套件清單 (pandas, google-api-python-client 等)
+├── requirements.txt         # Python 環境相依套件清單
 ├── package.json             # 專案配置文件，包含一鍵安裝指令 (npm run setup)
-├── GEMINI_SOP.md            # [已存檔] 歷史 SOP，內容已轉移至 Skill 檔案
-├── GEMINI_ERROR_LOG.md      # 邏輯錯誤與 test case 產出錯誤紀錄，用於避免重複出錯
-├── .env                     # [資安] 環境變數設定檔 (已列入 .gitignore)
-├── .env.example             # 環境變數設定範例
 ├── upload_to_sheets.py      # 自動化腳本：將產出的 CSV 上傳至 Google Sheets
-├── sync_from_sheets.py      # [新增] 反向同步腳本：將雲端變更同步回本地 CSV
-├── service_account/         # [資安] 存放 Google 服務帳號憑證 (已列入 .gitignore)
-│   └── google_credentials.json # Google 服務帳號憑證金鑰
-├── source_files/            # 原始規格文件參考
-│   ├── [專案名稱]/           # 存放該專案相關的 PDF, PNG, CSV 等規格文件
-│   ├── HTML/                # 存放系統 HTML 檔案 (供分析 UI 結構使用)
-│   └── user_manual/         # [核心] 各系統操作手冊、架構與 UI 流程
-│       ├── ODM/             # OneAD Delivery Manager 相關文件
-│       ├── OSS/             # (待新增) ERP/OSS 相關文件
-│       └── SuperDSP/        # (待新增) SuperDSP 相關文件
-├── generated_test_cases/    # 產出的測試案例儲存區
-│   └── [專案名稱]/           # 依來源專案分類存放產出的 CSV 檔案
+├── sync_from_sheets.py      # 反向同步腳本：將雲端變更同步回本地 CSV
+├── LICENSE                  # 專案授權條款
+├── .env.example             # 環境變數設定範例
+├── service_account/         # [資安] 存放 Google 服務帳號憑證
+│   └── google_credentials.json
+├── credentials_stepsImg/    # 存放憑證設定步驟的教學截圖
+├── source_files/            # 原始規格文件參考 (PDF, PNG, HTML 等)
+│   ├── Superdsp phase 1.0~1.7.0/
+│   ├── Superdsp CCT/Custom Audience/
+│   ├── SuperDSP Pilot for AOE (Phase 1 & 2)/
+│   ├── HTML/                # 系統介面 HTML 檔
+│   ├── user_manual/         # 各系統操作手冊
+│   └── test/                # 測試用規格文件
+├── generated_test_cases/    # 產出的測試案例儲存區 (依來源專案分類)
+│   └── [專案名稱]/           # 包含產出的 CSV 與 UserStory 分析檔
 └── .gemini/                 # Gemini CLI 配置資料夾
-    └── skills/              # 存放核心 SOP 與專家技能 (如 test-case-automation-expert)
+    ├── commands/            # 自定義 Speckit 系列指令
+    └── skills/              # 核心專家技能 (test-case-automation-expert)
 ```
 
+---
 
 ## 🚀 快速上手 (Quick Start)
 
@@ -145,26 +149,36 @@ python3 sync_from_sheets.py "generated_test_cases/[專案路徑]/[檔名].csv"
 
 ---
 
-## ⚙️ 產出規範 (Production Standards)
+## 🛡️ 自動記錄錯誤 (Automatic Error Recording)
 
-| 欄位名稱 | 說明 | 範例內容 |
-| :--- | :--- | :--- |
-| **系統** | 測試案例所屬系統 (SuperDSP, OYM, ERP/OSS) | `SuperDSP` |
-| **權限** | 執行測試所需的使用者權限 | `Media Admin` |
-| **功能 / 頁面** | 測試案例針對的具體功能 (不含系統前綴) | `RTB 底價設定` |
-| **測試功能** | 格式：`【標籤】功能名稱` (遵循標籤排序規則) | `【正向】更新底價` |
-| **測試情境** | 描述具體的使用者場景或意圖 | `媒體管理者成功設定並更新底價` |
-| **操作步驟** | 詳細步驟 (使用實際換行，並以雙引號包裹) | `"1. 登入... 2. 進入..."` |
-| **期望結果** | 條列化預期結果 (使用實際換行，並以雙引號包裹) | `"1. 系統提示成功... 2. 數據更新"` |
-| **備註** | 僅記錄參考之原始規格主文件名稱 | `主文件：ITO-[Commerce AD]...pdf` |
+本專案導入了自動化學習機制，確保系統在任何環境下都能持續優化：
+
+1.  **指正即學習 (Self-Learning)**:
+    當使用者指出產出內容的錯誤（格式、邏輯或排版）時，Gemini 將**自動分析**根因並將教訓增補至 `GEMINI_ERROR_LOG.md`。此流程無需手動要求。
+2.  **產出前預檢 (Pre-output Validation)**:
+    在執行任何 CSV 產出或上傳前，Gemini 必須**強制讀取** `GEMINI_ERROR_LOG.md`，並逐一核對本次內容是否觸發過往錯誤。
+3.  **零觸發標準**:
+    只有在確認完全符合歷史規範（如：全包裹引號、實體換行、正確權限邏輯）後，產出才被視為有效。
 
 ---
 
-## 🛠 維護與持續改進 (Maintenance)
+## ⚙️ 產出規範 (Production Standards)
 
-*   **預防犯錯**：每次產出前，Gemini 會檢閱 `GEMINI_ERROR_LOG.md` 以避免重複邏輯錯誤（如：特定帳號權限、狀態鎖定等）。
-*   **資安防護**：嚴禁硬編碼 API Key 或 ID。`.env` 與 `service_account/` 目錄已列入 `.gitignore` 以確保安全性。
-*   **資料完整性**：CSV 產出時所有欄位強制加上雙引號包裹，確保 Google Sheets 匯入時排版精確。
+為確保 CSV 在 Google Sheets 與 Excel 中的相容性與排版美觀，必須遵守以下強制規範：
+
+| 規則項目 | 說明 | 強制性 |
+| :--- | :--- | :---: |
+| **全欄位包裹** | 所有欄位（標頭與內容）必須使用 **雙引號 (")** 包裹 | **Critical** |
+| **實體換行** | `操作步驟` 與 `期望結果` 使用 **實際換行 (Actual Line Break)**，禁止 `\n` | **Critical** |
+| **內容純淨** | 嚴禁在內容中加入「資深測試工程師：」等角色自述文字 | **Mandatory** |
+| **標籤排序** | 測試功能標籤順序：【權限】>【功能新增】>【正向】>【反向】>【整合】... | **Mandatory** |
+| **無句號結尾** | 測試情境、操作步驟、期望結果之結尾不加句號 `。` | **Mandatory** |
+
+---
+
+## 🛠 維護與貢獻
+*   **專案憲法**: `GEMINI.md` 定義了跨帳號、跨電腦的一致性行為規範，請勿隨意修改其核心邏輯。
+*   **錯誤日誌**: 若發現邏輯漏洞，請直接在對話中「指正」Gemini，系統會自動更新 `GEMINI_ERROR_LOG.md`。
 
 ---
 *Created and maintained by wangdanson.*
