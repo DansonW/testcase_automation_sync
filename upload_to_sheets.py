@@ -6,6 +6,8 @@ from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
+import validate_csv
+
 # Configuration Helper
 def load_env():
     """Loads environment variables from a .env file if it exists."""
@@ -100,6 +102,13 @@ def main():
         sys.exit(1)
         
     csv_file_path = sys.argv[1]
+    
+    # Validation Step
+    print(f"Validating {csv_file_path}...")
+    if not validate_csv.validate_csv(csv_file_path):
+        print("Validation failed. Upload aborted.")
+        sys.exit(1)
+
     cleanup = '--cleanup' in sys.argv
     
     # Generate sheet title from filename (limit length if necessary)

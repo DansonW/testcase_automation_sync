@@ -31,10 +31,8 @@
 ├── source_files/            # 原始規格文件參考 (PDF, PNG, HTML 等)
 │   ├── Superdsp phase 1.0~1.7.0/
 │   ├── Superdsp CCT/Custom Audience/
-│   ├── SuperDSP Pilot for AOE (Phase 1 & 2)/
 │   ├── HTML/                # 系統介面 HTML 檔
-│   ├── user_manual/         # 各系統操作手冊
-│   └── test/                # 測試用規格文件
+│   └── user_manual/         # 各系統操作手冊
 ├── generated_test_cases/    # 產出的測試案例儲存區 (依來源專案分類)
 │   └── [專案名稱]/           # 包含產出的 CSV 與 UserStory 分析檔
 └── .gemini/                 # Gemini CLI 配置資料夾
