@@ -17,11 +17,11 @@
 /
 ├── GEMINI.md                # [核心] 專案憲法：定義全域回覆、自動化學習與產出預檢流程
 ├── GEMINI_ERROR_LOG.md      # [進化] 歷史錯誤日誌：紀錄邏輯錯誤、格式教訓與具體案例回溯
-├── GEMINI_SOP.md            # [手冊] 標準作業程序：定義具體的執行步驟與流程規範
 ├── README.md                # 專案說明文件與快速上手指南
 ├── requirements.txt         # Python 環境相依套件清單
 ├── package.json             # 專案配置文件，包含一鍵安裝指令 (npm run setup)
 ├── upload_to_sheets.py      # 自動化腳本：將產出的 CSV 上傳至 Google Sheets
+├── validate_csv.py          # [守門員] 格式驗證腳本：檢查 CSV 結構與排版規範
 ├── sync_from_sheets.py      # 反向同步腳本：將雲端變更同步回本地 CSV
 ├── LICENSE                  # 專案授權條款
 ├── .env.example             # 環境變數設定範例
@@ -163,6 +163,7 @@ python3 sync_from_sheets.py "generated_test_cases/[專案路徑]/[檔名].csv"
 ## ⚙️ 產出規範 (Production Standards)
 
 為確保 CSV 在 Google Sheets 與 Excel 中的相容性與排版美觀，必須遵守以下強制規範：
+> **註**：以下規則由 `validate_csv.py` 自動執行檢查，若驗證失敗將無法上傳。
 
 | 規則項目 | 說明 | 強制性 |
 | :--- | :--- | :---: |
