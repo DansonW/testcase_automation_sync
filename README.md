@@ -77,7 +77,7 @@ npm run setup
     ![啟用 Google Drive API](credentials_stepsImg/credentials_step0.png)
 3.  **前往憑證頁面**: 在左側選單選擇「API 和服務」>「憑證」。
     ![前往憑證頁面](credentials_stepsImg/credentials_step1.png)
-4.  **授予服務帳號權限**: 到 google sheet 表單中，並將產出的電子郵件帳號加入共用名單，並設定為「編輯者」。
+4.  **授予服務帳號權限**: 到 google sheet 表單中，將產出的電子郵件帳號加入共用名單，並設定為「編輯者」。
     ![授予服務帳號權限](credentials_stepsImg/credentials_step2.png)
 5.  **產生並下載 JSON 金鑰**: 
     *   在服務帳戶列表中點擊該帳戶的 Email。
