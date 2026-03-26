@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>SuperDSP 從 IO 到 Sequence</title>
+    <style>
+        body {
+            font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont,
+                "Segoe UI", system-ui, sans-serif;
+            line-height: 1.6;
+            padding: 24px;
+            max-width: 960px;
+            margin: 0 auto;
+            background: #fafafa;
+            color: #222;
+        }
+
+        h1 {
+            margin-top: 1.6em;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 12px 0 24px 0;
+            background: #fff;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 6px 10px;
+            vertical-align: top;
+            text-align: left;
+        }
+
+        th {
+            background: #f5f5f5;
+            width: 120px;
+            white-space: nowrap;
+        }
+
+        pre {
+            background: #f3f3f3;
+            padding: 8px 10px;
+            border-radius: 3px;
+            overflow-x: auto;
+            font-size: 90%;
+        }
+
+        code {
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+                "Courier New", monospace;
+            background: #f3f3f3;
+            padding: 1px 4px;
+            border-radius: 3px;
+            font-size: 90%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>建立 IO 單</h1>
+    <table>
+        <tr>
+            <th>url</th>
+            <td><code>POST /api/v1/superdsp/companies/{id}/insertion_orders</code></td>
+        </tr>
+        <tr>
+            <th>controller</th>
+            <td><code>app/controllers/api/v1/superdsp/insertion_orders_controller.rb</code></td>
+        </tr>
+        <tr>
+            <th>function</th>
+            <td><code>create</code></td>
+        </tr>
+        <tr>
+            <th>request body</th>
+            <td>
+                <pre>{
+  "insertion_order": {
+    "name": "麥當勞廣告案",
+    "insertion_order_purpose_id": 1,
+    "category_id": 1,
+    "sub_category_id": 1
+  }
+}</pre>
+            </td>
+        </tr>
+        <tr>
+            <th>邏輯</th>
+            <td>
+                1. 建立 IO 單 <code>InsertionOrder</code>
+            </td>
+        </tr>
+    </table>
+
+    <h1>建立廣告活動</h1>
+    <table>
+        <tr>
+            <th>url</th>
+            <td><code>POST /api/v1/superdsp/insertion_orders/{id}/campaigns</code></td>
+        </tr>
+        <tr>
+            <th>controller</th>
+            <td><code>app/controllers/api/v1/superdsp/campaigns_controller.rb</code></td>
+        </tr>
+        <tr>
+            <th>function</th>
+            <td><code>create</code></td>
+        </tr>
+        <tr>
+            <th>request body</th>
+            <td>
+                <pre>{
+  "campaign": {
+    "name": "New campaign",
+    "budget": 12345,
+    "start_date": "2021-02-04",
+    "end_date": "2021-03-01",
+    "product_category_id": 1
+  }
+}</pre>
+            </td>
+        </tr>
+        <tr>
+            <th>邏輯</th>
+            <td>
+                1. 建立 one_campaign <code>OneCampaign</code><br>
+                2. 關聯 IO 單<br>
+                3. 關聯廣告主<br>
+                4. 設置狀態為 <code>oncue</code><br>
+                5. 設置組織和對應的管理者 <code>Agency (代理商) / Client (直客) / Media (媒體)</code><br>
+                6. 設置建立者<br>
+                7. 設置類別（IO 單上的主 / 副類別）<br>
+                8. 設置序列號和版號 <code>AdRequestNumberService.next_ad_request_number</code><br>
+                9. 更新資料回 IO 單（<code>start_date</code>、<code>end_date</code>、<code>budget</code> 與
+                <code>product_categories</code>）
+            </td>
+        </tr>
+    </table>
+
+    <h1>建立受眾組合</h1>
+    <table>
+        <tr>
+            <th>url</th>
+            <td><code>POST /api/v1/superdsp/companies/{id}/audiences</code></td>
+        </tr>
+        <tr>
+            <th>controller</th>
+            <td><code>app/controllers/api/v1/superdsp/audiences_controller.rb</code></td>
+        </tr>
+        <tr>
+            <th>function</th>
+            <td><code>create</code></td>
+        </tr>
+        <tr>
+            <th>request body</th>
+            <td>
+                <pre>{
+  "audience": {
+    "name": "受眾組合A",
+    "demographic_ids": [1, 2],
+    "interest_ids": [3, 4],
+    "keyword_ids": [5, 6],
+    "audience_size": 987000
+  }
+}</pre>
+            </td>
+        </tr>
+        <tr>
+            <th>邏輯</th>
+            <td>
+                1. 建立資料 <code>Audience</code>
+            </td>
+        </tr>
+    </table>
+
+    <h1>建立素材包</h1>
+    <table>
+        <tr>
+            <th>url</th>
+            <td><code>POST /api/v1/superdsp/companies/{id}/packs</code></td>
+        </tr>
+        <tr>
+            <th>controller</th>
+            <td><code>app/controllers/api/v1/superdsp/packs_controller.rb</code></td>
+        </tr>
+        <tr>
+            <th>function</th>
+            <td><code>create</code></td>
+        </tr>
+        <tr>
+            <th>request body</th>
+            <td>
+                <pre>{
+  "pack": {
+    "title": "Pack 新名字",
+    "description": "Pack 新說明",
+    "ad_format_type_id": 8,
+    "video_ids": [1, 2],
+    "banner_ids": [50],
+    "redirect_url": "https://www.onead.com.tw/",
+    "tracking_codes": ["tracking_code1", "tracking_code2"],
+    "product_category_id": 1,
+    "text_context": "文字素材",
+    "url_link_to": "outside"
+  }
+}</pre>
+            </td>
+        </tr>
+        <tr>
+            <th>邏輯</th>
+            <td>
+                1. 取得產品組合 <code>ProductCategory</code><br>
+                2. 取得廣告格式 <code>AdFormatType</code><br>
+                3. 取得素材長度（時間）<br>
+                4. 設置導內導外<br>
+                5. 建立素材包 <code>Pack</code>
+            </td>
+        </tr>
+    </table>
+
+    <h1>建立廣告組合</h1>
+    <table>
+        <tr>
+            <th>url</th>
+            <td><code>POST /api/v1/superdsp/campaigns/{campaign_id}/ad_groups</code></td>
+        </tr>
+        <tr>
+            <th>controller</th>
+            <td><code>app/controllers/api/v1/superdsp/ad_groups_controller.rb</code></td>
+        </tr>
+        <tr>
+            <th>function</th>
+            <td><code>create</code></td>
+        </tr>
+        <tr>
+            <th>request body</th>
+            <td>
+                <pre>{
+  "ad_group": {
+    "name": "麥當勞大麥克活動",
+    "ad_format_type_id": 2,
+    "start_date": "2021-02-04",
+    "end_date": "2021-03-01",
+    "budget": 12345,
+    "markup": 20,
+    "pricing_model_id": 2,
+    "uniprice": 100,
+    "freq": 2,
+    "audience_id": 2,
+    "superdsp_pack_id": 34,
+    "target_devices": [2, 3],
+    "excluded_medium_ids": [1, 2],
+    "hourlies": [1, 2, 4],
+    "regions": [1, 2, 4],
+    "cities": [1, 4]
+  }
+}</pre>
+            </td>
+        </tr>
+        <tr>
+            <th>邏輯</th>
+            <td>
+                1. 驗證日期是否合法<br>
+                2. 驗證預算是否合法<br>
+                3. 建立廣告組合 <code>SuperdspAdGroup</code><br>
+                4. 素材包導內導外<br>
+                5. 計算每日可使用預算<br>
+                6. 更新預算資料<br>
+                7. 建立 one_campaign 的 <code>grouping_association</code>
+            </td>
+        </tr>
+    </table>
+
+    <h1>設置為上刊</h1>
+    <table>
+        <tr>
+            <th>url</th>
+            <td><code>POST /ad_groups/{id}/to_status</code></td>
+        </tr>
+        <tr>
+            <th>controller</th>
+            <td><code>app/controllers/api/v1/superdsp/ad_groups_controller.rb</code></td>
+        </tr>
+        <tr>
+            <th>function</th>
+            <td><code>to_status</code></td>
+        </tr>
+        <tr>
+            <th>request body</th>
+            <td>
+                <pre>{
+  "ad_group": {
+    "superdsp_status": "on cue"
+  }
+}</pre>
+            </td>
+        </tr>
+        <tr>
+            <th>邏輯</th>
+            <td>
+                1. 檢查狀態參數<br>
+                2. 檢查起訖日<br>
+                3. 檢查廣告組合能否變更成該狀態<br>
+                4. 狀態變更
+            </td>
+        </tr>
+    </table>
+
+    <h1>排程產 Sequence</h1>
+    <table>
+        <tr>
+            <th>指令</th>
+            <td><code>rake sequence</code></td>
+        </tr>
+        <tr>
+            <th>檔案</th>
+            <td><code>lib/tasks/sequence.rake</code></td>
+        </tr>
+        <tr>
+            <th>邏輯</th>
+            <td>
+                1. 移除當天的 sequence<br>
+                2. 查詢當天需建立 sequence 的 <code>pre_campaign</code>：
+                <pre>SELECT `pre_campaign_dailyreach`.*
+FROM `pre_campaign_dailyreach`
+INNER JOIN `pre_campaign_detail`
+  ON `pre_campaign_detail`.`id` = `pre_campaign_dailyreach`.`pre_campaign_detail_id`
+INNER JOIN `pre_campaign`
+  ON `pre_campaign`.`id` = `pre_campaign_detail`.`pre_campaign_id`
+WHERE `pre_campaign_dailyreach`.`c_date` = '2023-07-07'
+  AND `pre_campaign_detail`.`enable` = 1
+  AND (`pre_campaign_detail`.`pack_id` IS NOT NULL)
+  AND `pre_campaign`.`status` = 'oncue'
+  AND `pre_campaign`.`has_sequence` = 1;</pre>
+                3. 建立 sequence
+            </td>
+        </tr>
+    </table>
+
+    <h1>查詢 Sequence</h1>
+    <table>
+        <tr>
+            <th>帳密</th>
+            <td><code>erp/config/basic_auth.yml</code></td>
+        </tr>
+        <tr>
+            <th>url</th>
+            <td><code>REMOTE_URLS[:OSS] + "/adserv/v5/sequences"</code></td>
+        </tr>
+    </table>
+
+    <p>
+        原始頁面：
+        <a href="https://guoshi.atlassian.net/wiki/spaces/ITO/pages/3430875176/SuperDSP+IO+Sequence">
+            https://guoshi.atlassian.net/wiki/spaces/ITO/pages/3430875176/SuperDSP+IO+Sequence
+        </a>
+    </p>
+</body>
+
+</html>

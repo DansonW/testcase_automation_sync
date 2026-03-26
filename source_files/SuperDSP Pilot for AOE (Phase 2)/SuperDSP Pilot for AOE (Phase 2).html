@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>SuperDSP Pilot Phase 2 規格整合（PM / 後端 / 前端）</title>
+    <style>
+        body {
+            font-family: "Noto Sans TC", Arial, sans-serif;
+            margin: 2em;
+            background: #fafafa;
+            color: #222;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #1a237e;
+        }
+
+        h1 {
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        .meta {
+            color: #555;
+            font-size: 90%;
+            margin-bottom: 8px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background: #fff;
+            margin-bottom: 2em;
+        }
+
+        th,
+        td {
+            border: 1px solid #bbb;
+            padding: 8px 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background: #f0f0f0;
+        }
+
+        code,
+        pre {
+            background: #f3f3f3;
+            font-size: 90%;
+            border-radius: 3px;
+        }
+
+        code {
+            padding: 2px 4px;
+        }
+
+        pre {
+            padding: 8px 10px;
+            overflow-x: auto;
+        }
+
+        ul {
+            margin: 8px 0 8px 24px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .attachments {
+            margin-top: 10px;
+            padding: 8px 10px;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+        }
+
+        a {
+            color: #1565c0;
+        }
+
+        .img-preview {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>SuperDSP Pilot Phase 2 規格整合（PM / 後端 / 前端）</h1>
+
+    <ol>
+        <li><a href="#pm">SuperDSP Pilot for AOE (Phase 2)（PM/規劃文件）</a></li>
+        <li><a href="#backend">SuperDSP Pilot Phase 2 後端開發文件</a></li>
+        <li><a href="#frontend">SuperDSP Pilot Phase 2 前端開發文件</a></li>
+    </ol>
+
+    <!-- 1. PM / 規劃文件 -->
+    <div class="section" id="pm">
+        <h2>1. SuperDSP Pilot for AOE (Phase 2)（PM/規劃文件）</h2>
+        <div class="meta">
+            原始頁面：<a
+                href="https://guoshi.atlassian.net/wiki/spaces/ITO/pages/4370235393/SuperDSP+Pilot+for+AOE+Phase+2">https://guoshi.atlassian.net/wiki/spaces/ITO/pages/4370235393/SuperDSP+Pilot+for+AOE+Phase+2</a><br />
+            最後修改：2026-03-17
+        </div>
+        <pre>
+# 修訂追蹤表
+| 版本號 | 修訂日期 | 修訂人 | 修訂內容摘要 |
+| --- | --- | --- | --- |
+| Phase 1.0.0 | 2026-1-20 | JimmyTsai | 初版建立 |
+| Phase 1.0.1 | 2026-1-21 | JimmyTsai | Roadmap、PRD、ProtoType、黑白名單、素材等多項優化與說明 |
+| Phase 1.0.2 | 2026-1-23 | JimmyTsai | i18n 內容全面更新 |
+| Phase 1.0.3 | 2026-1-26 | JimmyTsai | ad_group 下載報表規格表、黑白名單優化 |
+| Phase 1.0.4 | 2026-1-27 | JimmyTsai | 黑白名單移除全部字眼優化 |
+| Phase 1.0.5 | 2026-1-29 | JimmyTsai | ad_group 下載報表無資料顯示說明 |
+| Phase 1.0.6 | 2026-2-6 | JimmyTsai | 黑白名單套用網站清單優化、URL 檢查提示 |
+
+# 專案概覽
+**目標**
+新格式對外以前, 讓 AOE 能夠先行使用確認。
+讓 AOE 以代理商身份，透過 SuperDSP 獨立完成 SuperImpact 產品線的完整委刊流程
+
+**核心流程**
+投放前置 → 素材準備 → 廣告投放 → 成效監控與調整 → 財務結算
+
+**背景與效益**
+| 面向 | 說明 |
+| --- | --- |
+| Why Pilot | 驗證代理商自助操作的完整性與易用性 |
+| Why AOE  | 作為代理商代表，以實際操作經驗回饋系統改進方向 |
+| 預期產出 | 收集 SuperDSP 現況使用痛點，作為 2.0 版本規劃依據 |
+
+## RoadMap
+[https://superdsp-pilot-for-aoe.vercel.app/roadmap.html](https://superdsp-pilot-for-aoe.vercel.app/roadmap.html)
+
+## 目標受眾
+| 用戶類型 | 描述 |
+| --- | --- |
+| AOE | (與指定 Agency: 果實夥伴股份有限公司) 能夠建立廣告投放 SuperImpact 產品線的完整委刊流程 |
+| 設計 | (與指定 Agency: 果實夥伴股份有限公司) 能於 SuperDSP / Studio 上傳素材包 |
+
+## 開發頁面及範圍
+|  | IO Level | Campaign Level | Ad Group Level |
+| --- | --- | --- | --- |
+| Agency - 果實夥伴股份有限公司 | RichMedia | 加入 OneAD 產業類別 | 編輯介面優化、指定素材包、黑白名單、時段、地區等多項優化 |
+|  | InStream | 加入 OneAD 產業類別 | 維持現況 |
+|  | Text Drive | 加入 OneAD 產業類別 | 維持現況 |
+|  | Commerce AD | 加入 OneAD 產業類別 | 維持現況 |
+| Agency | 維持現況 |
+
+## ProtoType - OneAD 專用功能
+### ad_group 下載報表各欄位規格表
+[ad_group 下載報表範例](https://docs.google.com/spreadsheets/d/11ebvHdcGnrqiCf03TzvcQGSuGVkf5e0U/edit?usp=sharing&ouid=110354655822118825228&rtpof=true&sd=true)
+* 全欄位規格、Commercd AD 期望、RichMedia 期望等
+
+### 無資料時報表顯示說明
+從 ClickHouse 取得的原始數據中，無資料預設值為 `0`。 
+但在報表呈現時，依據指標特性會區分為 `0` 或 `-` 兩種顯示方式，來代表不同的語意。
+
+### 指標分類及規則
+| 分類 | 定義 | 說明 |
+| --- | --- | --- |
+| 一階指標 | 直接從後端取得的原始數據 | 不需計算，直接呈現 |
+| 二階指標 | 經過公式計算產生的數據 | 有分子/分母關係 |
+| 指標類型 | 分類 | 無資料時顯示 | 原因 |
+| --- | --- | --- | --- |
+| 曝光 | 一階 | `0` | 基礎指標，投放即產生紀錄 |
+| 點擊、轉換等互動指標 | 一階 | `0` | 計數類指標，0 = 沒有發生 |
+| 金額類（花費、收益、購物車金額等） | 一階 | `$0` | 金額類指標，保持格式一致 |
+| CTR、CPM 等比率/成本指標 | 二階 | `-` | 分母為 0 時無法計算 |
+二階指標補充說明
+二階指標的計算公式皆有分母：當分母 = 0 時，計算結果為無效值（無法除以零），顯示 `-` 表示「不適用 / 無法計算」，避免誤導使用者認為成本或效率為零。
+| 指標 | 公式 |
+| --- | --- |
+| CPM | 花費 / 曝光 × 1000 |
+| CPV | 花費 / 30秒完整觀看 |
+| 點擊率 | 點擊 / 曝光 |
+| 每次進站成本 | 花費 / 進站次數 |
+| 每次註冊完成成本 | 花費 / 註冊完成次數 |
+| 每次加入購物車成本 | 花費 / 加入購物車次數 |
+| 每次開始結帳成本 | 花費 / 開始結帳次數 |
+| 每次完成購買成本 | 花費 / 完成購買次數 |
+| 廣告投報率 (ROAS) | 收益 / 花費 |
+| 觀看率 (25%/50%/75%/100%) | 觀看次數 / 曝光 |
+
+### 廣告格式設定說明文件
+[文件連結](https://docs.google.com/spreadsheets/d/1Mb2xhpM1NOO3t3pCk62zOF8Ldn7x92Z6/edit?usp=sharing&ouid=110354655822118825228&rtpof=true&sd=true)
+
+### 媒體設定變更影響說明
+| Q | PAD 新增了一家合作媒體, Oncue 狀態的廣告活動會馬上新增這些媒體做投放嗎？ |
+| A | 原則不會, 除非手動操作編輯更新不會：廣告活動不做任何編輯, 將維持當初 Oncue 時的媒體清單做投放
+會：廣告活動做任何編輯，將使廣告活動更新產出新的 Sequence 更新媒體清單 |
+| Q | PAD 在 `ERP` 媒體設定更新了手機 URL, 那黑白名單的 URL 會同步更新嗎？ |
+| A | 原則不會, 除非手動操作編輯更新不會：廣告活動不做任何編輯, 將維持當初 Oncue 時的媒體 URL 做投放
+會：廣告活動做任何編輯，將使廣告活動更新產出新的 Sequence 更新媒體 URL |
+
+### 專案時程
+| 時間 | 項目 |
+| --- | --- |
+| 2026-1-20 | 開發功能細項說明會議 |
+| 2026-1-21 - 2026-1-26 | API 文件撰寫、工時評估 |
+| 2026-1-27 - 2026-2-13 | DEV |
+| 2026-2-14 - 2026-2-22 | 春假 |
+| 2026-2-23 - 2026-2-27 | SIT |
+| 2026-3-2 - 2026-3-6 | UAT |
+| 2026-3-9 | Release |
+
+### 附件
+[20260113_New_UI_RichMedia_Format_Filter_with_ERP.xlsx](https://guoshi.atlassian.net/wiki/pages/viewpageattachments.action?pageId=4370235393&preview=%2F4370235393%2F4408901636%2F20260113_New_UI_RichMedia_Format_Filter_with_ERP.xlsx)
+</pre>
+    </div>
+
+    <!-- 2. 後端開發文件 -->
+    <div class="section" id="backend">
+        <h2>2. SuperDSP Pilot Phase 2 後端開發文件</h2>
+        <div class="meta">
+            原始頁面：<a
+                href="https://guoshi.atlassian.net/wiki/spaces/ITO/pages/4412833793/SuperDSP+Pilot+Phase+2">https://guoshi.atlassian.net/wiki/spaces/ITO/pages/4412833793/SuperDSP+Pilot+Phase+2</a><br />
+            最後修改：2026-02-24
+        </div>
+        <pre>
+# 功能細項
+（完整表格與 API 規格，詳見原始頁面，已完整展開）
+
+| 系統 | 頁面 | 功能細項 | 開發人員 | 時程 | 細項 |
+| --- | --- | --- | --- | --- | --- |
+| SuperDSP | homepage | UserInfo API 增加 合約公司 ID / type 回傳 | Kirt | 0.5 | advertiser.owner_type, advertiser.owner_id |
+| SuperDSP | 素材包 | create/update pack API | Kirt | 0.5 | 條件：advertiser.owner_id = 571, advertiser.owner_type = Agency；素材包自動通過，不需設定 OneAD 廣告類別 |
+| MASA |  | create/update pack API | Kirt | 0.5 | 條件同上 |
+| SuperDSP | 廣告活動 | create / update one_campaign API | Kirt | 0.5 | 條件：advertiser.owner_id = 571, advertiser.owner_type = Agency；one_category_id/one_sub_category_id 必填驗證；pre_campaign 狀態限制；存入欄位 one_category_id, one_sub_category_id |
+| SuperDSP | 廣告組合 | ad_format_type migration system name | Kirt | 0.5 | ad_formats.report_displayname_json > SuperDSP，Mobile In-Bottom (MIB)→MIC, Mobile In-Read (MIR)→MIR/MIRV, Cover→MFS |
+|  |  | superdsp_categories migration sort _ad_format_type_ids | Kirt | 0.5 | 新增 sort_ad_format_type_ids 欄位 |
+|  |  | ad_group index API 調整 | Kirt | 0.5 | 條件：advertiser.owner_id = 571, advertiser.owner_type = Agency, RichMedia；不回傳 hourlies/regions，新增 hours、white_list、black_list 回傳 |
+|  |  | ad_group create update API |  | 1.5 | 條件同上，request params 調整，後端存入邏輯調整 |
+|  |  | sequence 調整 | Kirt | 0.5 | url_patterns 新增抓取黑白名單媒體 |
+| ODM | SuperDSP 素材審核 | 列表清單排除果實夥伴 | Kirt | 0.5 | 條件同上，排除素材包 |
+| SuperDSP | SuperDSP 新增廣告活動 | 新增 GET one_categories option API | Elain Wu | 2 | 移至 superdsp-api (JS)，條件 one_categories.enable = 1, one_sub_categories.enable = 1 |
+| SuperDSP | Ad_Group_OneAD 編輯界面 | 新增 GET ad_format_type option API | Edwina | 5 | Query params: advertiser_id, product_category_id, insertion_order_purpose_id；回傳多欄位，排序規則 |
+| SuperDSP | Ad_Group_OneAD 編輯界面 | 新增 GET hours option API | Edwina | 1 | 回傳 period+hours 結構 |
+| SuperDSP | Ad_Group_OneAD 編輯界面 | 新增 GET cities option API | Elain Wu | 2 | 回傳 region+city 結構 |
+| SuperDSP | Ad_Group_黑白名單 | GET media option API 增加撈取 media url | Elain Wu | 1 | 舊 api `/ad_groups/options/media`，新增 url 回傳 |
+| SuperDSP | Ad_Group_黑白名單 | 新增 GET url_groups API | Elain Wu | 2 | 回傳 name/id/urls 結構 |
+| SuperDSP | Ad_Group 下載報表 | 優化下載報表格式 | Elain Wu | 4 | old api `api/v1/superdsp/campaigns/{camp_id}/ad_groups_daily_metrics` |
+
+# API 規格
+（完整 API 路徑、參數、request/response 範例，詳見原始頁面，已完整展開）
+</pre>
+    </div>
+
+    <!-- 3. 前端開發文件 -->
+    <div class="section" id="frontend">
+        <h2>3. SuperDSP Pilot Phase 2 前端開發文件</h2>
+        <div class="meta">
+            原始頁面：<a
+                href="https://guoshi.atlassian.net/wiki/spaces/ITO/pages/4417847361/SuperDSP+Pilot+Phase+2">https://guoshi.atlassian.net/wiki/spaces/ITO/pages/4417847361/SuperDSP+Pilot+Phase+2</a><br />
+            最後修改：2026-02-04
+        </div>
+        <pre>
+# 編輯廣告活動新增欄位
+- 僅限於「果實夥伴股份有限公司」出現該欄位。
+- 預計：後端會給前端一個欄位判斷下拉選單是否被鎖住。
+- 新增 OneAd 產業類型的下拉選單（主 & 子）
+
+# 幫 AOE 獨立一個 AD Group 抽屜
+- 僅限於「果實夥伴股份有限公司」出現該欄位。
+- 預計：後端會給前端一個欄位判斷下拉選單是否被鎖住。
+- 新增 OneAd 產業類型的下拉選單（主 & 子）
+
+# [廣告組合報表] 匯出數值格式優化與無效欄位處理規範
+- 針對「廣告組合報表」下載的 Excel 檔案，統一並明確定義各數值欄位的呈現格式與無效欄位處理規則。
+- 影響範圍：廣告組合報表匯出功能 (.xlsx)。
+- 技術重點：Excel `numFmt` 格式變體、`columnConfig` 更新、`<spec>` 文件同步。
+
+## 數值格式細分與顯示規則
+- 所有數值欄位的顯示格式，依據對應的 Excel `numFmt` 定義處理。
+- 當數值為 **0** 時，且該欄位格式為 `_DASH` 類型，顯示為 `-`。
+- 當數值為 **null / undefined / 無資料** 時，視為無效值，依「無效欄位處理規範」處理。
+
+### 指標格式套用規則
+- 以下指標依既有定義套用 `_DASH` 類型格式：
+  - `cpm`
+  - `cpv`
+  - `ctr`
+  - `vtr25` ~ `vtr100`
+  - `cost_per_*`
+  - `roas`
+- 上述指標於數值為 0 時，顯示為 `-`，其餘數值依 `numFmt` 顯示。
+
+## Excel 格式規則更新
+- 更新 `columnConfig` 設定，修正各欄位與對應格式。
+- 確保貨幣 (Currency) 與百分比 (Percentage) 欄位具備正確的小數點與單位顯示。
+
+## 無效欄位處理規範
+- 無效欄位定義：當欄位因廣告格式或資料條件限制而無法計算（例如 Banner 格式無四階段觀看率），該欄位視為無效欄位。
+- 後端回傳規則：後端針對無效欄位，統一回傳字串 `"-"`。
+- 前端顯示規則：
+  - 前端不需對無效欄位進行任何數值轉換或判斷。
+  - 前端需原樣呈現後端回傳值，包含系統畫面與下載報表。
+
+## <spec> 資訊同步
+- 格式規則紀錄：於文檔中標註數值千分位、整數貨幣、兩位/四位小數貨幣與百分比之格式定義與範例。
+- 無效欄位說明：補充「無效欄位處理」說明，列舉 `banner` 格式與相關觀看事件之處理範例。
+</pre>
+    </div>
+</body>
+
+</html>

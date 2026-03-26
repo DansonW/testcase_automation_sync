@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>SuperDSP CCT (Cross-Channel Targeting) 規格整合</title>
+    <style>
+        body {
+            font-family: "Noto Sans TC", Arial, sans-serif;
+            margin: 2em;
+            background: #fafafa;
+            color: #222;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #1a237e;
+        }
+
+        h1 {
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        .meta {
+            color: #555;
+            font-size: 90%;
+            margin-bottom: 8px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background: #fff;
+            margin-bottom: 2em;
+        }
+
+        th,
+        td {
+            border: 1px solid #bbb;
+            padding: 8px 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background: #f0f0f0;
+        }
+
+        code,
+        pre {
+            background: #f3f3f3;
+            font-size: 90%;
+            border-radius: 3px;
+        }
+
+        code {
+            padding: 2px 4px;
+        }
+
+        pre {
+            padding: 8px 10px;
+            overflow-x: auto;
+        }
+
+        ul {
+            margin: 8px 0 8px 24px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .attachments {
+            margin-top: 10px;
+            padding: 8px 10px;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+        }
+
+        a {
+            color: #1565c0;
+        }
+
+        .img-preview {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>SuperDSP CCT (Cross-Channel Targeting) 規格整合</h1>
+
+    <ol>
+        <li><a href="#cct-overview">SuperDSP CCT(Cross-Channel Targeting) 產品規格</a></li>
+        <li><a href="#frontend">前端開發文件</a></li>
+        <li><a href="#api">SuperDSP CCT API</a></li>
+    </ol>
+
+    <!-- 1. CCT 產品規格 -->
+    <div class="section" id="cct-overview">
+        <h2>1. SuperDSP CCT(Cross-Channel Targeting) 產品規格</h2>
+        <div class="meta">
+            原始頁面：<a
+                href="https://guoshi.atlassian.net/wiki/spaces/ITO/pages/3997433857/SuperDSP+CCT+Cross-Channel+Targeting">https://guoshi.atlassian.net/wiki/spaces/ITO/pages/3997433857/SuperDSP+CCT+Cross-Channel+Targeting</a>
+            <br>最後修改：2025-09-08
+        </div>
+        <h3>緣由</h3>
+        <ul>
+            <li>CCT 是一個獨立物件，類似 One Pixel，擁有自己的資料結構。</li>
+            <li>目的是將資料同時打到不同廣告平台，提升投放精準度與效果。</li>
+        </ul>
+        <h3>目的</h3>
+        <ol>
+            <li>提供統一跨渠道目標設定介面，方便管理與追蹤。</li>
+            <li>支援多平台 Pixel ID 管理，提升數據追蹤準確性。</li>
+            <li>支援多語言介面。</li>
+        </ol>
+        <h3>User Story</h3>
+        <ul>
+            <li>建立/管理 CCT Pixel，維護可重複使用的追蹤資源。</li>
+            <li>檢視已建立的 Pixel。</li>
+            <li>Ad Group 建立/編輯時綁定 Pixel。</li>
+            <li>管理者可於「設定」管理 CCT 權限。</li>
+        </ul>
+        <h3>Wireframe</h3>
+        <ul>
+            <li><a href="https://docs.google.com/presentation/d/1zYZ-7CDiItw4aOiYj7jxPHh4YivnUG07/edit?usp=sharing&ouid=101026648664459045784&rtpof=true&sd=true"
+                    target="_blank">PPT by Helen</a></li>
+        </ul>
+        <h3>主要流程摘要</h3>
+        <ol>
+            <li>建立 Cross Channel Pixel：選擇平台、輸入 Pixel ID、設定事件類型與名稱，儲存後自動產生初始碼。</li>
+            <li>編輯 Pixel：可編輯 Pixel ID 與事件設定，Channel 不可更改。</li>
+            <li>Ad Group 綁定 Pixel：選擇要關聯的 CCT Pixel，系統檢查格式要求，完成後更新設定。</li>
+        </ol>
+        <h3>i18n 對照表</h3>
+        <pre>
+| 中文 | 英文 |
+| --- | --- |
+| Cross Channel | Cross Channel |
+| 搜索 | Search |
+| 新增 Cross Channel Pixel | Create Cross Channel Pixel |
+| 編輯 | Edit |
+| 名稱： | Name: |
+| 渠道： | Channel: |
+| Pixel ID： | Pixel ID: |
+| 廣告品類和格式： | Advertising Category & Format: |
+| 觸發事件類型： | Trigger Event Type: |
+| 事件名稱： | Event Name: |
+| 建立時間 | Created Date |
+| 功能 | Settings |
+| 取消 | Cancel |
+| 儲存 | Save |
+| 儲存成功 | Saved |
+| 未指定 | None |
+| 此條件下查無資料 | No Record |
+| 名稱必填。 | Name is required. |
+| 渠道必填。 | Channel is required. |
+| Pixel ID 必填。 | Pixel ID is required. |
+| 廣告品類和格式必填。 | Advertising Category & Format is required. |
+| 觸發事件類型必填。 | Trigger Event Type is required. |
+| 僅允許使用底線 (_) 符號。 | Only the underscore (_) symbol is allowed. |
+| 不可包含空格。 | Spaces are not allowed. |
+| 事件名稱開頭必須是英文字母。 | Event names must start with a letter. |
+| 事件名稱必填。 | Event Name is required. |
+| 取得Cross Channel Pixel列表錯誤。 | Failed to retrieve Cross Channel Pixel list. |
+| 儲存Cross Channel Pixel失敗。 | Failed to save Cross Channel Pixel. |
+| 取得Cross Channel Pixel資訊錯誤。 | Failed to retrieve Cross Channel Pixel information. |
+| 事件名稱開頭必須是英文字母。名稱只能以英文字母、數字和底線構成，不可包含空格。 | Event names must start with a letter. Use only letters, numbers, and underscores. Don't use spaces. |
+    </pre>
+        <h3>時程</h3>
+        <table>
+            <tr>
+                <th>項目</th>
+                <th>工時</th>
+                <th>Duration</th>
+            </tr>
+            <tr>
+                <td>工程師建立功能細項</td>
+                <td></td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Kick-off</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>DEV</td>
+                <td></td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>SIT</td>
+                <td></td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>UAT 前說明會</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>UAT</td>
+                <td></td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>UAT 調整及複驗</td>
+                <td></td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Release</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>追蹤上線後狀況</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 2. 前端開發文件 -->
+    <div class="section" id="frontend">
+        <h2>2. 前端開發文件</h2>
+        <div class="meta">
+            原始頁面：<a
+                href="https://guoshi.atlassian.net/wiki/spaces/ITO/pages/4007329797">https://guoshi.atlassian.net/wiki/spaces/ITO/pages/4007329797</a>
+            <br>最後修改：2025-09-26
+        </div>
+        <h3>User Stories & Acceptance Criteria</h3>
+        <ul>
+            <li>建立/編輯/檢視 Pixel，權限控管（詳見角色權限矩陣）</li>
+            <li>Ad Group 綁定 Pixel，支援選擇/更換/移除</li>
+            <li>管理者可於「設定」管理 CCT 權限</li>
+        </ul>
+        <h3>角色權限矩陣</h3>
+        <table>
+            <tr>
+                <th>功能 / 角色</th>
+                <th>super_admin</th>
+                <th>agency_admin / client_admin</th>
+                <th>ad_operator</th>
+                <th>read_only</th>
+                <th>brand_client</th>
+                <th>media</th>
+            </tr>
+            <tr>
+                <td>檢視 Pixel 列表</td>
+                <td>✅（可切換查看所有代理商/直客/媒體帳號）</td>
+                <td>✅</td>
+                <td>✅</td>
+                <td>✅</td>
+                <td>✅</td>
+                <td>❌</td>
+            </tr>
+            <tr>
+                <td>新增 Pixel</td>
+                <td>❌（僅輔助檢視與排查，不建立資源）</td>
+                <td>✅</td>
+                <td>✅</td>
+                <td>❌</td>
+                <td>❌</td>
+                <td>❌</td>
+            </tr>
+            <tr>
+                <td>編輯 Pixel</td>
+                <td>❌</td>
+                <td>✅</td>
+                <td>✅</td>
+                <td>❌</td>
+                <td>❌</td>
+                <td>❌</td>
+            </tr>
+        </table>
+        <h3>主要前端功能</h3>
+        <ul>
+            <li>Cross Channel 列表頁：搜尋、分頁、權限判斷、i18n</li>
+            <li>新增/編輯 Pixel 抽屜：表單驗證、動態 placeholder、事件名稱規則、API 整合</li>
+            <li>Ad Group 綁定 Pixel：支援多選、radio、未指定選項、查無資料提示</li>
+            <li>設定頁面：進階設定管理 CCT 權限</li>
+        </ul>
+        <h3>表單驗證規則</h3>
+        <ul>
+            <li>Name：必填，80字內，去除前後空白</li>
+            <li>Channel：必填，select，依字母排序</li>
+            <li>Pixel ID：必填，依 Channel 動態 placeholder，去除前後空白</li>
+            <li>Advertising Category & Format：必填，select</li>
+            <li>Trigger Event Type：多選，依 API 指定順序</li>
+            <li>Event Name：必填，僅允許英數字與底線，英文字母開頭，長度依 Channel 限制</li>
+        </ul>
+        <h3>附件圖片</h3>
+        <div class="attachments">
+            <div class="img-preview">
+                <a href="https://guoshi.atlassian.net/wiki/pages/viewpageattachments.action?pageId=4007329797&preview=%2F4007329797%2F4009492542%2Fimage-20250825-034449.png"
+                    target="_blank">
+                    <img src="https://guoshi.atlassian.net/wiki/pages/viewpageattachments.action?pageId=4007329797&preview=%2F4007329797%2F4009492542%2Fimage-20250825-034449.png"
+                        alt="image-20250825-034449.png" style="max-width:400px;display:block;">
+                    image-20250825-034449.png
+                </a>
+            </div>
+            <div class="img-preview">
+                <a href="https://guoshi.atlassian.net/wiki/pages/viewpageattachments.action?pageId=4007329797&preview=%2F4007329797%2F4024598537%2Fimage-20250828-073139.png"
+                    target="_blank">
+                    <img src="https://guoshi.atlassian.net/wiki/pages/viewpageattachments.action?pageId=4007329797&preview=%2F4007329797%2F4024598537%2Fimage-20250828-073139.png"
+                        alt="image-20250828-073139.png" style="max-width:400px;display:block;">
+                    image-20250828-073139.png
+                </a>
+            </div>
+            <div class="img-preview">
+                <a href="https://guoshi.atlassian.net/wiki/pages/viewpageattachments.action?pageId=4007329797&preview=%2F4007329797%2F4034527245%2Fimage-20250902-024435.png"
+                    target="_blank">
+                    <img src="https://guoshi.atlassian.net/wiki/pages/viewpageattachments.action?pageId=4007329797&preview=%2F4007329797%2F4034527245%2Fimage-20250902-024435.png"
+                        alt="image-20250902-024435.png" style="max-width:400px;display:block;">
+                    image-20250902-024435.png
+                </a>
+            </div>
+            <div class="img-preview">
+                <a href="https://guoshi.atlassian.net/wiki/pages/viewpageattachments.action?pageId=4007329797&preview=%2F4007329797%2F4036067340%2Fimage-20250902-024520.png"
+                    target="_blank">
+                    <img src="https://guoshi.atlassian.net/wiki/pages/viewpageattachments.action?pageId=4007329797&preview=%2F4007329797%2F4036067340%2Fimage-20250902-024520.png"
+                        alt="image-20250902-024520.png" style="max-width:400px;display:block;">
+                    image-20250902-024520.png
+                </a>
+            </div>
+            <div class="img-preview">
+                <a href="https://guoshi.atlassian.net/wiki/pages/viewpageattachments.action?pageId=4007329797&preview=%2F4007329797%2F4032397316%2Fimage-20250901-034029.png"
+                    target="_blank">
+                    <img src="https://guoshi.atlassian.net/wiki/pages/viewpageattachments.action?pageId=4007329797&preview=%2F4007329797%2F4032397316%2Fimage-20250901-034029.png"
+                        alt="image-20250901-034029.png" style="max-width:400px;display:block;">
+                    image-20250901-034029.png
+                </a>
+            </div>
+            <div class="img-preview">
+                <a href="https://guoshi.atlassian.net/wiki/pages/viewpageattachments.action?pageId=4007329797&preview=%2F4007329797%2F4031741955%2Fimage-20250901-034047.png"
+                    target="_blank">
+                    <img src="https://guoshi.atlassian.net/wiki/pages/viewpageattachments.action?pageId=4007329797&preview=%2F4007329797%2F4031741955%2Fimage-20250901-034047.png"
+                        alt="image-20250901-034047.png" style="max-width:400px;display:block;">
+                    image-20250901-034047.png
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. CCT API -->
+    <div class="section" id="api">
+        <h2>3. SuperDSP CCT API</h2>
+        <div class="meta">
+            原始頁面：<a
+                href="https://guoshi.atlassian.net/wiki/spaces/ITO/pages/4052221987/SuperDSP+CCT+API">https://guoshi.atlassian.net/wiki/spaces/ITO/pages/4052221987/SuperDSP+CCT+API</a>
+        </div>
+        <h3>Channel (渠道) 選項</h3>
+        <pre>
+GET /api/v1/superdsp/options/cct_channels
+{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "name": "Google Ads",
+      "tracking_id_placeholder": {
+        "en": "ID without prefix (e.g. AW-123456789: 123456789)",
+        "zh": "無前綴，範例：AW-123456789輸入123456789"
+      },
+      "event_name_length_limit": 40
+    },
+    ...
+  ]
+}
+    </pre>
+        <h3>Trigger Event Types (觸發事件類型) 選項</h3>
+        <pre>
+GET /api/v1/superdsp/options/cct_event_types
+{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "name": { "en": "Impression", "zh": "曝光" },
+      "default_value": "superdsp_impression",
+      "cct_product_category_ids": [1,2,3]
+    },
+    ...
+  ]
+}
+    </pre>
+        <h3>建立/更新/查詢 Cross Channel Pixel</h3>
+        <pre>
+POST /api/v1/superdsp/cct_accounts
+PUT  /api/v1/superdsp/cct_accounts/${id}
+GET  /api/v1/superdsp/cct_accounts/${id}
+GET  /api/v1/superdsp/cct_accounts?company_id=${company_id}
+    </pre>
+        <h3>Product Category 選項</h3>
+        <pre>
+GET /api/v1/superdsp/options/cct_product_categories
+{
+  "success": true,
+  "data": [
+    { "id": 1, "name": "InStream" },
+    { "id": 2, "name": "RichMedia Display Format" },
+    { "id": 3, "name": "RichMedia Video Format" }
+  ]
+}
+    </pre>
+        <h3>Ad Group 綁定 CCT</h3>
+        <pre>
+POST /superdsp/campaigns/${campaign_id}/ad_groups
+PUT  /superdsp/ad_groups/${ad_group_id}
+GET  /superdsp/ad_groups/${ad_group_id}
+    </pre>
+        <h3>驗證規則</h3>
+        <ul>
+            <li>event_names.value 僅可輸入英數字與底線，且必須以英文字母開頭</li>
+            <li>不同 channel 對應不同的字數限制</li>
+            <li>同一 channel 只能有一個 pixel id</li>
+        </ul>
+    </div>
+</body>
+
+</html>

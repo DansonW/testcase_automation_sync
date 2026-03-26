@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>SuperDSP 受眾打包/追蹤碼/規格文件（依時間排序整合）</title>
+    <style>
+        body {
+            font-family: "Noto Sans TC", Arial, sans-serif;
+            margin: 2em;
+            background: #fafafa;
+            color: #222;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #1a237e;
+        }
+
+        h1 {
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        .meta {
+            color: #555;
+            font-size: 90%;
+            margin-bottom: 8px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background: #fff;
+            margin-bottom: 2em;
+        }
+
+        th,
+        td {
+            border: 1px solid #bbb;
+            padding: 8px 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background: #f0f0f0;
+        }
+
+        code,
+        pre {
+            background: #f3f3f3;
+            font-size: 90%;
+            border-radius: 3px;
+        }
+
+        code {
+            padding: 2px 4px;
+        }
+
+        pre {
+            padding: 8px 10px;
+            overflow-x: auto;
+        }
+
+        ul {
+            margin: 8px 0 8px 24px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .attachments {
+            margin-top: 10px;
+            padding: 8px 10px;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+        }
+
+        a {
+            color: #1565c0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>SuperDSP 受眾打包/追蹤碼/規格文件（依時間排序整合）</h1>
+    <ol>
+        <li><a href="#api">API 規格文件（2023-09-22）</a></li>
+        <li><a href="#superdsp-main">SuperDSP 新增追蹤碼 & 受眾打包（2023-10-03）</a></li>
+        <li><a href="#api-ver2">API 規格文件 ver2（2023-11-13）</a></li>
+        <li><a href="#superdsp-ver2">SuperDSP 受眾包 ver2（2023-11-30）</a></li>
+        <li><a href="#phase1">受眾打包模組重構 - Phase1（2024-01-19）</a></li>
+    </ol>
+
+    <!-- 1. API 規格文件 -->
+    <div class="section" id="api">
+        <h2>1. API 規格文件</h2>
+        <div class="meta">
+            原始頁面：
+            <a href="https://guoshi.atlassian.net/wiki/spaces/ITO/pages/3451322469/API">
+                https://guoshi.atlassian.net/wiki/spaces/ITO/pages/3451322469/API
+            </a><br />
+            最後修改：2023-09-22
+        </div>
+        <p>（內容節錄：API 制定規則、追蹤碼、受眾包、受眾組合、oncue check、受眾打包 request 對照等，詳見原始頁面）</p>
+        <pre>
+API 規格參照 [API 制定規則](https://guoshi.atlassian.net/wiki/spaces/ITOOperationManual/pages/3407052977)
+（...詳細內容請見原始頁面...）
+    </pre>
+    </div>
+
+    <!-- 2. SuperDSP 新增追蹤碼 & 受眾打包 -->
+    <div class="section" id="superdsp-main">
+        <h2>2. SuperDSP 新增追蹤碼 & 受眾打包</h2>
+        <div class="meta">
+            原始頁面：
+            <a href="https://guoshi.atlassian.net/wiki/spaces/ITO/pages/3448307751/SuperDSP">
+                https://guoshi.atlassian.net/wiki/spaces/ITO/pages/3448307751/SuperDSP
+            </a><br />
+            最後修改：2023-10-03
+        </div>
+        <p>（內容節錄：TODOs、目標、User、UseCase、功能、Diagram、Wireframe、Lookalike 擴充邏輯、受眾組合使用情境、WBS、功能細項、驗收標準、參考資料、UIUX Wireframe
+            等，詳見原始頁面）</p>
+        <pre>
+# TODOs
+- 受眾組合量體預估計算方式 by Jamie
+- 新增追蹤碼
+- 小 i 文字
+- 受眾包複製機制同步
+- 新增受眾包事件選擇 UI
+- 追蹤碼列表麵包屑
+- 時序圖調整
+- 複製受眾組合 API 調整
+
+# 目標
+讓使用者能對他所能控制的流量(Ex: 官網, 活動網頁 … )收集事件, 之後利用這些事件對用戶進行廣告投放
+
+# User
+| User | 權責 |
+| --- | --- |
+| SuperDSP 使用者 | 在 SuperDSP 進行廣告投放所需的操作 |
+
+# UseCase
+| 使用者 | 使用情境 |
+| --- | --- |
+| SuperDSP 使用者(品牌主) | 產生追蹤碼給品牌主使用(埋設在官網, 活動頁) ... |
+| SuperDSP 使用者(經銷商) | ... |
+| SuperDSP 使用者(媒體) | 看不到，也不能用 |
+| SuperDSP 使用者(Admin) | 可以看，但不能用 |
+
+# ...（其餘內容請見原始頁面）
+    </pre>
+    </div>
+
+    <!-- 3. API 規格文件 ver2 -->
+    <div class="section" id="api-ver2">
+        <h2>3. API 規格文件 ver2</h2>
+        <div class="meta">
+            原始頁面：
+            <a href="https://guoshi.atlassian.net/wiki/spaces/ITO/pages/3475111937/API+ver2">
+                https://guoshi.atlassian.net/wiki/spaces/ITO/pages/3475111937/API+ver2
+            </a><br />
+            最後修改：2023-11-13
+        </div>
+        <p>（內容節錄：table 調整、興趣及特定議題選項、受眾包 API、興趣受眾包/網站受眾包/廣告受眾包 API、排程等，詳見原始頁面）</p>
+        <pre>
+# table 調整
+- drop_table website_audiences
+- drop_table campaign_audiences
+- audience_pack_relations 欄位調整
+- audiences 新增 type, extra_options, uuid
+- 新增 pre_campaign_bind_audiences
+
+# 受眾包 API
+- audiences_controller.rb > index
+- audiences_controller.rb > update
+- audiences_controller.rb > linked_ad_groups
+- interest_audiences_controller.rb > create/show/calculate
+- website_audiences_controller.rb > create/show/calculate
+- campaign_audiences_controller.rb > create/show/calculate
+
+# ...（其餘內容請見原始頁面）
+    </pre>
+        <div class="attachments">
+            <b>附件：</b>
+            <ul>
+                <li>
+                    <a
+                        href="https://guoshi.atlassian.net/wiki/pages/viewpageattachments.action?pageId=3475111937&preview=%2F3475111937%2F3484811405%2FSuperDSP+Audience+table+relation-2023-11-13-091035.png">
+                        SuperDSP Audience table relation-2023-11-13-091035.png
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 4. SuperDSP 受眾包 ver2 -->
+    <div class="section" id="superdsp-ver2">
+        <h2>4. SuperDSP 受眾包 ver2</h2>
+        <div class="meta">
+            原始頁面：
+            <a href="https://guoshi.atlassian.net/wiki/spaces/ITO/pages/3473997825/SuperDSP+ver2">
+                https://guoshi.atlassian.net/wiki/spaces/ITO/pages/3473997825/SuperDSP+ver2
+            </a><br />
+            最後修改：2023-11-30
+        </div>
+        <p>（內容節錄：目標、UserStory、功能、驗收標準、Diagram、關鍵設計、功能細項、參考資料、附件等，詳見原始頁面）</p>
+        <pre>
+# 目標
+調整架構和 UI, 避免使用者做太多過濾, 讓受眾 UU 數過少
+
+# UserStory
+| User | 行為 |
+| --- | --- |
+| 經銷商, 直客 | 在廣告組合中使用受眾包進行 Targeting |
+| 管理受眾包(新增, 編輯, 複製, 啟用停用) |
+| 組合不同受眾包以符合 Targeting 需求 |
+| 獲得受眾包的預估 UU 數(網站流量, 廣告流量) |
+| 媒體 | 不能使用受眾包所有功能 |
+
+# ...（其餘內容請見原始頁面）
+    </pre>
+        <div class="attachments">
+            <b>附件：</b>
+            <ul>
+                <li>
+                    <a
+                        href="https://guoshi.atlassian.net/wiki/pages/viewpageattachments.action?pageId=3473997825&preview=%2F3473997825%2F3480879649%2FODM+Generate+Sequence%28TA%29-2023-11-03-070403.png">
+                        ODM Generate Sequence(TA)-2023-11-03-070403.png
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="https://guoshi.atlassian.net/wiki/pages/viewpageattachments.action?pageId=3473997825&preview=%2F3473997825%2F3480912223%2FSuperDSP+Generate+Sequence%28TA%29-2023-11-03-070421.png">
+                        SuperDSP Generate Sequence(TA)-2023-11-03-070421.png
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 5. 受眾打包模組重構 - Phase1 -->
+    <div class="section" id="phase1">
+        <h2>5. 受眾打包模組重構 - Phase1</h2>
+        <div class="meta">
+            原始頁面：
+            <a href="https://guoshi.atlassian.net/wiki/spaces/ITO/pages/3449978907/-+Phase1">
+                https://guoshi.atlassian.net/wiki/spaces/ITO/pages/3449978907/-+Phase1
+            </a><br />
+            最後修改：2024-01-19
+        </div>
+        <p>（內容節錄：緣由、目標、User、UserStory、UseCase、功能、Diagram、Wireframe、功能細項、驗收標準、WBS、參考資料、注意事項等，詳見原始頁面）</p>
+        <pre>
+# 緣由
+讓 Segment 打包由 ITO 處理, 同時...
+
+# 目標
+說明解決方案要達成的效果
+
+# User
+說明這個問題牽涉到那些使用者
+
+# ...（其餘內容請見原始頁面）
+    </pre>
+    </div>
+</body>
+
+</html>

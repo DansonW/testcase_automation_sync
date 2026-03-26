@@ -1,0 +1,71 @@
+"系統","權限","功能/頁面","測試功能","測試情境","操作步驟","期望結果","備註"
+"SuperDSP","Admin","使用者管理 / 我的帳號","[L10n] 繁中姓名標籤校正","驗證「姓氏」與「名字」標籤在繁中語系下是否顯示正確","1. 登入系統並切換語系至「繁體中文」
+2. 進入「側邊選單 > 我的帳號」查看個人資訊
+3. 進入「使用者管理」列表查看 Table Header
+4. 開啟「編輯/新增使用者」彈窗觀察輸入框 Label","1. 「姓氏」標籤對應內容應為 Last Name，而非 First Name
+2. 「名字」標籤對應內容應為 First Name，而非 Last Name
+3. Table 標頭顯示「姓氏」且內容資料正確對齊
+4. 彈窗內的輸入框 Label 順序符合中文閱讀習慣（姓在前，名在後）","SuperDSP Pilot for AOE (Phase 1).html - [L10n] 修正繁體中文介面「姓氏」與「名字」欄位標籤顯示顛倒問題"
+"SuperDSP","AOE","廣告活動列表 / Dashboard","[花費] 移除顯示上限 (Campaign)","驗證廣告活動層級是否正確顯示超跑金額","1. 進入廣告活動列表
+2. 篩選出實際花費已超過預算的廣告活動
+3. 觀察「花費 (Spend)」欄位顯示的數值
+4. 檢查 Dashboard 總計區塊的花費數值","1. 列表 Spend 欄位應顯示實際金額（例如：預算 $10,000，花費 $10,500 則顯示 $10,500）
+2. 花費數值不應被預算金額截斷
+3. Dashboard 總計應呈現加總後的實際超跑金額","SuperDSP Pilot for AOE (Phase 1).html - 移除 Campaign / Ad Group 花費欄位顯示限制 (ITP-2877)"
+"SuperDSP","AOE","廣告組合列表 / Dashboard","[花費] 移除顯示上限 (Ad Group)","驗證廣告組合層級是否正確顯示超跑金額","1. 進入廣告組合列表
+2. 觀察各廣告組合的「花費 (Spend)」數值
+3. 對比該組合的預算設定","1. 顯示邏輯與廣告活動一致，需呈現實際投放金額
+2. 超跑狀況下（Spend > Budget）數值顯示正常，無上限邏輯","SuperDSP Pilot for AOE (Phase 1).html - 移除 Campaign / Ad Group 花費欄位顯示限制 (ITP-2877)"
+"SuperDSP","AOE","廣告活動/廣告組合列表","[花費] Hover 提示圖示驗證","驗證 Spend 欄位標題旁的提示內容正確性","1. 將滑鼠移至「花費 / Spend」欄位標題旁的 (i) 圖示
+2. 觀察語系切換下的提示內容","1. 中文應顯示：花費為實際廣告投放花費，帳務認列以預算設定為主
+2. 英文應顯示：Spend reflects the actual ad delivery amount. Billing is based on the budget setting
+3. 圖示應清晰易見且 Hover 回饋即時","SuperDSP Pilot for AOE (Phase 1).html - 新增 Hover 提示 (ITP-2877)"
+"SuperDSP","AOE","廣告活動列表 / Dashboard","[API] 靜態 Dashboard 數據解耦驗證","驗證 Dashboard 總額是否不再受前端過濾影響","1. 進入廣告活動列表，紀錄頂部 Dashboard 數值
+2. 在列表搜尋框輸入關鍵字過濾部分活動
+3. 觀察 Dashboard 數值是否發生變動
+4. 檢查 Network 請求中的 API Response 結構","1. Dashboard 數值應保持不變，不受前端列表過濾影響
+2. API Response 應包含獨立的 dashboard 屬性存放靜態總額數據
+3. Dashboard 元件應綁定此靜態物件，而非由前端列表即時加總","SuperDSP Pilot for AOE (Phase 1).html - API 結構重構 (ITP-2877)"
+"SuperDSP","AOE","廣告組合列表","[搜尋] Date Picker 範圍控管驗證","驗證廣告組合的日期選取是否受限於廣告活動走期","1. 進入廣告組合列表
+2. 點擊 Date Picker 嘗試選取日期
+3. 觀察超出該廣告活動走期的日期狀態","1. 僅能選取該廣告組合所屬之「廣告活動」走期內的日期
+2. 超出活動範圍的日期應為 Disabled 狀態，不可選取","SuperDSP Pilot for AOE (Phase 1).html - Date Picker 控管 (ITP-2879)"
+"SuperDSP","AOE","廣告活動/廣告組合列表","[搜尋] 日期範圍 API 連動驗證","驗證切換日期區間是否觸發即時數據查詢","1. 在列表頁面切換 Date Picker 的日期區間
+2. 觀察 Network Tab 是否發送新的 API 請求
+3. 檢查回傳的曝光、點擊、花費是否為該時段數據","1. 變更日期區間應重新發送 API 請求，而非僅進行前端過濾
+2. 列表顯示的指標數據應隨日期變更而更新
+3. 搜尋關鍵字或狀態過濾則應維持前端過濾邏輯","SuperDSP Pilot for AOE (Phase 1).html - Campaign / Ad Group 表格資訊呈現邏輯調整 (ITP-2879)"
+"SuperDSP","AOE","廣告活動/廣告組合列表","[報表] 下載數據與 UI 一致性驗證","驗證下載的報表內容是否與選取的日期區間同步","1. 在列表選取特定日期區間 (例如：2026/03/01 - 2026/03/07)
+2. 觀察 UI 上的數據
+3. 點擊下載報表並開啟檔案","1. 報表內的指標數據（曝光、點擊等）應與 UI 顯示完全相同
+2. 報表選取區間應正確對應下載時的設定","SuperDSP Pilot for AOE (Phase 1).html - 下載報表 (ITP-2879)"
+"SuperDSP","AOE / PM","廣告組合設定","[API] 媒體選項 API 路徑與參數驗證","驗證媒體 API 是否指向新路徑並帶入正確篩選參數","1. 在廣告組合編輯頁面進入媒體選取部分
+2. 檢查 API 請求路徑 (Network Tab)
+3. 檢查 Query Parameters 或 Request Body","1. API 路徑應更新為 /api/v2/superdsp/ad_groups/options/media
+2. 應包含 ad_format_type_ids 參數
+3. 此參數應為品類格式清單與廣告格式類型清單的交集","SuperDSP Pilot for AOE (Phase 1).html - [媒體 API] 路徑更新 (ITP-2880)"
+"SuperDSP","AOE","受眾洞察報告","[匯出] 廣告當日數據查詢驗證","驗證廣告開始當天是否開放報表匯出與查詢","1. 找尋一個今日剛起始的廣告活動
+2. 嘗試進入「受眾洞察報告」
+3. 檢查日期選擇器與匯出按鈕","1. 移除「＊數據截取至昨天」的提示字眼
+2. 廣告起始日 (今天) 應為 Enable 可選狀態
+3. 若活動起始日 <= 今天，匯出按鈕應為 Enable 狀態可供點擊","SuperDSP Pilot for AOE (Phase 1).html - 受眾洞察報告放寬匯出資料日期條件 (ITP-2882)"
+"SuperDSP","AOE","廣告組合列表報表","[報表] 數值格式校正驗證","驗證 Excel 中的金額與數量是否可自動加總","1. 下載廣告組合報表
+2. 使用 Excel 開啟
+3. 在金額、百分比或數量欄位下方執行自動加總公式 (SUM)","1. 所有數值欄位應被 Excel 辨識為「數值」而非文字
+2. 應能直接進行加總運算，不需手動轉換格式
+3. 內部應使用 exceljs 的 numFmt (#,##0) 進行設定","SuperDSP Pilot for AOE (Phase 1).html - [報表] 修復數值加總格式 (ITP-2881)"
+"SuperDSP","AOE","廣告組合列表報表","[報表] 冗餘欄位移除驗證","驗證報表中是否已移除無效欄位","1. 開啟下載的廣告組合報表
+2. 檢查欄位清單是否包含舊有欄位","1. 應不包含 pricing_unit (計價單位)
+2. 應不包含 average_price (平均單價)
+3. 應不包含 average_freq (平均頻次)","SuperDSP Pilot for AOE (Phase 1).html - 欄位異動 (ITP-2881)"
+"SuperDSP","AOE","廣告組合列表報表","[報表] Sheet 結構與命名驗證","驗證分頁命名與首列資訊正確性","1. 開啟廣告組合報表
+2. 檢查分頁 (Sheet) 標籤
+3. 觀察第一、二列內容","1. 第一個分頁名稱為 Total
+2. 其餘分頁改為 Ad Group + ${id} 格式（例如：Ad Group 12345）
+3. 第一列顯示「搜尋區間」，第二列顯示對應名稱","SuperDSP Pilot for AOE (Phase 1).html - Sheet 結構與內容優化 (ITP-2881)"
+"SuperDSP","AOE","廣告組合列表","[預算] ABORTED 狀態預算釋放驗證","驗證廣告群組停刊後預算是否正確回流 Campaign","1. 選擇一個執行中 Campaign
+2. 將其中一個 Ad Group 手動變更為 ABORTED (停刊) 狀態
+3. 查看 Campaign 的可用餘額
+4. 嘗試新增一個廣告群組","1. 該 ABORTED 群組所佔用的預算應立即從原始設定 Budget 轉為實際 Spend
+2. 剩餘額度應釋放回 Campaign 可用餘額
+3. 新增群組時，剩餘預算的判斷需包含此釋放後的額度","SuperDSP Pilot for AOE (Phase 1).html - [預算控制] 修正廣告群組停刊（ABORTED）後預算未釋放的問題 (ITP-2921)"

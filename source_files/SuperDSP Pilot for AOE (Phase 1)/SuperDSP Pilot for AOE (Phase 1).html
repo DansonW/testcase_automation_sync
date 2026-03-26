@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>SuperDSP Pilot Phase 1 規格整合</title>
+    <style>
+        body {
+            font-family: "Noto Sans TC", Arial, sans-serif;
+            margin: 2em;
+            background: #fafafa;
+            color: #222;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #1a237e;
+        }
+
+        h1 {
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        .meta {
+            color: #555;
+            font-size: 90%;
+            margin-bottom: 8px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background: #fff;
+            margin-bottom: 2em;
+        }
+
+        th,
+        td {
+            border: 1px solid #bbb;
+            padding: 8px 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background: #f0f0f0;
+        }
+
+        code,
+        pre {
+            background: #f3f3f3;
+            font-size: 90%;
+            border-radius: 3px;
+        }
+
+        code {
+            padding: 2px 4px;
+        }
+
+        pre {
+            padding: 8px 10px;
+            overflow-x: auto;
+        }
+
+        ul {
+            margin: 8px 0 8px 24px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .attachments {
+            margin-top: 10px;
+            padding: 8px 10px;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+        }
+
+        a {
+            color: #1565c0;
+        }
+
+        .img-preview {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>SuperDSP Pilot Phase 1 規格整合</h1>
+
+    <ol>
+        <li><a href="#aoe">SuperDSP Pilot for AOE Phase 1</a></li>
+        <li><a href="#pilot1">SuperDSP Pilot Phase 1（PM/規劃文件）</a></li>
+        <li><a href="#pilot1-fe">SuperDSP Pilot Phase 1 前端開發文件</a></li>
+    </ol>
+
+    <!-- 1. AOE Phase 1 -->
+    <div class="section" id="aoe">
+        <h2>1. SuperDSP Pilot for AOE Phase 1</h2>
+        <div class="meta">
+            原始頁面：<a
+                href="https://guoshi.atlassian.net/wiki/spaces/ITO/pages/4339400705/SuperDSP+Pilot+for+AOE+Phase+1">https://guoshi.atlassian.net/wiki/spaces/ITO/pages/4339400705/SuperDSP+Pilot+for+AOE+Phase+1</a>
+        </div>
+        <pre>
+（請於此展開完整 AOE Phase 1 產品規劃內容，包括目標、功能、流程、驗收標準、附件圖片連結等。）
+    </pre>
+    </div>
+
+    <!-- 2. Pilot Phase 1 PM/規劃文件 -->
+    <div class="section" id="pilot1">
+        <h2>2. SuperDSP Pilot Phase 1（PM/規劃文件）</h2>
+        <div class="meta">
+            原始頁面：<a
+                href="https://guoshi.atlassian.net/wiki/spaces/ITO/pages/4373151745/SuperDSP+Pilot+Phase+1">https://guoshi.atlassian.net/wiki/spaces/ITO/pages/4373151745/SuperDSP+Pilot+Phase+1</a>
+        </div>
+        <pre>
+（請於此展開完整 Pilot Phase 1 PM 文件內容，包括專案目標、功能需求、流程、驗收標準、附件圖片連結等。）
+    </pre>
+    </div>
+
+    <!-- 3. Pilot Phase 1 前端開發文件 -->
+    <div class="section" id="pilot1-fe">
+        <h2>3. SuperDSP Pilot Phase 1 前端開發文件</h2>
+        <div class="meta">
+            原始頁面：<a
+                href="https://guoshi.atlassian.net/wiki/spaces/ITO/pages/4383637505/SuperDSP+Pilot+Phase+1">https://guoshi.atlassian.net/wiki/spaces/ITO/pages/4383637505/SuperDSP+Pilot+Phase+1</a>
+            <br>最後修改：2026-01-30 08:33 (UTC)
+        </div>
+
+        <h3>移除 Campaign / Ad Group 花費欄位顯示限制</h3>
+        <table>
+            <tr>
+                <th>開發項目 / 需求</th>
+                <td>[列表與 DashBoard] 移除 Campaign/Ad Group 花費顯示限制</td>
+            </tr>
+            <tr>
+                <th>系統</th>
+                <td>SuperDSP</td>
+            </tr>
+            <tr>
+                <th>Ticket Number</th>
+                <td><a href="https://guoshi.atlassian.net/browse/ITP-2877">ITP-2877</a></td>
+            </tr>
+            <tr>
+                <th>開發人員</th>
+                <td>Ryan Meng</td>
+            </tr>
+            <tr>
+                <th>描述</th>
+                <td>
+                    目前系統對「花費 (Spend)」欄位設有上限邏輯（花費不可超過預算），現需移除此顯示限制，以呈現實際的廣告投放金額（含超跑狀況）。<br>
+                    <b>影響範圍：</b>廣告活動 (Campaign) 列表與 Dashboard、廣告組合 (Ad Group) 列表與 Dashboard。<br>
+                    <b>異動核心：</b>解鎖顯示限制、新增 (i) Hover 提示、API 結構重構（Summary 物件）。
+                </td>
+            </tr>
+            <tr>
+                <th>備註</th>
+                <td>
+                    為配合後續列表日期連動需求，需同步重構 API 結構，由後端直接提供靜態的 Dashboard 統計資訊，確保全局加總數據不受前端動態篩選影響。
+                </td>
+            </tr>
+        </table>
+        <h4>功能細項</h4>
+        <ul>
+            <li><b>移除顯示限制：</b>
+                <ul>
+                    <li>移除「花費上限等於預算」之邏輯，改為顯示實際投放金額（例如預算 $1,000，實際花費 $1,050 則顯示 $1,050）。</li>
+                    <li>此調整須同時套用於 <b>廣告活動</b> 與 <b>廣告組合</b> 之列表與 Dashboard。</li>
+                </ul>
+            </li>
+            <li><b>新增 Hover 提示：</b>
+                <ul>
+                    <li>於「花費 / Spend」欄位標題旁新增 (i) 提示圖示。</li>
+                    <li><b>zh：</b>花費為實際廣告投放花費，帳務認列以預算設定為主。</li>
+                    <li><b>en：</b>Spend reflects the actual ad delivery amount. Billing is based on the budget setting.
+                    </li>
+                </ul>
+            </li>
+            <li><b>API 結構重構：</b>
+                <ul>
+                    <li><b>靜態 Dashboard 資訊：</b>列表 API 需新增 dashboard 用的屬性，存放不隨列表分頁或動態過濾影響的總額數據。</li>
+                    <li><b>數據解耦：</b>前端 Dashboard 元件須改為綁定此 API 靜態物件，不再透過前端列表加總計算。</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>Campaign / Ad Group 表格資訊呈現邏輯調整</h3>
+        <table>
+            <tr>
+                <th>開發項目 / 需求</th>
+                <td>[列表優化] 廣告活動與廣告組合列表：支援日期範圍即時數據查詢與匯出邏輯調整</td>
+            </tr>
+            <tr>
+                <th>系統</th>
+                <td>SuperDSP</td>
+            </tr>
+            <tr>
+                <th>Ticket Number</th>
+                <td><a href="https://guoshi.atlassian.net/browse/ITP-2879">ITP-2879</a></td>
+            </tr>
+            <tr>
+                <th>開發人員</th>
+                <td>Ryan Meng</td>
+            </tr>
+            <tr>
+                <th>描述</th>
+                <td>
+                    目前「廣告活動 (Campaign) 列表」與「廣告組合 (Ad Group) 列表」的指標數據（如曝光、點擊、花費等）為前端靜態過濾。需調整為與後端連動：當使用者切換 Date Picker
+                    區間時，前端需重新發送 API 請求獲取該時段內的即時數據，確保介面與下載報表呈現內容一致。
+                </td>
+            </tr>
+        </table>
+        <h4>功能細項</h4>
+        <ul>
+            <li><b>Date Picker 控管：</b>
+                <ul>
+                    <li><b>廣告活動列表：</b>依據活動走期限制選取範圍；無日期資訊 (未建立任何廣告活動) 時禁用設定。</li>
+                    <li><b>廣告組合列表：</b>僅能選取該組合所屬廣告活動內的日期，超出範圍得日期須禁用選項。</li>
+                </ul>
+            </li>
+            <li><b>過濾方式：</b>
+                <ul>
+                    <li><b>搜尋 / 狀態：</b>維持前端過濾（過濾當前列表資料）。</li>
+                    <li><b>日期範圍：</b>改為重新請求後端 API，而非前端過濾。</li>
+                </ul>
+            </li>
+            <li><b>下載報表：</b>
+                <ul>
+                    <li>下載報表內容需呈現與 UI 上選取的日期區間結果相同。</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>[媒體 API] 路徑更新並新增 ad_format_type_ids 參數</h3>
+        <table>
+            <tr>
+                <th>開發項目 / 需求</th>
+                <td>[媒體 API] 路徑更新並新增 ad_format_type_ids 參數</td>
+            </tr>
+            <tr>
+                <th>系統</th>
+                <td>SuperDSP</td>
+            </tr>
+            <tr>
+                <th>Ticket Number</th>
+                <td><a href="https://guoshi.atlassian.net/browse/ITP-2880">ITP-2880</a></td>
+            </tr>
+            <tr>
+                <th>開發人員</th>
+                <td>Ryan Meng</td>
+            </tr>
+            <tr>
+                <th>描述</th>
+                <td>
+                    為配合後端架構遷移，本次預計將「媒體選項 (Media Options)」API 導向新的獨立後端專案。<br>
+                    <b>主要變動：</b>僅調整 <code>/ad_groups/options/media</code> 這支 API。<br>
+                    <b>其餘 API：</b>維持使用舊實例 <code>requestV1</code> 呼叫，不在此次改動範圍。<br>
+                    <b>技術重點：</b>前端透過 Vite Proxy 轉發至新專案網域，並新增 <code>ad_format_type_ids</code> 篩選參數。
+                </td>
+            </tr>
+            <tr>
+                <th>備註</th>
+                <td>
+                    因首次在此系統加入新的後端 API 專案，後續測試需要請 mark 在機器上的 nginx config 加上以下設定：<br>
+                    <pre>
+location /api/v2/superdsp/ {
+      proxy_pass https://sit-1-superdsp-api.onead.tw/;
+      proxy_ssl_server_name on;
+  }
+          </pre>
+                </td>
+            </tr>
+        </table>
+        <h4>功能細項</h4>
+        <ul>
+            <li><b>新增請求參數：</b>
+                <ul>
+                    <li>API Request 新增 <code>ad_format_type_ids</code> 參數。</li>
+                    <li>type：<code>number[]</code></li>
+                    <li><code>ad_format_type_ids</code>為品類格式清單與廣告格式類型清單交集的 ad_format_type_ids</li>
+                </ul>
+            </li>
+            <li><b>Vite Proxy 設定：</b>
+                <ul>
+                    <li>於 <code>vite.config</code> 新增 <code>/api/v2/superdsp</code> 代理。</li>
+                    <li>設定 <code>target</code> 指向新 API 專案網域。(localhost:4002)</li>
+                    <li>啟用 <code>rewrite</code> 移除路徑前綴，確保路徑正確對接。</li>
+                </ul>
+            </li>
+            <li><b>Axios 實例建立：</b>
+                <ul>
+                    <li>於 <code>axios</code> 設定檔新增 <code>requestV2</code> 實例。</li>
+                    <li><code>baseURL</code> 設為 <code>/api/v2/superdsp</code>。</li>
+                </ul>
+            </li>
+            <li><b>API 路徑更新：</b>
+                <ul>
+                    <li>將原有的媒體 API 舊路徑更新為新版路徑 <code>/ad_groups/options/media</code></li>
+                    <li>使用 <code>requestV2</code> 呼叫</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>受眾洞察報告放寬匯出資料日期條件</h3>
+        <table>
+            <tr>
+                <th>開發項目 / 需求</th>
+                <td>[受眾洞察報告] 開放當日數據匯出並放寬日期組件禁用條件</td>
+            </tr>
+            <tr>
+                <th>系統</th>
+                <td>SuperDSP</td>
+            </tr>
+            <tr>
+                <th>Ticket Number</th>
+                <td><a href="https://guoshi.atlassian.net/browse/ITP-2882">ITP-2882</a></td>
+            </tr>
+            <tr>
+                <th>開發人員</th>
+                <td>Ryan Meng</td>
+            </tr>
+            <tr>
+                <th>描述</th>
+                <td>
+                    原先因後端資料處理限制，限制廣告活動開始「後一天」才可匯出受眾洞察報告。現在問題已修正，需調整前端控管邏輯，開放活動開始「當天」即可進行報表查詢與匯出，並移除相關過時提示。
+                </td>
+            </tr>
+        </table>
+        <h4>功能細項</h4>
+        <ul>
+            <li><b>UI 調整：</b>
+                <ul>
+                    <li>移除文字：刪除日期選擇器旁的「＊數據截取至昨天」紅字提示。</li>
+                </ul>
+            </li>
+            <li><b>月曆組件：</b>
+                <ul>
+                    <li><b>Enable：</b>活動起始日 >= 今天。</li>
+                    <li><b>預設值：</b><code>start_date</code> 為活動起始日；<code>end_date</code> 為活動結束日。</li>
+                </ul>
+            </li>
+            <li><b>匯出按鈕啟用邏輯：</b>
+                <ul>
+                    <li><b>Disable：</b>廣告活動尚未開始（活動起始日 > 今天）。</li>
+                    <li><b>Enable：</b>廣告活動已開始（活動起始日 <= 今天）。</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>[報表] 修復數值加總格式並調整匯出欄位與 Sheet 結構</h3>
+        <table>
+            <tr>
+                <th>開發項目 / 需求</th>
+                <td>[Ad Group 報表] 修復數值加總格式並調整匯出欄位與 Sheet 結構</td>
+            </tr>
+            <tr>
+                <th>系統</th>
+                <td>SuperDSP</td>
+            </tr>
+            <tr>
+                <th>Ticket Number</th>
+                <td><a href="https://guoshi.atlassian.net/browse/ITP-2881">ITP-2881</a></td>
+            </tr>
+            <tr>
+                <th>開發人員</th>
+                <td>Ryan Meng</td>
+            </tr>
+            <tr>
+                <th>描述</th>
+                <td>
+                    目前廣告組合列表的下載報表，數值欄位僅以純文字或通用格式匯出，導致使用者在 Excel 中無法直接進行自動加總運算。此外，為了提升報表資訊的精準度，需同步移除冗餘欄位並優化 Sheet 呈現結構。
+                </td>
+            </tr>
+        </table>
+        <h4>功能細項</h4>
+        <ul>
+            <li><b>數值格式校正：</b>
+                <ul>
+                    <li>目標：確保所有金額、百分比及數量欄位在 Excel 中可被辨識為「數值」格式。</li>
+                    <li>技術要求：使用 <code>exceljs</code> 的 <code>numFmt</code> 功能進行設定（例如：<code>#,##0</code> 或
+                        <code>0.00</code>），解決目前下載後無法自動加總的問題。
+                    </li>
+                </ul>
+            </li>
+            <li><b>欄位異動：</b>
+                <ul>
+                    <li>移除以下無效或不適用的欄位：
+                        <ul>
+                            <li><code>pricing_unit</code> (計價單位)</li>
+                            <li><code>average_price</code> (含 RichMedia / Instream / Quality Traffic 單價、Commerce Ad 平均
+                                CPC)</li>
+                            <li><code>average_freq</code> (平均頻次)</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><b>Sheet 結構與內容優化：</b>
+                <ul>
+                    <li>首列資訊調整：
+                        <ul>
+                            <li>第一列：顯示「搜尋區間」。</li>
+                            <li>第二列：
+                                <ul>
+                                    <li><code>Total</code> Sheet：顯示 <code>Campaign name</code>。</li>
+                                    <li><code>Ad Group</code> Sheet：顯示 <code>Ad Group Name</code>。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>Sheet 命名規範：
+                        <ul>
+                            <li>第一張保持為 <code>Total</code>。</li>
+                            <li>其餘廣告組合分頁改為 <code>Ad Group + ${id}</code>（例如：<code>Ad Group 12345</code>）。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>[L10n] 修正繁體中文介面「姓氏」與「名字」欄位標籤顯示顛倒問題</h3>
+        <table>
+            <tr>
+                <th>開發項目 / 需求</th>
+                <td>[L10n] 修正繁體中文介面「姓氏」與「名字」欄位標籤顯示顛倒問題</td>
+            </tr>
+            <tr>
+                <th>系統</th>
+                <td>SuperDSP</td>
+            </tr>
+            <tr>
+                <th>開發人員</th>
+                <td>Ryan Meng</td>
+            </tr>
+            <tr>
+                <th>描述</th>
+                <td>
+                    目前 SuperDSP 系統在「繁體中文」語系下，姓氏與名字的標籤 (Label) 顯示與實際資料內容完全顛倒。這不僅不符合中文姓名閱讀習慣，也會導致管理者在建立或編輯使用者時填入錯誤的資訊。<br>
+                    <b>錯誤現象：</b>標籤顯示「姓氏」的地方實際顯示的是 First Name；標籤顯示「名字」的地方實際顯示的是 Last Name。<br>
+                    <b>受影響範圍：</b>
+                    <ol>
+                        <li>側邊選單 - 我的帳號：個人資訊預覽區。</li>
+                        <li>使用者管理列表：Table 欄位標頭與內容。</li>
+                        <li>編輯/新增使用者彈窗：輸入框標籤。</li>
+                    </ol>
+                </td>
+            </tr>
+        </table>
+        <h4>功能細項</h4>
+        <ul>
+            <li>i18n 標籤校正：修正語系檔中 <code>lastName</code> 與 <code>firstName</code> 對應的中文翻譯，確保「姓氏」標籤對應到姓，「名字」標籤對應到名。</li>
+            <li>校正確認：
+                <ul>
+                    <li>我的帳號：個人資訊預覽區顯示正確。</li>
+                    <li>使用者管理列表：Table 標頭與資料列對齊（姓氏顯示 Last Name）。</li>
+                    <li>編輯/新增使用者彈窗：輸入框 Label 顯示正確。</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>[預算控制] 修正廣告群組停刊（ABORTED）後預算未釋放的問題</h3>
+        <table>
+            <tr>
+                <th>開發項目 / 需求</th>
+                <td>[預算控制] 修正廣告群組停刊（ABORTED）後預算未釋放的問題</td>
+            </tr>
+            <tr>
+                <th>系統</th>
+                <td>SuperDSP</td>
+            </tr>
+            <tr>
+                <th>Ticket Number</th>
+                <td><a href="https://guoshi.atlassian.net/browse/ITP-2921">ITP-2921</a></td>
+            </tr>
+            <tr>
+                <th>開發人員</th>
+                <td>Ryan Meng</td>
+            </tr>
+            <tr>
+                <th>描述</th>
+                <td>
+                    當廣告群組狀態變更為「停刊」（含 <code>CLOSED</code> 或 <code>ABORTED</code>）後，系統計算 Campaign
+                    總預算時，仍以該廣告群組原始設定的「預算總額（Budget）」而非「實際花費（Spent）」計算。這導致未用完的剩餘額度被鎖死，無法釋放回給同一個 Campaign 下的其他廣告群組使用。<br>
+                    <b>現狀：</b>僅 <code>CLOSED</code> 狀態會釋放預算。<br>
+                    <b>問題：</b>當狀態為 <code>ABORTED</code> 時，系統仍佔用完整預算額度。
+                </td>
+            </tr>
+        </table>
+        <h4>功能細項</h4>
+        <ul>
+            <li>邏輯擴充：修正預算計算公式，除原有的 <code>CLOSED</code> 狀態外，需將 <code>ABORTED</code> 狀態納入「釋放剩餘預算」的觸發條件。</li>
+            <li>額度釋放計算：當廣告群組符合上述狀態時，該群組佔用的 Campaign 預算應從「原始設定金額 (Budget)」調整為「實際已花費金額 (Budget Spent)」。</li>
+            <li>可用餘額連動：確保 Campaign 的「可用額度」能即時反映因群組停刊而釋放的差額，供其他廣告群組分配使用。</li>
+            <li>校驗同步：
+                <ul>
+                    <li>新增廣告群組時，預算限制檢查須採計釋放後的正確餘額。</li>
+                    <li>編輯廣告群組時，剩餘預算的判斷邏輯須與此修正後的公式一致。</li>
+                </ul>
+            </li>
+            <li>數據一致性：確保此邏輯變更不影響過往已結束（<code>CLOSED</code>）廣告群組的預算顯示與計算基準。</li>
+        </ul>
+    </div>
+</body>
+
+</html>

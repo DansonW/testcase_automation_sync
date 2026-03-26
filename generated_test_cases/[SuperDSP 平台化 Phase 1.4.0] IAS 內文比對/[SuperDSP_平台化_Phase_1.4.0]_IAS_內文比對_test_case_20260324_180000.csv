@@ -1,0 +1,65 @@
+"系統","權限","功能/頁面","測試功能","測試情境","操作步驟","期望結果","備註"
+"SuperDSP","Agency Admin / Client Admin","廣告組合設定","【權限】【功能新增】內文比對權限邊界驗證","驗證 Agency/Client 帳號是否能正常看到 Environment 模式","1. 以 Agency Admin 帳號登入系統
+2. 進入「廣告組合管理」
+3. 點擊「新增廣告組合」
+4. 選擇品類為 RichMedia
+5. 前往「數據鎖定」區塊","1. 數據鎖定應顯示「Audience」與「Environment」兩大頁籤
+2. 點擊「Environment」應能看到內文比對設定區塊
+3. 介面應提供英文版對照標籤","[SuperDSP 平台化 Phase 1.4.0] IAS 內文比對.html"
+"SuperDSP","Media Admin","廣告組合設定","【權限】【反向】媒體帳號功能限制驗證","驗證 Media 帳號是否看不到 Environment 模式","1. 以 Media Admin 帳號登入系統
+2. 進入廣告組合建立頁面
+3. 前往「數據鎖定」區塊","1. 介面應維持舊有樣式，僅顯示受眾鎖定內容
+2. 應完全隱藏「Environment」與「內文比對」相關選項
+3. 確保 Media 合約不開放此進階功能","[SuperDSP 平台化 Phase 1.4.0] IAS 內文比對.html"
+"SuperDSP","Agency Admin","廣告組合設定","【權限】【反向】InStream 品類功能限制驗證","驗證 InStream 品類是否不支援 Environment 模式","1. 在廣告組合建立頁面選取品類為「InStream」
+2. 前往「數據鎖定」區塊觀察頁面標籤","1. 品類為 InStream 時，應不顯示「Environment」頁籤
+2. 數據鎖定應僅保留原有的「Audience」模式
+3. 確保功能僅在 RichMedia 與 Quality Traffic 品類開放","[SuperDSP 平台化 Phase 1.4.0] IAS 內文比對.html"
+"SuperDSP","Onead User (AOE)","廣告組合設定","【功能新增】【ＵＩ】模式切換互斥提示驗證","驗證 Audience 與 Environment 互切時的警告機制","1. 在數據鎖定中先於「Audience」分頁設定部分受眾
+2. 點擊切換至「Environment」頁籤
+3. 觀察系統彈出的 Message Box
+4. 點擊「確定」後檢查設定值","1. 系統應彈出警告：「目前已設定的 Audience 內容將被清除且無法復原。請確認是否要繼續切換？」
+2. 點擊確定後，原本選取的受眾設定應被清空
+3. 介面應正確切換至 Environment 模式","[SuperDSP 平台化 Phase 1.4.0] IAS 內文比對.html"
+"SuperDSP","Onead User (AOE)","廣告組合設定","【功能新增】【ＵＩ】Environment 模式量體預估隱藏驗證","驗證切換至 Environment 模式時是否自動隱藏量體預估","1. 處於「Audience」模式下，確認右側顯示量體預估數據
+2. 切換至「Environment」模式
+3. 觀察介面右側的數據面板","1. 切換至 Environment 模式後，量體預估區塊應完全移除或顯示不適用
+2. 系統應符合「無環境數據可估」的業務限制
+3. 面板不應顯示錯誤或卡死在 Loading 狀態","[SuperDSP 平台化 Phase 1.4.0] IAS 內文比對.html"
+"SuperDSP","Onead User (AOE)","廣告組合設定","【功能新增】【正向】內文比對分類篩選驗證","驗證是否能透過 Filter 篩選特定的內文比對項目","1. 在 Environment 模式下進入「內文比對設定」
+2. 點擊右側的 Filter Icon 開啟分類下拉選單
+3. 選取特定的分類 (例：Auto)
+4. 觀察列表顯示的項目","1. 下拉選單應正確顯示從後端 API 取得的所有分類
+2. 選取特定分類後，列表應僅顯示屬於該分類的內文比對項
+3. 分類名稱不應包含 CCT_ 或 CCA_ 等系統前綴","[SuperDSP 平台化 Phase 1.4.0] IAS 內文比對.html"
+"SuperDSP","Onead User (AOE)","廣告組合設定","【正向】【整合】內文比對包含與排除儲存驗證","驗證內文比對包含與排除鎖定的 CRUD 與資料正確性","1. 選取數個內文比對項目至「包含鎖定」
+2. 選取數個內文比對項目至「排除鎖定」
+3. 點擊「儲存」並重新進入編輯介面
+4. 檢查選取狀態","1. 包含與排除鎖定應能正確區分並顯示已選項目
+2. 儲存後的資料應維持一致，無遺漏或錯位
+3. 確保資料能正確寫入 DB 並與 ad_server 溝通","[SuperDSP 平台化 Phase 1.4.0] IAS 內文比對.html"
+"SuperDSP","Onead User (AOE)","廣告組合管理","【情境】【反向】Active 狀態模式鎖定驗證","驗證廣告組合上刊後禁止切換數據鎖定模式","1. 找尋一個狀態為「Active (執行中)」的廣告組合
+2. 點擊進入編輯介面
+3. 嘗試切換「Audience」與「Environment」頁籤","1. 已上刊的廣告組合應禁止切換模式，標籤可能顯示為 Disabled
+2. 若可點擊，應彈出提示說明上刊後不可更動鎖定維度
+3. 確保報表數據與 Sequence 邏輯的穩定性","[SuperDSP 平台化 Phase 1.4.0] IAS 內文比對.html"
+"SuperDSP","Onead User (PM)","ERP 系統設定","【正向】【整合】ERP 內文比對 CUD 同步驗證","驗證 ERP 端異動是否即時同步至 SuperDSP 選項","1. 在 ERP 的「Pre-bid 設定」中新增一個內文比對分類
+2. 設定該分類為「包含」鎖定
+3. 登入 SuperDSP 查看廣告組合的內文比對選單","1. ERP 新增的分類應立即出現在 SuperDSP 的 Filter 下拉選單中
+2. 選項應根據 ERP 的「包含/排除」設定正確分類至對應區塊
+3. 確保跨系統資料同源且即時更新","[SuperDSP 平台化 Phase 1.4.0] IAS 內文比對.html"
+"SuperDSP","Onead User (AOE)","廣告組合設定","【功能新增】【整合】Environment 模式 Sequence 輸出驗證","驗證 Environment 模式下的 Sequence 是否自動全選受眾","1. 建立一個使用 Environment 模式的廣告組合
+2. 查看該組合產出的 Sequence (pcd) 資料
+3. 檢查其中的性別 (Gender) 與年齡 (Age) 設定","1. 選擇 Environment 模式時，Sequence 輸出的性別與年齡應預設為「全選」
+2. 這是為了確保在環境鎖定下，不會因受眾限制導致投不完
+3. Sequence 中應包含正確的 contextual key 供 ad_server 讀取","[SuperDSP 平台化 Phase 1.4.0] IAS 內文比對.html"
+"SuperDSP","Onead User (AOE)","廣告活動列表","【正向】【整合】日期區間變動數值連動驗證","驗證切換日期區間時指標欄位是否正確計算區間數據","1. 在廣告活動列表選取特定的日期區間
+2. 觀察「花費」、「曝光」、「點擊率」等欄位
+3. 切換另一個日期區間並對比數值","1. 變更日期區間後，指定欄位的數值應隨之變動
+2. 數值應僅計算該區間內產生的成效，而非總額
+3. 日期操作範圍應限制在廣告活動的最大起訖日內","[SuperDSP 平台化 Phase 1.4.0] IAS 內文比對.html"
+"SuperDSP","Onead User (AOE)","品牌安全 / 數據鎖定","【正向】【ＵＩ】多國語言介面完整性驗證","驗證品牌安全與數據鎖定介面的中英文對照","1. 切換系統語系至「English」
+2. 查看品牌安全 (Brand Safety) 標題與選項
+3. 查看數據鎖定 (Targeting) 的各類選單 (例：Shopper Graph)","1. 所有標題、選項與 Tooltip 應正確顯示英文翻譯
+2. 長文字選項應有適當的截斷或排版處理，不影響閱讀
+3. 跳轉 Studio 的 Popup 訊息也應同步為英文版","[SuperDSP 平台化 Phase 1.4.0] IAS 內文比對.html"

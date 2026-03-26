@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>SuperDSP 格式 Preview 與正式環境廣告投放</title>
+    <style>
+        body {
+            font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont,
+                "Segoe UI", system-ui, sans-serif;
+            line-height: 1.6;
+            padding: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #fafafa;
+            color: #222;
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin-top: 1.5em;
+            margin-bottom: 0.6em;
+        }
+
+        h1 {
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 12px 0 20px 0;
+            background: #fff;
+        }
+
+        th,
+        td {
+            border: 1px solid #bbb;
+            padding: 6px 10px;
+            vertical-align: top;
+            text-align: left;
+        }
+
+        th {
+            background: #f5f5f5;
+            white-space: nowrap;
+        }
+
+        ul {
+            margin: 6px 0 6px 24px;
+        }
+
+        code {
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+                "Courier New", monospace;
+            background: #f3f3f3;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-size: 90%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>SuperDSP 格式 Preview 與正式環境廣告投放</h1>
+
+    <h2>緣由</h2>
+    <ul>
+        <li>
+            因 GroupM 子公司自操 SuperDSP 系統，需要新增格式：
+            Cover（純影片）、Cover（純圖片）、MIRV（純影片），圖片素材支援 H5 格式。
+        </li>
+    </ul>
+
+    <h2>目標</h2>
+    <ul>
+        <li>6/21 前開發完成</li>
+        <li>6/24 當周進行 SIT / UAT，並且上到正式環境進行投廣測試</li>
+        <li>7/1 當週完成</li>
+    </ul>
+
+    <h2>User</h2>
+    <table>
+        <tr>
+            <th>部門</th>
+            <th>User</th>
+            <th>權責</th>
+        </tr>
+        <tr>
+            <td>PM</td>
+            <td>Jamie Yeh</td>
+            <td>SuperDSP 第一階段新需求確認</td>
+        </tr>
+        <tr>
+            <td>媒體端</td>
+            <td>GroupM 子公司</td>
+            <td>在正式環境自操 SuperDSP</td>
+        </tr>
+    </table>
+
+    <h2>User Story</h2>
+    <table>
+        <tr>
+            <th>角色</th>
+            <th>需求目標 / 結果 - UserStory</th>
+            <th>功能</th>
+        </tr>
+        <tr>
+            <td>PM</td>
+            <td>需求格式新增</td>
+            <td>增加 3 個格式並且可以投放至媒體上</td>
+        </tr>
+    </table>
+
+    <h2>驗收標準</h2>
+    <table>
+        <tr>
+            <th>系統</th>
+            <th>角色</th>
+            <th>此次開發</th>
+            <th>功能 / 頁面</th>
+            <th>測試功能</th>
+            <th>測試情境</th>
+            <th>操作步驟</th>
+            <th>期望結果</th>
+        </tr>
+        <tr>
+            <td>SuperDSP</td>
+            <td>媒體 - 外部使用者 / PM</td>
+            <td>v</td>
+            <td>素材管理 / 新增素材包 &amp; I/O 單管理</td>
+            <td>是否有新增 3 個格式</td>
+            <td>確認是否新增</td>
+            <td>
+                1. SuperDSP ⇒ 素材管理 ⇒ 新增素材包 ⇒ 選品類 RichMedia<br />
+                2. SuperDSP ⇒ I/O 單管理 ⇒ Brand Building 廣告目的 ⇒ RichMedia 廣告品類 ⇒ 新增廣告組合頁面
+            </td>
+            <td>
+                1. 新增 3 種格式：Cover（純影片）、Cover（純圖片）、MIRV（純影片），圖片素材支援 H5 格式。<br />
+                2. 3 個新格式的右邊抽屜預覽畫面正確。
+            </td>
+        </tr>
+        <tr>
+            <td>SuperDSP</td>
+            <td>媒體 - 外部使用者 / PM</td>
+            <td>v</td>
+            <td>素材管理 / 新增素材包 &amp; I/O 單管理</td>
+            <td>編輯畫面</td>
+            <td>確認編輯畫面是否正確</td>
+            <td>
+                1. SuperDSP ⇒ 素材管理 ⇒ 新增素材包 ⇒ 選品類 RichMedia ⇒ 選已存在的素材包並編輯<br />
+                2. SuperDSP ⇒ I/O 單管理 ⇒ Brand Building 廣告目的 ⇒ RichMedia 廣告品類 ⇒ 選已存在的廣告組合並編輯
+            </td>
+            <td>編輯畫面符合需求。</td>
+        </tr>
+        <tr>
+            <td>SuperDSP</td>
+            <td>媒體 - 外部使用者 / PM</td>
+            <td>v</td>
+            <td>素材管理 / 新增素材包</td>
+            <td>文字敘述調整</td>
+            <td>確認文字敘述是否調整</td>
+            <td>
+                SuperDSP ⇒ 素材管理 ⇒ 新增素材包 ⇒ 選品類 RichMedia ⇒ 選擇素材區塊的「上傳影片」
+            </td>
+            <td>在右邊抽屜中列出不同影片格式尺寸大小的文字敘述。</td>
+        </tr>
+        <tr>
+            <td>SuperDSP</td>
+            <td>媒體 - 外部使用者 / PM</td>
+            <td>v</td>
+            <td>素材管理 / 新增素材包</td>
+            <td>文字敘述調整</td>
+            <td>確認文字敘述是否調整</td>
+            <td>
+                SuperDSP ⇒ 素材管理 ⇒ 新增素材包 ⇒ 選品類 RichMedia ⇒ 選擇素材區塊的「上傳橫幅」
+            </td>
+            <td>在右邊抽屜中列出不同橫幅格式尺寸大小的文字敘述。</td>
+        </tr>
+    </table>
+
+    <!-- 依你的偏好，以下 WBS / TPM WBS 區塊已省略，不輸出到 HTML -->
+
+    <p>
+        原始頁面：<br />
+        <a href="https://guoshi.atlassian.net/wiki/spaces/ITO/pages/3611787351/SuperDSP+Preview">
+            https://guoshi.atlassian.net/wiki/spaces/ITO/pages/3611787351/SuperDSP+Preview
+        </a>
+    </p>
+</body>
+
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>快閃廣告(FlashDrive) 上架 SuperDSP Phase1</title>
+    <style>
+        body {
+            font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont,
+                "Segoe UI", system-ui, sans-serif;
+            line-height: 1.6;
+            padding: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #fafafa;
+            color: #222;
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin-top: 1.5em;
+            margin-bottom: 0.6em;
+        }
+
+        h1 {
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 12px 0 20px 0;
+            background: #fff;
+        }
+
+        th,
+        td {
+            border: 1px solid #bbb;
+            padding: 6px 10px;
+            vertical-align: top;
+            text-align: left;
+        }
+
+        th {
+            background: #f5f5f5;
+            white-space: nowrap;
+        }
+
+        ul {
+            margin: 6px 0 6px 24px;
+        }
+
+        code,
+        pre {
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+                "Courier New", monospace;
+            background: #f3f3f3;
+            font-size: 90%;
+        }
+
+        code {
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        pre {
+            padding: 8px 10px;
+            border-radius: 3px;
+            overflow-x: auto;
+        }
+
+        .attachments {
+            margin-top: 16px;
+            padding: 10px 14px;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>快閃廣告(FlashDrive) 上架 SuperDSP Phase1</h1>
+
+    <h2>目標</h2>
+    <p>
+        新增 CPC 計價的圖文產品 FlashDrive，提供使用者高 CTR、強勢曝光的產品。<br />
+        尺寸等同於 GDN 常用尺寸，使用者可無痛轉移素材至 SuperDSP 投放廣告。
+    </p>
+
+    <h2>User</h2>
+    <table>
+        <tr>
+            <th>User</th>
+            <th>權責</th>
+        </tr>
+        <tr>
+            <td>代理商、經銷商、直客、媒體（暫不開放）</td>
+            <td>可在 SuperDSP 投放 FlashDrive 快閃廣告<br />媒體基本上不會簽這個格式的合約，但如果有簽合約還是可以設定</td>
+        </tr>
+        <tr>
+            <td>CIS</td>
+            <td>審核素材包<br />媒體投放快閃廣告導外連結仍需審核</td>
+        </tr>
+        <tr>
+            <td>PM</td>
+            <td>指定 SuperDSP FlashDrive 可投放的媒體白名單（人工設定）</td>
+        </tr>
+    </table>
+
+    <h2>UseCase &amp; UserStory &amp; 驗收標準</h2>
+    <table>
+        <tr>
+            <th>User</th>
+            <th>功能</th>
+            <th>項目</th>
+        </tr>
+        <tr>
+            <td>代理商、經銷商、直客</td>
+            <td>新增 / 編輯使用快閃廣告的廣告組合</td>
+            <td>新增 / 編輯時，能設定資料並儲存（重新進入編輯畫面，設定為最新設定資料）。</td>
+        </tr>
+        <tr>
+            <td>代理商、經銷商、直客</td>
+            <td>新增 / 編輯快閃廣告的素材包</td>
+            <td>
+                新增 / 編輯時，能設定資料並儲存（重新進入編輯畫面，設定為最新設定資料）。<br />
+                設定素材時，可在右側所見即所得區域看到對應的區塊顯示對應的素材內容。<br />
+                儲存後，可在右側預覽區域看到實際的廣告預覽頁（素材與設定相同），並和廣告進行互動（只有手機格式）。
+            </td>
+        </tr>
+        <tr>
+            <td>代理商、經銷商、直客</td>
+            <td>相關報告能夠正常顯示並下載</td>
+            <td>使用 FlashDrive 投放的廣告組合，可在 Dashboard 看到成效，並可下載成效報告、受眾洞察報告。</td>
+        </tr>
+        <tr>
+            <td>代理商、經銷商、直客</td>
+            <td>媒體白名單</td>
+            <td>建立的 FlashDrive 廣告組合只能投放在 PM 指定的媒體白名單。</td>
+        </tr>
+        <tr>
+            <td>CIS</td>
+            <td>可對 FlashDrive 的素材包進行審核</td>
+            <td>
+                <ul>
+                    <li>新增 / 編輯後會進行審核，審核後才能進行廣告投放。</li>
+                    <li>（暫不開放）使用者是媒體時，快閃廣告和快訊廣告（TextDrive）一樣，不需要經過審核。</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Sequence</td>
+            <td>
+                SuperDSP 新增 Adgroup 後於走期開始會自動依媒體白名單生成 Sequence。<br />
+                媒體白名單異動後，現有 SuperDSP 中 Adgroup 如異動儲存後會更新 Sequence 為最新的媒體投放白名單。
+            </td>
+        </tr>
+    </table>
+
+    <h2>Wireframe</h2>
+    <p>（Wireframe 圖請參考原 Confluence 或設計稿）</p>
+
+    <h2>功能細項</h2>
+    <table>
+        <tr>
+            <th>系統</th>
+            <th>功能</th>
+            <th>細項</th>
+            <th>Who</th>
+            <th>開發時間</th>
+            <th>描述</th>
+        </tr>
+        <tr>
+            <td>SuperDSP</td>
+            <td>新增 / 編輯使用快閃廣告的廣告組合</td>
+            <td>
+                設定資料並儲存。<br />
+                權限卡控：暫不開放給媒體廣告主使用 FlashDrive - 合約卡控即可。
+            </td>
+            <td>Ryan Meng</td>
+            <td>2d</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>SuperDSP</td>
+            <td>新增 / 編輯使用快閃廣告的素材包</td>
+            <td>
+                設定資料並儲存。<br />
+                註記：格式選擇樣式依 AdGroup 樣式為準。Figma 樣式後續再調整。
+            </td>
+            <td></td>
+            <td>2d</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>SuperDSP</td>
+            <td>設定快閃廣告素材時，即時看到示意圖</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>SuperDSP</td>
+            <td>預覽區塊</td>
+            <td>
+                1. 設定快閃廣告素材後，看到廣告預覽畫面。<br />
+                2. 下方警語調整：<br />
+                中文：FlashDrive 廣告會因為使用者裝置大小，而可能無法展示完整廣告。<br />
+                英文：FlashDrive advertisements may not be fully displayed due to the size of the user's device.
+            </td>
+            <td></td>
+            <td></td>
+            <td>MTO 上線代碼即可跟著更新。</td>
+        </tr>
+        <tr>
+            <td>BE API</td>
+            <td>更新 SuperDSP 產品線 &amp; 格式資料</td>
+            <td>
+                更新。人工更新 rake 檔 - <code>create_superdsp_categories.rake</code> 撈取指定
+                <code>ad_formate_type_ids</code>。<br />
+                執行：
+                <pre>rake superdsp:create_categories insertion_order_purpose_id=2 product_category_id=3 ad_format_type_ids='[193]'</pre>
+            </td>
+            <td>Elain Wu</td>
+            <td>0.5d</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>SuperDSP / 投放項目</td>
+            <td>Sequence 產生邏輯</td>
+            <td>
+                新增：<br />
+                建立 Adgroup（PreCampaignDetail）時判斷媒體白名單，直接存入可以投放的媒體。<br />
+                （備註：後來調整為「正常新增 pcd，於 Sequence 判斷白名單」。）<br /><br />
+                編輯：<br />
+                取得最新的媒體白名單，同步更新 Sequence。<br /><br />
+                例：如果可投放 FlashDrive 的媒體總共有 10 家，其中有 7 家設定白名單，<br />
+                此時 pcd 總共會產 10 筆，但 sequence 只會產 7 筆。
+            </td>
+            <td>Elain Wu</td>
+            <td>1d</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>SuperDSP</td>
+            <td>多國語言</td>
+            <td>SuperDSP 相關功能對應中英翻譯 - 警語版本。</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>SuperDSP</td>
+            <td>Sequence</td>
+            <td>
+                Sequence 需依白名單媒體正確產出。<br />
+                白名單有新增或調整時，現有 Campaign 需待 SuperDSP 用戶重新儲存或異動才會更新 Sequence 為最新媒體白名單。
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>ODM</td>
+            <td>SuperDSP 素材審核</td>
+            <td>
+                需審核條件：<br />
+                1. 非媒體類型廣告主。<br />
+                MTO 的 preview 頁結構不需調整，ODM preview 正常。
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>OSS</td>
+            <td>媒體白名單</td>
+            <td>
+                FlashDrive 專用媒體白名單供 Sequence 產生時使用。<br />
+                1. 廣告格式資料表新增欄位，開關 SuperDSP 該格式是否啟用白名單，沒有啟用則預設為全投。<br />
+                2. 新增資料表紀錄哪些媒體在某格式（如 FlashDrive）設定為白名單。<br /><br />
+                實作：<br />
+                <ul>
+                    <li><code>ad_format_type</code> 新增欄位 <code>superdsp_enable_whitelist</code> 儲存是否啟用白名單。</li>
+                    <li>新增 <code>ad_format_type_whitelist_relations</code> 紀錄白名單。</li>
+                    <li>參考 <a href="#white-list-table-relation">Table relation 說明</a>。</li>
+                </ul>
+            </td>
+            <td>Elain Wu</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>OSS</td>
+            <td>Seed 開通第一次白名單</td>
+            <td>
+                開通媒體格式 &amp; 白名單透過 seed ENV 來手動開通「格式」和「媒體」。<br />
+                <pre>
+新增白名單
+rake db:seed:20231115_add_media_whitelists ad_format_type_id=:id media_ids=:ids
+
+移除白名單
+rake db:seed:20231115_add_media_whitelists ad_format_type_id=:id
+        </pre>
+            </td>
+            <td>Elain Wu</td>
+            <td>1d</td>
+            <td></td>
+        </tr>
+    </table>
+
+    <h2 id="white-list-table-relation">白名單 Table relation</h2>
+    <p>詳見附件：SuperDSP - MediaWhiteList Table Relation 圖。</p>
+
+    <!-- WBS 區塊已依你的偏好移除，不輸出到 HTML -->
+
+    <h2>SIT / UAT 問題回報紀錄表</h2>
+    <p>（請參考專案的 SIT/UAT 問題回報試算表或 Confluence 連結。）</p>
+
+    <h2>參考資料</h2>
+    <ul>
+        <li>
+            <a href="https://docs.google.com/document/d/1mB8wLBzF_2jueOcHkg8oENLsxEZ6m6kMHCCpcnwdn2k/edit">
+                4 快閃廣告上架 SuperDSP
+            </a>
+            （參考：上架格式規格）
+        </li>
+        <li>AI 文案不開放的原因：時程。</li>
+        <li>
+            與此相關的規劃中需求：
+            <a
+                href="https://guoshi.atlassian.net/wiki/spaces/ITO/pages/3480879117/-+SuperDSP+FlashDrive+Instream+Pacing">
+                前端智慧 - SuperDSP FlashDrive 媒體 / Instream 裝置 Pacing
+            </a>
+        </li>
+    </ul>
+
+    <h2>後續問題</h2>
+    <ol>
+        <li>
+            因應白名單後續改善，可能會新增 CTR by 媒體 報表
+            （for PM 去開關 CTR 過低媒體，避免成本過高）。
+        </li>
+        <li>
+            提供畫面供 PM 能夠手動開關媒體，細節仍需開會討論
+            （ex: 自動開關日期？）。
+        </li>
+    </ol>
+
+    <div class="attachments">
+        <b>附件：</b>
+        <ul>
+            <li>
+                <a
+                    href="https://guoshi.atlassian.net/wiki/pages/viewpageattachments.action?pageId=3478650902&preview=%2F3478650902%2F3478782003%2Fimage-20231027-063911.png">
+                    image-20231027-063911.png
+                </a>
+            </li>
+            <li>
+                <a
+                    href="https://guoshi.atlassian.net/wiki/pages/viewpageattachments.action?pageId=3478650902&preview=%2F3478650902%2F3487072353%2FSuperDSP+-+MediaWhiteList+Table+Relation-2023-11-15-101027.png">
+                    SuperDSP - MediaWhiteList Table Relation-2023-11-15-101027.png
+                </a>
+            </li>
+            <li>
+                <a
+                    href="https://guoshi.atlassian.net/wiki/pages/viewpageattachments.action?pageId=3478650902&preview=%2F3478650902%2F3485794417%2F%E6%88%AA%E5%9C%96+2023-11-14+%E4%B8%8B%E5%8D%883.49.09.png">
+                    截圖 2023-11-14 下午3.49.09.png
+                </a>
+            </li>
+            <li>
+                <a
+                    href="https://guoshi.atlassian.net/wiki/pages/viewpageattachments.action?pageId=3478650902&preview=%2F3478650902%2F3485794363%2F%E6%88%AA%E5%9C%96+2023-11-14+%E4%B8%8B%E5%8D%882.12.09.png">
+                    截圖 2023-11-14 下午2.12.09.png
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <p>
+        原始頁面：
+        <a href="https://guoshi.atlassian.net/wiki/spaces/ITO/pages/3478650902/FlashDrive+SuperDSP+Phase1">
+            https://guoshi.atlassian.net/wiki/spaces/ITO/pages/3478650902/FlashDrive+SuperDSP+Phase1
+        </a>
+    </p>
+</body>
+
+</html>

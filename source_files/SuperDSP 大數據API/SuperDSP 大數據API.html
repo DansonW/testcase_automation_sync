@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>interest_event / product_key_event / segment_event API SPEC 合輯（依時間排序）</title>
+    <style>
+        body {
+            font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont,
+                "Segoe UI", system-ui, sans-serif;
+            line-height: 1.6;
+            padding: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #fafafa;
+            color: #222;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #1a237e;
+            margin-top: 1.6em;
+        }
+
+        h1 {
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background: #fff;
+            margin: 12px 0 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #bbb;
+            padding: 6px 10px;
+            vertical-align: top;
+            text-align: left;
+        }
+
+        th {
+            background: #f5f5f5;
+        }
+
+        ul {
+            margin: 6px 0 6px 24px;
+        }
+
+        code,
+        pre {
+            background: #f3f3f3;
+            font-size: 90%;
+            border-radius: 3px;
+        }
+
+        code {
+            padding: 2px 4px;
+        }
+
+        pre {
+            padding: 8px 10px;
+            overflow-x: auto;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .meta {
+            color: #555;
+            font-size: 90%;
+            margin-bottom: 8px;
+        }
+
+        .attachments {
+            margin-top: 10px;
+            padding: 8px 10px;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+        }
+
+        a {
+            color: #1565c0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>interest_event / product_key_event / segment_event API SPEC 合輯</h1>
+
+    <p>排序依據：Confluence 頁面 <b>last_modified</b> 由舊到新。</p>
+    <ol>
+        <li><a href="#interest_event">[SPEC] interest_event API（2021‑12‑08）</a></li>
+        <li><a href="#product_key_event">[SPEC] product_key_event API（2022‑09‑27）</a></li>
+        <li><a href="#segment_event_odm">segment_event API 與 ODM 介接（2023‑01‑12）</a></li>
+        <li><a href="#segment_event">[SPEC] segment_event API（2023‑06‑17）</a></li>
+    </ol>
+
+    <!-- 1. [SPEC] interest_event API -->
+    <div class="section" id="interest_event">
+        <h2>1. [SPEC] interest_event API</h2>
+        <div class="meta">
+            原始頁面：
+            <a href="https://guoshi.atlassian.net/wiki/spaces/ITO/pages/2983460865/SPEC+interest_event+API">
+                https://guoshi.atlassian.net/wiki/spaces/ITO/pages/2983460865/SPEC+interest_event+API
+            </a><br />
+            最後修改：Wednesday, December 08, 2021 at 07:00 AM Z
+        </div>
+
+        <h3>Project repository / API doc</h3>
+        <ul>
+            <li>Project repository: <a href="https://github.com/onead/api-gateway">api-gateway</a></li>
+            <li>API doc: <a
+                    href="http://api-gateway.onead.com.tw:3000/apidoc#!/interest_event/getV1InterestEvent">interest_event</a>
+            </li>
+        </ul>
+
+        <h3>資料來源</h3>
+        <ul>
+            <li>daily row data: kafka.<code>summing_day_event_dicts</code></li>
+        </ul>
+        <p>daily row data example：</p>
+        <table>
+            <tr>
+                <th>plaid</th>
+                <th>report_date</th>
+                <th>ig</th>
+                <th>cv</th>
+                <th>impression</th>
+                <th>videoClick</th>
+                <th>bannerClick</th>
+                <th>q0</th>
+                <th>q25</th>
+                <th>q50</th>
+                <th>q75</th>
+                <th>q100</th>
+                <th>view2s</th>
+                <th>view3s</th>
+                <th>view5s</th>
+                <th>view30s</th>
+            </tr>
+            <tr>
+                <td>24999</td>
+                <td>2020-11-17</td>
+                <td>601</td>
+                <td>4746</td>
+                <td>3299</td>
+                <td>8</td>
+                <td>9</td>
+                <td>3153</td>
+                <td>1002</td>
+                <td>568</td>
+                <td>327</td>
+                <td>192</td>
+                <td>1702</td>
+                <td>1313</td>
+                <td>1002</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>24999</td>
+                <td>2020-11-17</td>
+                <td>602</td>
+                <td>6221</td>
+                <td>4353</td>
+                <td>9</td>
+                <td>16</td>
+                <td>4148</td>
+                <td>1336</td>
+                <td>727</td>
+                <td>408</td>
+                <td>246</td>
+                <td>2285</td>
+                <td>1766</td>
+                <td>1336</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>24999</td>
+                <td>2020-11-17</td>
+                <td>403</td>
+                <td>275</td>
+                <td>164</td>
+                <td>0</td>
+                <td>0</td>
+                <td>157</td>
+                <td>78</td>
+                <td>48</td>
+                <td>29</td>
+                <td>19</td>
+                <td>115</td>
+                <td>91</td>
+                <td>78</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>24999</td>
+                <td>2020-11-18</td>
+                <td>601</td>
+                <td>5222</td>
+                <td>3660</td>
+                <td>6</td>
+                <td>25</td>
+                <td>3522</td>
+                <td>1668</td>
+                <td>944</td>
+                <td>590</td>
+                <td>393</td>
+                <td>2445</td>
+                <td>2075</td>
+                <td>1668</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>24999</td>
+                <td>2020-11-18</td>
+                <td>602</td>
+                <td>3691</td>
+                <td>2490</td>
+                <td>5</td>
+                <td>21</td>
+                <td>2400</td>
+                <td>1079</td>
+                <td>623</td>
+                <td>393</td>
+                <td>264</td>
+                <td>1616</td>
+                <td>1347</td>
+                <td>1079</td>
+                <td>0</td>
+            </tr>
+        </table>
+
+        <p>group row data: kafka.<code>summing_interest_groups</code></p>
+        <table>
+            <tr>
+                <th>plaid</th>
+                <th>report_date</th>
+                <th>cv</th>
+                <th>impression</th>
+                <th>videoClick</th>
+                <th>bannerClick</th>
+                <th>q0</th>
+                <th>q25</th>
+                <th>q50</th>
+                <th>q75</th>
+                <th>q100</th>
+                <th>view2s</th>
+                <th>view3s</th>
+                <th>view5s</th>
+                <th>view30s</th>
+            </tr>
+            <tr>
+                <td>24999</td>
+                <td>2020-11-17</td>
+                <td>21273</td>
+                <td>14439</td>
+                <td>30</td>
+                <td>57</td>
+                <td>13632</td>
+                <td>4615</td>
+                <td>2557</td>
+                <td>1548</td>
+                <td>965</td>
+                <td>7687</td>
+                <td>6071</td>
+                <td>4615</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>24999</td>
+                <td>2020-11-18</td>
+                <td>21324</td>
+                <td>14261</td>
+                <td>32</td>
+                <td>57</td>
+                <td>13537</td>
+                <td>5568</td>
+                <td>3193</td>
+                <td>2015</td>
+                <td>1345</td>
+                <td>8730</td>
+                <td>7169</td>
+                <td>5568</td>
+                <td>0</td>
+            </tr>
+        </table>
+
+        <h3>Version（date_array）</h3>
+        <pre>{
+  24999:
+  [
+    {
+      start_date: 2020-11-17,
+      end_date: 2020-11-18,
+      interests: [601, 602]
+    },
+    {
+      start_date: 2020-11-19,
+      end_date: 2020-11-30,
+      interests: [601, 602, 214]
+    }
+  ]
+}</pre>
+
+        <h3>資料計算邏輯</h3>
+        <h4>數據計算</h4>
+        <ol>
+            <li>
+                依據 version 將 <code>daily row data</code> 區分。<br />
+                範例：id = 24999，日期在 2020‑11‑17 ~ 2020‑11‑18，interests in [601, 602]，其他皆為 0（others）；所有項目皆為 0 的資料直接剔除。
+            </li>
+            <li>
+                將該 version 的 daily row data 進行權重計算，將 others 數值依權重分配給 interests。<br />
+                權重計算公式：<code>FLOOR(all_dataset * dataset / sum(dataset))</code><br />
+                範例（cv）：<br />
+                <code>ig 601 cv = FLOOR((9968+9912+275) * 9968 / (9968+9912)) = 10105</code><br />
+                <code>ig 602 cv = FLOOR((9968+9912+275) * 9912 / (9968+9912)) = 10049</code>
+                <table>
+                    <tr>
+                        <th>id</th>
+                        <th>ig</th>
+                        <th>cv</th>
+                    </tr>
+                    <tr>
+                        <td>24999</td>
+                        <td>601</td>
+                        <td>9968</td>
+                    </tr>
+                    <tr>
+                        <td>24999</td>
+                        <td>602</td>
+                        <td>9912</td>
+                    </tr>
+                    <tr>
+                        <td>24999</td>
+                        <td>0</td>
+                        <td>275</td>
+                    </tr>
+                </table>
+            </li>
+            <li>
+                依據 version 將 <code>group row data</code> 區分並加總，同 id 範例如下：<br />
+                <table>
+                    <tr>
+                        <th>id</th>
+                        <th>cv</th>
+                    </tr>
+                    <tr>
+                        <td>24999</td>
+                        <td>42597</td>
+                    </tr>
+                </table>
+            </li>
+            <li>
+                將 group row data 數值依權重分配給 daily row data：<br />
+                權重計算公式：<code>FLOOR(group_dataset * daily_dataset / sum(daily_dataset))</code><br />
+                範例：<br />
+                <code>ig 601 cv = FLOOR(42597 * 10105 / (10105+10049)) = 21357</code><br />
+                <code>ig 602 cv = FLOOR(42597 * 10049 / (10105+10049)) = 21239</code>
+            </li>
+            <li>
+                權重計算捨去的差異值，加到該 version 相對應項目的最小值：<br />
+                <code>Min(cv) + (group_dataset - sum(權重計算結果))</code><br />
+                多筆最小值時，依 ig 排序小→大依序補 +1，直到差異值為 0。
+            </li>
+            <li>
+                將所有 version 權重計算結果依 id & ig & 指標（如 cv）加總，作為 API response。
+            </li>
+        </ol>
+    </div>
+
+    <!-- 2. [SPEC] product_key_event API -->
+    <div class="section" id="product_key_event">
+        <h2>2. [SPEC] product_key_event API</h2>
+        <div class="meta">
+            原始頁面：
+            <a href="https://guoshi.atlassian.net/wiki/spaces/ITO/pages/3273687053/SPEC+product_key_event+API">
+                https://guoshi.atlassian.net/wiki/spaces/ITO/pages/3273687053/SPEC+product_key_event+API
+            </a><br />
+            最後修改：Tuesday, September 27, 2022 at 04:03 AM Z
+        </div>
+
+        <h3>Project repository / API doc</h3>
+        <ul>
+            <li>Project repository: <a href="https://github.com/onead/api-gateway"><u>api-gateway</u></a></li>
+            <li>API doc: <a
+                    href="http://api-gateway.onead.com.tw:3000/apidoc#!/product_key_event/getV1ProductKeyEvent">product_key_event</a>
+            </li>
+        </ul>
+
+        <h3>資料來源</h3>
+        <ul>
+            <li>daily row data: kafka.<code>summing_day_event_dicts</code></li>
+            <li>group row data: kafka.<code>summing_signal_categories</code></li>
+        </ul>
+
+        <p>daily row data SQL 範例：</p>
+        <pre>SELECT 
+  plaid,
+  day_local as report_date,
+  sumIf(counts, event='cv') as cv,
+  sumIf(counts, event='impression') as impression,
+  sumIf(counts, event='videoClick') as videoClick,
+  sumIf(counts, event='bannerClick') as bannerClick,
+  sumIf(counts, event='q0') as q0,
+  sumIf(counts, event='q25') as q25,
+  sumIf(counts, event='q50') as q50,
+  sumIf(counts, event='q75') as q75,
+  sumIf(counts, event='q100') as q100,
+  sumIf(counts, event='view2s') as view2s,
+  sumIf(counts, event='view3s') as view3s,
+  sumIf(counts, event='view5s') as view5s,
+  sumIf(counts, event='view10s') as view10s,
+  sumIf(counts, event='view30s') as view30s,
+  sumIf(counts,event='tb') as tb,
+  sumIf(counts,event='eng') as eng
+FROM kafka.summing_day_event_dicts
+WHERE plaid in (40882) and day_local between '2022-09-22' and '2022-09-30'
+GROUP BY plaid,day_local
+ORDER BY plaid,day_local</pre>
+
+        <p>group row data DB schema（event='eng' 時 eng 代表互動方式）：</p>
+        <pre>CREATE TABLE kafka.summing_signal_categories (
+  `day_local` Date,
+  `uid` Int32 CODEC(Delta(4), ZSTD(1)),
+  `cmpid` Int32 CODEC(Delta(4), ZSTD(1)),
+  `plaid` Int32 CODEC(Delta(4), ZSTD(1)),
+  `pid` Int32 CODEC(Delta(4), ZSTD(1)),
+  `event` LowCardinality(String),
+  `id` UInt16 CODEC(Delta(2), ZSTD(1)),
+  `eng` String CODEC(ZSTD(19)),
+  `counts` UInt64
+)</pre>
+
+        <p>group row data SQL 範例：</p>
+        <pre>SELECT  
+  plaid as tier_id,
+  day_local as report_date,
+  id as category_id, 
+  sumIf(counts,event='cv') as cv, 
+  sumIf(counts,event='impression') as impression, 
+  sumIf(counts,event='videoClick') as videoClick,  
+  sumIf(counts,event='bannerClick') as bannerClick, 
+  sumIf(counts,event='q0') as q0, 
+  sumIf(counts,event='q25') as q25, 
+  sumIf(counts,event='q50') as q50, 
+  sumIf(counts,event='q75') as q75, 
+  sumIf(counts,event='q100') as q100, 
+  sumIf(counts,event='view2s') as view2s, 
+  sumIf(counts,event='view3s') as view3s, 
+  sumIf(counts,event='view5s') as view5s, 
+  sumIf(counts,event='view10s') as view10s, 
+  sumIf(counts,event='view30s') as view30s, 
+  sumIf(counts,event='tb') as tb, 
+  sumIf(counts,event='eng') as eng 
+FROM kafka.summing_signal_categories 
+WHERE plaid in ( 40882 ) and day_local between '2022-09-22' and '2022-09-30' 
+GROUP BY plaid,id,day_local 
+ORDER BY plaid,id asc, day_local asc</pre>
+
+        <p>group row data example（節錄）：</p>
+        <table>
+            <tr>
+                <th>tier_id</th>
+                <th>report_date</th>
+                <th>category_id</th>
+                <th>cv</th>
+                <th>impression</th>
+                <th>videoClick</th>
+                <th>bannerClick</th>
+                <th>q0</th>
+                <th>q25</th>
+                <th>q50</th>
+                <th>q75</th>
+                <th>q100</th>
+                <th>view2s</th>
+                <th>view3s</th>
+                <th>view5s</th>
+                <th>view10s</th>
+                <th>view30s</th>
+                <th>tb</th>
+                <th>eng</th>
+            </tr>
+            <tr>
+                <td>40882</td>
+                <td>2022-09-23</td>
+                <td>2</td>
+                <td>230</td>
+                <td>456</td>
+                <td>45</td>
+                <td>56</td>
+                <td>120</td>
+                <td>734</td>
+                <td>123</td>
+                <td>138</td>
+                <td>193</td>
+                <td>238</td>
+                <td>223</td>
+                <td>112</td>
+                <td>723</td>
+                <td>340</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>40882</td>
+                <td>2022-09-23</td>
+                <td>5</td>
+                <td>33</td>
+                <td>123</td>
+                <td>10</td>
+                <td>23</td>
+                <td>24</td>
+                <td>632</td>
+                <td>723</td>
+                <td>340</td>
+                <td>223</td>
+                <td>212</td>
+                <td>223</td>
+                <td>632</td>
+                <td>232</td>
+                <td>223</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+        </table>
+
+        <h3>Version（date_array）</h3>
+        <pre>{
+  40882:
+  [
+    {
+      start_date: 2022-09-22,
+      end_date: 2022-09-23,
+      categories: [2, 5]
+    },
+    {
+      start_date: 2022-09-23,
+      end_date: 2022-09-30,
+      categories: [20, 21]
+    }
+  ]
+}</pre>
+
+        <h3>資料計算邏輯</h3>
+        <h4>數據計算</h4>
+        <ul>
+            <li>
+                依 version 區分 daily row data：id=40882，日期 2022‑09‑22~2022‑09‑23，categories in [2,5,20,21]，其它為 0；全 0 列剔除。
+            </li>
+            <li>
+                將該 version daily row data 進行權重，others 依權重分配至 categories。<br />
+                權重計算：<code>FLOOR(all_dataset * dataset / sum(dataset))</code><br />
+                範例（cv）：<br />
+                <code>categories_id 2 cv = FLOOR((9968+9912+275) * 9968 / (9968+9912)) = 10105</code><br />
+                <code>categories_id 5 cv = FLOOR((9968+9912+275) * 9912 / (9968+9912)) = 10049</code><br />
+                <table>
+                    <tr>
+                        <th>id</th>
+                        <th>categories_id</th>
+                        <th>cv</th>
+                    </tr>
+                    <tr>
+                        <td>40882</td>
+                        <td>2</td>
+                        <td>9968</td>
+                    </tr>
+                    <tr>
+                        <td>40882</td>
+                        <td>5</td>
+                        <td>9912</td>
+                    </tr>
+                    <tr>
+                        <td>40882</td>
+                        <td>0</td>
+                        <td>275</td>
+                    </tr>
+                </table>
+            </li>
+            <li>
+                依 version 區分 group row data，依 id 加總：<br />
+                <table>
+                    <tr>
+                        <th>id</th>
+                        <th>cv</th>
+                    </tr>
+                    <tr>
+                        <td>40882</td>
+                        <td>42597</td>
+                    </tr>
+                </table>
+            </li>
+            <li>
+                group row data 與 daily row data 進行權重分配：<br />
+                權重：<code>FLOOR(group_dataset * daily_dataset / sum(daily_dataset))</code><br />
+                範例：<br />
+                <code>categories_id 2 cv = FLOOR(42597 * 10105 / (10105+10049)) = 21357</code><br />
+                <code>categories_id 5 cv = FLOOR(42597 * 10049 / (10105+10049)) = 21239</code>
+            </li>
+            <li>
+                權重差異值補回：對該 version 對應指標最小值加差，若多筆最小則依 categories_id 排序小→大依序 +1，直到差為 0。
+            </li>
+            <li>
+                將所有 version 的結果依 tier_id & categories_id & 指標加總，作為 API response。
+            </li>
+        </ul>
+    </div>
+
+    <!-- 3. segment_event API 與 ODM 介接 -->
+    <div class="section" id="segment_event_odm">
+        <h2>3. segment_event API 與 ODM 介接 開發文件</h2>
+        <div class="meta">
+            原始頁面：
+            <a href="https://guoshi.atlassian.net/wiki/spaces/ITO/pages/3311796237/segment_event+API+ODM">
+                https://guoshi.atlassian.net/wiki/spaces/ITO/pages/3311796237/segment_event+API+ODM
+            </a><br />
+            最後修改：Thursday, January 12, 2023 at 03:33 AM Z
+        </div>
+
+        <table>
+            <tr>
+                <th>Target release</th>
+                <td>2022-12-9</td>
+            </tr>
+            <tr>
+                <th>Epic</th>
+                <td><a
+                        href="https://guoshi.atlassian.net/browse/IP-1700">https://guoshi.atlassian.net/browse/IP-1700</a>
+                </td>
+            </tr>
+            <tr>
+                <th>Document status</th>
+                <td>RELESE</td>
+            </tr>
+            <tr>
+                <th>Developers</th>
+                <td>JimmyTsai</td>
+            </tr>
+            <tr>
+                <th>QA</th>
+                <td>NA</td>
+            </tr>
+        </table>
+
+        <h3>SPEC 文件</h3>
+        <p>
+            <a href="https://guoshi.atlassian.net/wiki/spaces/ITO/pages/3112632328">
+                https://guoshi.atlassian.net/wiki/spaces/ITO/pages/3112632328
+            </a>
+        </p>
+
+        <h3>Segment_event API 開發項目（節錄重點）</h3>
+        <table>
+            <tr>
+                <th>項目</th>
+                <th>說明及程式邏輯</th>
+                <th>Developer</th>
+                <th>Story Point</th>
+                <th>Due Date</th>
+            </tr>
+            <tr>
+                <td>ERP 與 APIGateway 介接設定（IP-1675）</td>
+                <td>兩專案之間 route 等初始設定。</td>
+                <td>JimmyTsai</td>
+                <td>3</td>
+                <td>2022-11-3</td>
+            </tr>
+            <tr>
+                <td>Segment filter plaid 邏輯</td>
+                <td>
+                    並非所有 placement 皆有 segment。<br />
+                    若 campaign_id=1000 下有 placement 5001, 5002, 5003，但只有 5001, 5002 有 segment：<br />
+                    使用 campaign_id 查 <code>kafka.summing_segment_events</code> 只會回 5001,5002；<br />
+                    使用 campaign_id 查 <code>kafka.summing_day_event_dicts</code> 會回 5001,5002,5003。<br />
+                    若不先以 segment 有值的 plaids 過濾，直接用 event_row_data 會導致權重計算後數值浮高。<br />
+                    因此先用 <code>summing_segment_events</code> 取出有數據的 plaids，再用這批 plaids 去查兩個 source。
+                </td>
+                <td>JimmyTsai</td>
+                <td>18</td>
+                <td>2022-11-14 ~ 2022-11-16</td>
+            </tr>
+            <tr>
+                <td>v1/segment_event SQL 開發（IP-1675）</td>
+                <td>
+                    兩個資料源：<br />
+                    Segment: <code>kafka.summing_segment_events</code><br />
+                    Event: <code>kafka.summing_day_event_dicts</code><br /><br />
+                    先以 @ids 對 segment table 撈，再收集 plaids。<br />
+                    Filter Plaids SQL:
+                    <pre>SELECT distinct(plaid)
+FROM #{ENV['DB_NAME']}.summing_segment_events
+WHERE #{@tier} in ( #{@ids.join(',')} )
+  AND day_local between '#{@start_date}' and '#{@end_date}'
+ORDER BY plaid asc</pre>
+                    Segment SQL / Event SQL 如原文件所示，之後用權重公式將 Segment 數值回推成與 Event 同比例。
+                </td>
+                <td>JimmyTsai</td>
+                <td>9</td>
+                <td>2022-11-3 ~ 2022-11-4</td>
+            </tr>
+            <tr>
+                <td>整理原始數據結構（IP-1676）</td>
+                <td>
+                    將 Segment_raw_data 整成：<code>sorted_segment_by_tier_id</code><br />
+                    <pre>{
+  tier_id_A: {
+    segment_id_A: { cv: 48743, impression: 33942, ... },
+    segment_id_B: { cv: 35951, impression: 24312, ... }
+  },
+  tier_id_B: {
+    segment_id_C: { cv: 23456, impression: 12345, ... }
+  }
+}</pre>
+                    Event_raw_data 整成：<code>sorted_event_by_tier_id</code>
+                    <pre>{
+  tier_id_A: { cv: 3000, impression: 2000, ... },
+  tier_id_B: { cv: 4000, impression: 3000, ... }
+}</pre>
+                </td>
+                <td>JimmyTsai</td>
+                <td>6</td>
+                <td>2022-11-7</td>
+            </tr>
+            <tr>
+                <td>執行權重計算公式（IP-1719）</td>
+                <td>
+                    對上述整理數據，以 event 為 key 執行：<br />
+                    <code>((segment_data / tier_total(segment_data)) * event_data).floor</code><br />
+                    event=0 時直接補 0 避免除以 0。<br />
+                    計算完更新回 <code>sorted_segment_by_tier_id</code>，結構不變，只是值更新。
+                </td>
+                <td>JimmyTsai</td>
+                <td>12</td>
+                <td>2022-11-8 ~ 2022-11-9</td>
+            </tr>
+            <tr>
+                <td>差異值計算與補回（IP-1729）</td>
+                <td>
+                    差異值：<code>event_data[:event] - tier_total(regressed_segment_data)[:event]</code><br />
+                    儲存在類似：
+                    <pre>{ cv: 4, impression: 3, ... }</pre>
+                    對該 tier 中所有 segment 的指定 event 找最小值，把差異補回；若多筆則依 segment_id 排序取第一筆。
+                </td>
+                <td>JimmyTsai</td>
+                <td>6</td>
+                <td>2022-11-10</td>
+            </tr>
+        </table>
+
+        <h3>Segment_event API 介接 ODM</h3>
+        <table>
+            <tr>
+                <th>項目</th>
+                <th>說明</th>
+                <th>Developer</th>
+                <th>Story Point</th>
+                <th>Due Date</th>
+            </tr>
+            <tr>
+                <td>受眾報告匯出 Segment 維度（IP-1774）</td>
+                <td>
+                    ODM 原本 Segment 維度資料源為 DailyBigDate，改用 APIGateway 即時數據。<br />
+                    ReportCampaignExport.rb 透過 segment_event API 取得數據後整理 & 計算，供受眾報表匯出。
+                </td>
+                <td>JimmyTsai</td>
+                <td>12</td>
+                <td>2022-11-22 ~ 2022-11-23</td>
+            </tr>
+            <tr>
+                <td>OneCampaign_level 即時受眾報告（IP-1774）</td>
+                <td>
+                    Campaign_level 受眾報告：<br />
+                    <code>GET /speed_reports/get_target_type_big_data</code><br />
+                    導向 ReportCampaignExport.rb，最後將結果回傳至畫面。
+                </td>
+                <td>JimmyTsai</td>
+                <td>6</td>
+                <td>2022-11-24</td>
+            </tr>
+            <tr>
+                <td>PreCampaign_level 即時受眾報告（IP-1774）</td>
+                <td>
+                    Placement_level 受眾報告，同樣透過 <code>/speed_reports/get_target_type_big_data</code> 與
+                    ReportCampaignExport.rb。
+                </td>
+                <td>JimmyTsai</td>
+                <td>6</td>
+                <td>2022-11-25</td>
+            </tr>
+            <tr>
+                <td>Bug 修正與匯出優化（IP-1774）</td>
+                <td>
+                    <ul>
+                        <li>多 placement 時匯出顯示全部名稱，而非只顯示第一筆。</li>
+                        <li>多 tab 匯出可超過 placement 數量限制。</li>
+                        <li>無資料維度在報表中以文字提示顯示，非整個維度消失。</li>
+                    </ul>
+                </td>
+                <td>JimmyTsai</td>
+                <td>2+2+2</td>
+                <td>2022-11-28</td>
+            </tr>
+        </table>
+
+        <div class="attachments">
+            <b>附件：</b>
+            <ul>
+                <li><a
+                        href="https://guoshi.atlassian.net/wiki/pages/viewpageattachments.action?pageId=3311796237&preview=%2F3311796237%2F3336437792%2F%E6%88%AA%E5%9C%96+2022-12-07+%E4%B8%8B%E5%8D%883.43.11.png">截圖
+                        2022-12-07 下午3.43.11.png</a></li>
+                <li><a
+                        href="https://guoshi.atlassian.net/wiki/pages/viewpageattachments.action?pageId=3311796237&preview=%2F3311796237%2F3336798265%2F%E6%88%AA%E5%9C%96+2022-11-30+%E4%B8%8B%E5%8D%884.02.43.png">截圖
+                        2022-11-30 下午4.02.43.png</a></li>
+                <li><a
+                        href="https://guoshi.atlassian.net/wiki/pages/viewpageattachments.action?pageId=3311796237&preview=%2F3311796237%2F3336437804%2F%E6%88%AA%E5%9C%96+2022-11-30+%E4%B8%8B%E5%8D%883.32.49.png">截圖
+                        2022-11-30 下午3.32.49.png</a></li>
+                <li><a
+                        href="https://guoshi.atlassian.net/wiki/pages/viewpageattachments.action?pageId=3311796237&preview=%2F3311796237%2F3336437786%2F%E6%88%AA%E5%9C%96+2022-11-30+%E4%B8%8B%E5%8D%883.49.51.png">截圖
+                        2022-11-30 下午3.49.51.png</a></li>
+                <li><a
+                        href="https://guoshi.atlassian.net/wiki/pages/viewpageattachments.action?pageId=3311796237&preview=%2F3311796237%2F3336503343%2F%E6%88%AA%E5%9C%96+2022-11-30+%E4%B8%8B%E5%8D%883.35.13.png">截圖
+                        2022-11-30 下午3.35.13.png</a></li>
+                <li><a
+                        href="https://guoshi.atlassian.net/wiki/pages/viewpageattachments.action?pageId=3311796237&preview=%2F3311796237%2F3336503337%2F%E6%88%AA%E5%9C%96+2022-11-30+%E4%B8%8B%E5%8D%883.37.33.png">截圖
+                        2022-11-30 下午3.37.33.png</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 4. [SPEC] segment_event API -->
+    <div class="section" id="segment_event">
+        <h2>4. [SPEC] segment_event API</h2>
+        <div class="meta">
+            原始頁面：
+            <a href="https://guoshi.atlassian.net/wiki/spaces/ITO/pages/3112632328/SPEC+segment_event+API">
+                https://guoshi.atlassian.net/wiki/spaces/ITO/pages/3112632328/SPEC+segment_event+API
+            </a><br />
+            最後修改：Saturday, June 17, 2023 at 09:41 AM Z
+        </div>
+
+        <h3>Project repository / API doc</h3>
+        <ul>
+            <li>Project repository: <a href="https://github.com/onead/api-gateway">api-gateway</a></li>
+            <li>API doc: segment_event（待補）</li>
+        </ul>
+
+        <h3>資料來源</h3>
+        <h4>1. group segment row data：kafka.<code>summing_segment_events</code></h4>
+        <pre>SELECT  
+  plaid,
+  toString(sg) segment_id,
+  sumIf(counts,event='cv') as cv,
+  sumIf(counts,event='impression') as impression,
+  sumIf(counts,event='videoClick') as videoClick,
+  sumIf(counts,event='bannerClick') as bannerClick,
+  sumIf(counts,event='q0') as q0,
+  sumIf(counts,event='q25') as q25,
+  sumIf(counts,event='q50') as q50,
+  sumIf(counts,event='q75') as q75,
+  sumIf(counts,event='q100') as q100,
+  sumIf(counts,event='view2s') as view2s,
+  sumIf(counts,event='view3s') as view3s,
+  sumIf(counts,event='view5s') as view5s,
+  sumIf(counts,event='view10s') as view10s,
+  sumIf(counts,event='view30s') as view30s
+from kafka.summing_segment_events
+WHERE 
+  plaid = 57666
+  and day_local between '2022-09-29' and '2022-10-26'
+GROUP BY plaid, sg
+ORDER BY plaid, sg</pre>
+
+        <p>Example table：</p>
+        <table>
+            <tr>
+                <th>plaid</th>
+                <th>sg_id</th>
+                <th>cv</th>
+                <th>impression</th>
+                <th>videoClick</th>
+                <th>bannerClick</th>
+                <th>q0</th>
+                <th>q25</th>
+                <th>q50</th>
+                <th>q75</th>
+                <th>q100</th>
+                <th>view2s</th>
+                <th>view3s</th>
+                <th>view5s</th>
+                <th>view30s</th>
+            </tr>
+            <tr>
+                <td>57666</td>
+                <td>3eef5326-3e4c-11ed-94f2-42010a006ae7</td>
+                <td>116790</td>
+                <td>79053</td>
+                <td>437</td>
+                <td>3482</td>
+                <td>75965</td>
+                <td>4296</td>
+                <td>1487</td>
+                <td>664</td>
+                <td>277</td>
+                <td>60880</td>
+                <td>51550</td>
+                <td>37615</td>
+                <td>6334</td>
+            </tr>
+            <tr>
+                <td>57666</td>
+                <td>733f575d-3e4c-11ed-94f2-42010a006ae7</td>
+                <td>86141</td>
+                <td>56624</td>
+                <td>317</td>
+                <td>2593</td>
+                <td>54900</td>
+                <td>2953</td>
+                <td>969</td>
+                <td>437</td>
+                <td>183</td>
+                <td>44328</td>
+                <td>37055</td>
+                <td>26640</td>
+                <td>4286</td>
+            </tr>
+            <tr>
+                <td>57666</td>
+                <td>9ee6774e-3e4c-11ed-94f2-42010a006ae7</td>
+                <td>118286</td>
+                <td>79705</td>
+                <td>418</td>
+                <td>3605</td>
+                <td>76684</td>
+                <td>4388</td>
+                <td>1520</td>
+                <td>684</td>
+                <td>290</td>
+                <td>61874</td>
+                <td>52446</td>
+                <td>38331</td>
+                <td>4277</td>
+            </tr>
+            <tr>
+                <td>57666</td>
+                <td>aafaded4-3e4b-11ed-94f2-42010a006ae7</td>
+                <td>126508</td>
+                <td>86690</td>
+                <td>478</td>
+                <td>3784</td>
+                <td>83001</td>
+                <td>4849</td>
+                <td>1683</td>
+                <td>791</td>
+                <td>335</td>
+                <td>66381</td>
+                <td>56309</td>
+                <td>41284</td>
+                <td>7092</td>
+            </tr>
+            <tr>
+                <td>57666</td>
+                <td>72aadfa3-9df2-11ec-b2f8-42010a006ae7</td>
+                <td>126010</td>
+                <td>86218</td>
+                <td>506</td>
+                <td>3690</td>
+                <td>82742</td>
+                <td>4361</td>
+                <td>1487</td>
+                <td>666</td>
+                <td>291</td>
+                <td>65411</td>
+                <td>54806</td>
+                <td>39475</td>
+                <td>6388</td>
+            </tr>
+            <tr>
+                <td>57666</td>
+                <td>9b33cc6d-d5bd-11ec-b2f8-42010a006ae7</td>
+                <td>3</td>
+                <td>2</td>
+                <td>0</td>
+                <td>1</td>
+                <td>1</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Total</td>
+                <td>573738</td>
+                <td>388292</td>
+                <td>2156</td>
+                <td>17155</td>
+                <td>373293</td>
+                <td>20847</td>
+                <td>7146</td>
+                <td>3242</td>
+                <td>1376</td>
+                <td>298875</td>
+                <td>252167</td>
+                <td>183346</td>
+                <td>28377</td>
+            </tr>
+        </table>
+
+        <h4>2. group event row data：kafka.<code>summing_day_event_dicts</code></h4>
+        <table>
+            <tr>
+                <th>placement_id</th>
+                <th></th>
+                <th>cv</th>
+                <th>impression</th>
+                <th>videoClick</th>
+                <th>bannerClick</th>
+                <th>q0</th>
+                <th>q25</th>
+                <th>q50</th>
+                <th>q75</th>
+                <th>q100</th>
+                <th>view2s</th>
+                <th>view3s</th>
+                <th>view5s</th>
+                <th>view30s</th>
+            </tr>
+            <tr>
+                <td>57666</td>
+                <td></td>
+                <td>239456</td>
+                <td>166717</td>
+                <td>933</td>
+                <td>6944</td>
+                <td>159238</td>
+                <td>8636</td>
+                <td>2932</td>
+                <td>1354</td>
+                <td>597</td>
+                <td>125925</td>
+                <td>106305</td>
+                <td>77468</td>
+                <td>12725</td>
+            </tr>
+        </table>
+
+        <h3>資料計算邏輯（以 cv 為例）</h3>
+        <p>group segment row data cv：</p>
+        <table>
+            <tr>
+                <th>plaid</th>
+                <th>sg_id</th>
+                <th>cv</th>
+            </tr>
+            <tr>
+                <td>57666</td>
+                <td>3eef5...</td>
+                <td>116,790</td>
+            </tr>
+            <tr>
+                <td>57666</td>
+                <td>733f5...</td>
+                <td>86,141</td>
+            </tr>
+            <tr>
+                <td>57666</td>
+                <td>9ee67...</td>
+                <td>118,286</td>
+            </tr>
+            <tr>
+                <td>57666</td>
+                <td>aafad...</td>
+                <td>126,508</td>
+            </tr>
+            <tr>
+                <td>57666</td>
+                <td>72aad...</td>
+                <td>126,010</td>
+            </tr>
+            <tr>
+                <td>57666</td>
+                <td>9b33c...</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Total</td>
+                <td>573,738</td>
+            </tr>
+        </table>
+
+        <p>group event row data cv：</p>
+        <table>
+            <tr>
+                <th>placement_id</th>
+                <th></th>
+                <th>cv</th>
+            </tr>
+            <tr>
+                <td>57666</td>
+                <td></td>
+                <td>239,456</td>
+            </tr>
+        </table>
+
+        <h4>Step1. 權重計算公式</h4>
+        <p>
+            <code>((segment_row_data / sum(segment_row_data)) * group_event_row_data).floor</code><br />
+            範例：sg_id 3eef...<br />
+            <code>((116,790 / 573,738) * 239,456).floor = 48,743</code>
+        </p>
+
+        <h4>Step2. 計算差異值並加回指定 segment</h4>
+        <p>
+            sum(cv 權重) = 48,743 + 35,951 + 49,367 + 52,799 + 52,591 + 1 = 239,452<br />
+            差異 = 239,456 − 239,452 = 4；找出最小值 1，將 4 補上 => 5。<br />
+            若有多個最小值，依 event key 排序規則逐一比較（event key 順序：[cv, impression, q0, view2s, view3s, view5s, view30s, q25, q50,
+            q100, bannerclick, videoclick]）。<br />
+            若仍無法唯一決定，則依 sg_id.sort 取第一筆。
+        </p>
+
+        <h4>Step3. 回傳結果</h4>
+        <p>將所有 segment 權重後結果依 id & sg_id & 指標加總，作為 API response。</p>
+
+        <h3>整體計算步驟摘要</h3>
+        <ol>
+            <li>
+                將 group_segment_row_data 整為：
+                <pre>{
+  cv: [116790, 86141, 118286, 126508, 126010, 3],
+  impression: [79053, 56624, 79705, 86690, 86218, 2],
+  ...
+}</pre>
+            </li>
+            <li>
+                將 group_event_row_data 整為：
+                <pre>{
+  cv: 239456,
+  impression: 166717,
+  ...
+}</pre>
+            </li>
+            <li>
+                將上述兩者以 event 為 key 執行權重公式，segment_row_data=0 時補 0，不計算。<br />
+                結果結構類似：
+                <pre>{
+  segment_A: { cv: 48743, impression: 33942, ... },
+  segment_B: { cv: 35951, impression: 24312, ... },
+  ...
+}</pre>
+            </li>
+            <li>
+                計算各 event 差異值：
+                <pre>{ cv: 4, impression: 3, ... }</pre>
+            </li>
+            <li>
+                用 event_key 順序尋找最小的 segment，將差異值加回該 segment。
+            </li>
+            <li>
+                完成差異補回後的 segment 結果即為對外提供的明細。
+            </li>
+        </ol>
+
+        <h3>補充資料</h3>
+        <p>
+            CIS 受眾報告統整上不使用 ODM 而改用 BDCD 大數據 API 的主要原因：
+        </p>
+        <ul>
+            <li>DV360 變形小金剛數據</li>
+            <li>受眾鎖定放大/縮小時的行為</li>
+            <li>興趣議題透過 segment 打包</li>
+        </ul>
+
+        <div class="attachments">
+            <b>附件：</b>
+            <ul>
+                <li><a
+                        href="https://guoshi.atlassian.net/wiki/pages/viewpageattachments.action?pageId=3112632328&preview=%2F3112632328%2F3422028226%2F%E6%88%AA%E5%9C%96+2023-06-15+%E4%B8%8B%E5%8D%883.34.23-20230617-093841.png">截圖
+                        2023-06-15 下午3.34.23-20230617-093841.png</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
